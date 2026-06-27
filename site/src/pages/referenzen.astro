@@ -7,16 +7,9 @@ import CTASimple from '@/components/CTASimple.astro';
 import ReferenzenFilter from '@/components/islands/ReferenzenFilter.tsx';
 import { C } from '@/lib/theme';
 import { REFERENCES } from '@/data/content';
-import { optimized } from '@/lib/images';
+import { label as labelOf } from '@/lib/alt';
 
-const items = (
-  await Promise.all(
-    REFERENCES.map(async (r) => {
-      const opt = await optimized(r.img, '(max-width: 920px) 100vw, 33vw');
-      return opt ? { ...opt, cat: r.cat, t: r.t } : null;
-    })
-  )
-).filter(Boolean);
+const items = REFERENCES.map((r) => ({ label: labelOf(r.img), cat: r.cat, t: r.t }));
 ---
 <BaseLayout
   title="Referenzen – FEGA GmbH"

@@ -19,7 +19,7 @@ import { withBase } from '@/lib/url';
       {SERVICES.map((s, i) => (
         <a class="tile" href={withBase(SLUG[s.id])} style={`--accent:${ACCENTS[s.accent]};`}>
           {SVC_IMG[s.id]
-            ? <OptImage name={SVC_IMG[s.id]} ratio="4/3" sizes="(max-width:920px) 50vw, 20vw" />
+            ? <OptImage name={SVC_IMG[s.id]} dark={i === 0 || i === 3} ratio="4/3" sizes="(max-width:920px) 50vw, 20vw" />
             : <Placeholder label={s.label} ratio="4/3" dark={i === 0 || i === 3} style="display:block;" />}
           <div style="padding:14px 15px 18px;">
             <div style={`font-family:var(--font-mono);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:${ACCENTS[s.accent]};margin-bottom:7px;`}>{s.no}</div>

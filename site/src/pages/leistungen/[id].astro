@@ -29,7 +29,7 @@ const galleryCols = s.gallery.length >= 3 ? 'repeat(auto-fit,minmax(240px,1fr))'
     <div slot="media">
       {s.hero ? (
         <div style={`position:relative;background:${s.heroDark ? C.n900 : C.n100};`}>
-          <OptImage name={s.hero} ratio="4/3" loading="eager" fetchpriority="high" sizes="(max-width:920px) 100vw, 50vw" />
+          <OptImage name={s.hero} dark={s.heroDark} ratio="4/3" loading="eager" fetchpriority="high" sizes="(max-width:920px) 100vw, 50vw" />
           <div style={`position:absolute;left:0;top:0;bottom:0;width:4px;background:${accent};z-index:1;`}></div>
         </div>
       ) : (

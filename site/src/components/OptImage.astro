@@ -1,10 +1,14 @@
 ---
-/* Optimiertes Bild (Astro Build-time-Optimierung, WebP, responsive srcset).
-   Fällt auf den beschrifteten Platzhalter zurück, wenn kein Bild existiert. */
+/* Bild-Slot. Aktuell sind die echten Fotos bewusst durch beschriftete
+   Platzhalter ersetzt.
+   → Fotos wieder aktivieren: unten USE_PHOTOS auf `true` setzen.
+     (Die Bildoptimierung über astro:assets ist vollständig vorbereitet.) */
 import { Image } from 'astro:assets';
 import { img, widthsFor } from '@/lib/images';
-import { alt as altOf } from '@/lib/alt';
+import { alt as altOf, label as labelOf } from '@/lib/alt';
 import Placeholder from './Placeholder.astro';
+
+const USE_PHOTOS = false; // ← auf true stellen, um die echten Fotos zu zeigen
 
 interface Props {
   name?: string | null;
@@ -12,6 +16,7 @@ interface Props {
   ratio?: string;
   cover?: boolean;
   position?: string;
+  dark?: boolean;
   class?: string;
   style?: string;
   sizes?: string;
@@ -24,6 +29,7 @@ const {
   ratio,
   cover = true,
   position = 'center',
+  dark = false,
   class: cls = '',
   style = '',
   sizes = '(max-width: 920px) 100vw, 50vw',
@@ -33,10 +39,11 @@ const {
 
 const meta = img(name);
 const a = alt ?? altOf(name);
+const phLabel = labelOf(name);
 const objStyle = `display:block;width:100%;height:100%;object-fit:${cover ? 'cover' : 'contain'};object-position:${position};${ratio ? `aspect-ratio:${ratio};` : ''}${style}`;
 const extra = fetchpriority ? { fetchpriority } : {};
 ---
-{meta ? (
+{USE_PHOTOS && meta ? (
   <Image
     src={meta}
     alt={a}
@@ -50,5 +57,5 @@ const extra = fetchpriority ? { fetchpriority } : {};
     {...extra}
   />
 ) : (
-  <Placeholder label={a || name || 'Bild'} ratio={ratio} class={cls} style={style} />
+  <Placeholder label={phLabel} ratio={ratio} dark={dark} class={cls} style={`display:block;${style}`} />
 )}

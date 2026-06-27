@@ -5,40 +5,19 @@ import { Input } from './ui';
 
 /* Offene Stellen — Akkordeon-Liste mit Filter + Inline-Schnellbewerbung.
    Öffnet beim Laden eine Stelle, wenn der Hash #stellen-<id> lautet.
-   Bilder werden build-time optimiert von der Astro-Seite hereingereicht. */
+   Bilder sind aktuell als beschriftete Platzhalter dargestellt. */
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export interface ResolvedImage {
-  src: string;
-  srcset: string;
-  sizes: string;
-  width: number;
-  height: number;
-  alt: string;
-}
-
-function Photo({ image, ratio }: { image: ResolvedImage | null; ratio: string }) {
-  if (!image) {
-    return (
-      <div className="ph" style={{ aspectRatio: ratio, display: 'block' }}>
-        <div className="ph__inner">
-          <div className="ph__diamond"></div>
-          <div className="ph__label">Bild</div>
-        </div>
-      </div>
-    );
-  }
+function Ph({ label, ratio, dark }: { label: string; ratio: string; dark?: boolean }) {
   return (
-    <img
-      src={image.src}
-      srcSet={image.srcset}
-      sizes={image.sizes}
-      alt={image.alt}
-      loading="lazy"
-      decoding="async"
-      style={{ display: 'block', width: '100%', height: '100%', aspectRatio: ratio, objectFit: 'cover' }}
-    />
+    <div className={`ph${dark ? ' ph--dark' : ''}`} style={{ aspectRatio: ratio, display: 'block' }}>
+      <div className="ph__inner">
+        <div className="ph__diamond"></div>
+        <div className="ph__label">{label}</div>
+        <div className="ph__sub">Bildplatz</div>
+      </div>
+    </div>
   );
 }
 
@@ -110,7 +89,7 @@ function QuickApply({ job, onBack }: { job: Job; onBack: () => void }) {
   );
 }
 
-function JobRow({ j, open, onToggle, images }: { j: Job; open: boolean; onToggle: () => void; images?: JobImages }) {
+function JobRow({ j, open, onToggle }: { j: Job; open: boolean; onToggle: () => void }) {
   const [applyOpen, setApplyOpen] = React.useState(false);
   React.useEffect(() => {
     if (!open) setApplyOpen(false);
@@ -135,8 +114,8 @@ function JobRow({ j, open, onToggle, images }: { j: Job; open: boolean; onToggle
       {open && !applyOpen && (
         <div style={{ paddingBottom: 36, maxWidth: 900 }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr 1fr', gap: 12, marginBottom: 28 }}>
-            <Photo image={images?.fertigung ?? null} ratio="4/3" />
-            <Photo image={images?.werkstatt ?? null} ratio="4/3" />
+            <Ph label="Fertigung FEGA" ratio="4/3" />
+            <Ph label="Werkstatt" ratio="4/3" dark />
             <div style={{ background: C.n900, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}>
               <div>
                 <div style={{ fontFamily: C.font, fontWeight: 700, fontSize: 'clamp(26px,3.5vw,42px)', letterSpacing: '-0.02em', color: '#fff', lineHeight: 1 }}>1980</div>
@@ -180,12 +159,7 @@ function JobRow({ j, open, onToggle, images }: { j: Job; open: boolean; onToggle
   );
 }
 
-export interface JobImages {
-  fertigung: ResolvedImage | null;
-  werkstatt: ResolvedImage | null;
-}
-
-export default function JobBoard({ images }: { images?: JobImages }) {
+export default function JobBoard() {
   const [filter, setFilter] = React.useState('Alle');
   const [openId, setOpenId] = React.useState<string | null>(null);
   const types = ['Alle', ...Array.from(new Set(JOBS.map((j) => j.type)))];
@@ -226,7 +200,7 @@ export default function JobBoard({ images }: { images?: JobImages }) {
       </div>
       <div style={{ marginTop: 18, borderTop: '1px solid ' + C.n200 }}>
         {list.map((j) => (
-          <JobRow key={j.id} j={j} open={openId === j.id} onToggle={() => setOpenId(openId === j.id ? null : j.id)} images={images} />
+          <JobRow key={j.id} j={j} open={openId === j.id} onToggle={() => setOpenId(openId === j.id ? null : j.id)} />
         ))}
       </div>
       <p style={{ marginTop: 30, fontFamily: C.font, fontWeight: 300, fontSize: 15.5, lineHeight: 1.6, color: C.n600 }}>

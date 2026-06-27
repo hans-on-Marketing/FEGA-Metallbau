@@ -18,13 +18,6 @@ import JobBoard from '@/components/islands/JobBoard.tsx';
 import FAQ from '@/components/islands/FAQ.tsx';
 import { C } from '@/lib/theme';
 import { KARRIERE, COMPANY } from '@/data/content';
-import { optimized } from '@/lib/images';
-
-// Bilder für das Job-Board-Akkordeon (Island erhält serialisierbare Props)
-const jobImages = {
-  fertigung: await optimized('fertigung-bauteile.jpg', '(max-width: 760px) 100vw, 33vw'),
-  werkstatt: await optimized('werkstatt.jpg', '(max-width: 760px) 100vw, 33vw'),
-};
 
 const k = KARRIERE;
 const c = KARRIERE.contact;
@@ -157,7 +150,7 @@ const c = KARRIERE.contact;
 
   <!-- 6 · Offene Stellen (Island) -->
   <Section sm bg={C.n25} id="stellen" label="Offene Stellen">
-    <JobBoard client:visible images={jobImages} />
+    <JobBoard client:visible />
   </Section>
 
   <!-- 7 · Bewerbungsprozess -->

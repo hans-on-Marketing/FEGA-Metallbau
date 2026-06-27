@@ -52,3 +52,35 @@ export const ALT: Record<string, string> = {
 export function alt(name: string | null | undefined): string {
   return (name && ALT[name]) || '';
 }
+
+/* Kurze Beschriftung für die Platzhalter-Boxen (Bilder sind aktuell deaktiviert,
+   siehe USE_PHOTOS in OptImage.astro). */
+export const LABEL: Record<string, string> = {
+  'hero-team.jpg': 'FEGA Team an der Schweißanlage',
+  'adapter-detail.jpg': 'Schnellwechsel-Adapter, Detail',
+  'adapter-produkt.jpg': 'Adapter, Produktansicht',
+  'adapter-baustelle.jpg': 'Adapter auf der Baustelle',
+  'adapter-bohrgeraet.jpg': 'Adapter am Bohrgerät',
+  'adapter-feld.jpg': 'Adapter im Feld',
+  'adapter-rohre.jpg': 'Adapter / Rohre',
+  'metallbau-ueberdachung.jpg': 'Überdachung in Stahlbauweise',
+  'metallbau-treppe-innen.jpg': 'Treppe & Geländer, innen',
+  'metallbau-treppe-aussen.jpg': 'Außentreppe mit Geländer',
+  'metallbau-rampe.jpg': 'Barrierefreie Rampe',
+  'metallbau-einhausung.jpg': 'Einhausung',
+  'mietgeraet.jpg': 'Mietgerät',
+  'rohrheber.jpg': 'Rohrheber',
+  'werkstatt.jpg': 'FEGA Werkstatt',
+  'fertigung-rahmen.jpg': 'Anbaukonstruktion, Rahmen',
+  'fertigung-bauteile.jpg': 'Fertigung, Bauteile',
+  'fertigung-detail.jpg': 'Fertigung, Detail',
+  'handel-umschlag.jpg': 'Umschlag / Handel',
+  'feickert-bagger.jpg': 'Feickert Tiefbau',
+  'tiefbau-rohr.jpg': 'Tiefbau / Rohr',
+  'tiefbau-casing.jpg': 'Tiefbau / Casing',
+  'deutschland.jpg': 'Deutschland + Luxemburg',
+};
+
+export function label(name: string | null | undefined): string {
+  return (name && (LABEL[name] || ALT[name])) || (name ?? 'Bild');
+}

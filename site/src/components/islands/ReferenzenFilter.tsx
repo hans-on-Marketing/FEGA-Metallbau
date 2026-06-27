@@ -1,16 +1,11 @@
 import React from 'react';
 import { C } from '@/lib/theme';
 
-/* Referenzen — Filter-Chips + Galerie. Bilder werden build-time optimiert
-   von der Astro-Seite hereingereicht (serialisierbare Props). */
+/* Referenzen — Filter-Chips + Galerie aus beschrifteten Platzhaltern.
+   (Echte Fotos sind aktuell deaktiviert; Labels kommen von der Astro-Seite.) */
 
 export interface RefItem {
-  src: string;
-  srcset: string;
-  sizes: string;
-  width: number;
-  height: number;
-  alt: string;
+  label: string;
   cat: string;
   t: string;
 }
@@ -36,15 +31,13 @@ export default function ReferenzenFilter({ items }: { items: RefItem[] }) {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))', gap: 20 }}>
         {list.map((r) => (
           <div key={r.t} style={{ background: '#fff' }}>
-            <img
-              src={r.src}
-              srcSet={r.srcset}
-              sizes={r.sizes}
-              alt={r.alt}
-              loading="lazy"
-              decoding="async"
-              style={{ display: 'block', width: '100%', height: '100%', aspectRatio: '3/2', objectFit: 'cover' }}
-            />
+            <div className="ph" style={{ aspectRatio: '3/2' }}>
+              <div className="ph__inner">
+                <div className="ph__diamond"></div>
+                <div className="ph__label">{r.label}</div>
+                <div className="ph__sub">Bildplatz</div>
+              </div>
+            </div>
             <div style={{ paddingTop: 16 }}>
               <div style={{ fontFamily: C.mono, fontSize: 11, letterSpacing: '0.08em', textTransform: 'uppercase', color: r.cat === 'Metallbau' ? C.red : C.blue }}>{r.cat}</div>
               <div style={{ marginTop: 6, fontFamily: C.font, fontSize: 17, fontWeight: 400, color: C.n900 }}>{r.t}</div>
