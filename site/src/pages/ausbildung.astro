@@ -7,50 +7,101 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Container from '@/components/Container.astro';
 import Section from '@/components/Section.astro';
 import Overline from '@/components/Overline.astro';
+import SectionHead from '@/components/SectionHead.astro';
 import Button from '@/components/Button.astro';
+import Placeholder from '@/components/Placeholder.astro';
+import BrandBars from '@/components/BrandBars.astro';
 import { C } from '@/lib/theme';
 import { AUSBILDUNG } from '@/data/content';
 
 const a = AUSBILDUNG;
+const berufeGesamt = a.standorte.reduce((n, s) => n + s.gaenge.length, 0);
+const facts = [
+  { v: '3', l: 'Standorte in Deutschland' },
+  { v: `${berufeGesamt}`, l: 'Ausbildungsplätze' },
+  { v: '4', l: 'Lehrjahre Duales Studium' },
+  { v: '1.580 €', l: 'max. Vergütung / Monat' },
+];
 ---
 <BaseLayout
   title="Ausbildung bei Feickert: Bauberufe & Duales Studium (m/w/d) | FEGA"
   description="Ausbildung in der Feickert-Unternehmensgruppe (Muttergesellschaft von FEGA): Bauberufe an den Standorten Hessen, Sachsen-Anhalt und Thüringen sowie Duales Studium Bauingenieur. Jetzt Ansprechpartner finden."
 >
-  <!-- Hero / Intro -->
-  <Section sm style="padding-top:clamp(44px,5.5vw,80px);padding-bottom:clamp(24px,3vw,40px);">
+  <!-- 1 · Hero (dunkel, cineastisch) -->
+  <Section sm bg={C.n900} style="color:#fff;position:relative;overflow:hidden;">
+    <BrandBars height={4} style="position:absolute;left:0;right:0;top:0;" />
     <Container>
-      <Overline color={C.blue}>{a.overline}</Overline>
-      <h1 class="ausb-title">{a.title}</h1>
-      <div class="ausb-parent">
-        <span class="ausb-parent__tag">Muttergesellschaft</span>
-        <p class="ausb-parent__txt">{a.parentNote}</p>
+      <div class="ah-grid">
+        <div>
+          <Overline onDark>{a.overline}</Overline>
+          <h1 class="ah-title">Bau dir<br />was Eigenes.</h1>
+          <div class="ah-parent">
+            <span class="ah-parent__tag">Muttergesellschaft</span>
+            <span class="ah-parent__txt">{a.parentNote}</span>
+          </div>
+          <p class="ah-lead">{a.lead}</p>
+          <div class="ah-cta">
+            <Button variant="primary" size="lg" href="#kontakt-ausbildung">Ansprechpartner finden</Button>
+            <a class="ah-ghost" href={a.applyUrl}>Direkt online bewerben →</a>
+          </div>
+        </div>
+        <div class="ah-media">
+          <Placeholder label="Azubis bei Feickert" dark ratio="3/4" style="position:absolute;inset:0;" />
+          <div class="ah-media__stripe"></div>
+          <BrandBars height={4} style="position:absolute;left:0;right:0;bottom:0;" />
+        </div>
       </div>
-      <p class="ausb-lead">{a.lead}</p>
+    </Container>
+  </Section>
 
-      <div class="ausb-steps">
-        {a.steps.map((s) => (
-          <div class="ausb-step">
-            <div class="ausb-step__no">{s.no}</div>
-            <h2 class="ausb-step__t">{s.t}</h2>
-            <p class="ausb-step__d">{s.d}</p>
+  <!-- 2 · Kennzahlen (dunkel) -->
+  <Section sm bg="#161616" style="color:#fff;padding-top:0;">
+    <Container>
+      <div class="ah-facts">
+        {facts.map((f, i) => (
+          <div class="ah-fact">
+            <div class="ah-fact__bar" style={`background:${i % 2 ? C.blue : C.red};`}></div>
+            <div class="ah-fact__v" style={`color:${i === 0 ? C.blue : '#fff'};`}>{f.v}</div>
+            <div class="ah-fact__l">{f.l}</div>
           </div>
         ))}
       </div>
     </Container>
   </Section>
 
-  <!-- Ausbildungsgänge nach Standort -->
+  <!-- 3 · Dein Start in 2 Schritten -->
+  <Section sm label="Dein Start">
+    <Container>
+      <SectionHead overline="Dein Weg zu uns" accent={C.red} max={640}
+        intro="Kein langes Anschreiben, kein Bewerbungs-Marathon. Du lernst uns kennen – wir dich.">In zwei Schritten ins Team.</SectionHead>
+      <div class="ah-steps">
+        {a.steps.map((s, i) => (
+          <div class="ah-step">
+            <div class="ah-step__no" style={`color:${i % 2 ? C.blue : C.red};`}>0{i + 1}</div>
+            <div>
+              <h2 class="ah-step__t">{s.t}</h2>
+              <p class="ah-step__d">{s.d}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- 4 · Ausbildungsgänge nach Standort -->
   <Section sm bg={C.n25} label="Ausbildungsgänge">
     <Container>
-      <Overline color={C.red}>Ausbildungsgänge nach Standort</Overline>
-      <div class="ausb-grid">
+      <SectionHead overline="Ausbildungsgänge nach Standort" accent={C.blue} max={640}
+        intro="Drei Bundesländer, ein Handwerk: Wähle den Standort, der zu dir passt.">Wo willst du anpacken?</SectionHead>
+      <div class="ah-locs">
         {a.standorte.map((st, i) => (
-          <div class="ausb-card">
-            <div class="ausb-card__bar" style={`background:${i % 2 ? C.blue : C.red};`}></div>
-            <div class="ausb-card__region">Ausbildungsgänge</div>
-            <h2 class="ausb-card__h">{st.region}</h2>
-            <ul class="ausb-list">
+          <div class="ah-loc">
+            <div class="ah-loc__bar" style={`background:${i % 2 ? C.blue : C.red};`}></div>
+            <div class="ah-loc__head">
+              <h3 class="ah-loc__region">{st.region}</h3>
+              <span class="ah-loc__count">{st.gaenge.length}<span>Berufe</span></span>
+            </div>
+            <ul class="ah-list">
               {st.gaenge.map((g) => <li>{g}</li>)}
             </ul>
           </div>
@@ -59,125 +110,213 @@ const a = AUSBILDUNG;
     </Container>
   </Section>
 
-  <!-- Duales Studium -->
-  <Section sm label="Duales Studium">
+  <!-- 5 · Duales Studium (dunkel) -->
+  <Section sm bg={C.n900} style="color:#fff;position:relative;" label="Duales Studium">
+    <BrandBars height={4} style="position:absolute;left:0;right:0;top:0;" />
     <Container>
-      <div class="ausb-dual">
-        <h2 class="ausb-dual__t">{a.dual.title}</h2>
-        <p class="ausb-dual__lead">{a.dual.lead}</p>
-        <div class="ausb-dual__grid">
-          {a.dual.variants.map((v) => (
-            <div class="ausb-variant">
-              <h3 class="ausb-variant__t">{v.t}</h3>
-              <ul class="ausb-checklist">
-                {v.points.map((p) => <li>{p}</li>)}
-              </ul>
-            </div>
-          ))}
-        </div>
+      <div class="ah-dual-head">
+        <Overline onDark>Noch ein Schritt weiter</Overline>
+        <h2 class="ah-dual-title">{a.dual.title}</h2>
+        <p class="ah-dual-lead">{a.dual.lead}</p>
+      </div>
+      <div class="ah-dual-grid">
+        {a.dual.variants.map((v, i) => (
+          <div class="ah-variant">
+            <div class="ah-variant__no" style={`color:${i % 2 ? C.blue : C.red};`}>{i === 0 ? 'A' : 'B'}</div>
+            <h3 class="ah-variant__t">{v.t}</h3>
+            <ul class="ah-checklist">
+              {v.points.map((p) => <li>{p}</li>)}
+            </ul>
+          </div>
+        ))}
       </div>
     </Container>
   </Section>
 
-  <!-- Ansprechpartner nach Bundesland -->
-  <Section sm bg={C.n25} label="Ansprechpartner">
+  <!-- 6 · Ansprechpartner -->
+  <Section sm bg={C.n25} id="kontakt-ausbildung" label="Ansprechpartner">
     <Container>
-      <div class="ausb-contacts">
-        <div class="ausb-contacts__head">
-          <Overline color={C.red}>Kontakt</Overline>
-          <p class="ausb-contacts__sub">Für Infos stehen wir dir gern zur Verfügung – deine Ansprechpartner nach Bundesländern:</p>
-        </div>
-        <div class="ausb-contacts__grid">
-          {a.contacts.map((p) => (
-            <div class="ausb-contact">
-              <div class="ausb-contact__region">{p.region}</div>
-              <div class="ausb-contact__name">{p.name}</div>
-              <a class="ausb-contact__link" href={`mailto:${p.email}`}>{p.email}</a>
-              <a class="ausb-contact__link" href={`tel:${p.phone.replace(/[^0-9+]/g, '')}`}>{p.phone}</a>
-            </div>
-          ))}
-        </div>
-        <div class="ausb-cta">
-          <Button variant="primary" size="lg" href={a.applyUrl}>Ausbildung bei Feickert ansehen</Button>
-        </div>
+      <SectionHead overline="Kontakt" accent={C.red} max={620}
+        intro="Fragen vor der Bewerbung? Ruf an oder schreib kurz – deine Ansprechpartner nach Bundesländern.">Sprich uns direkt an.</SectionHead>
+      <div class="ah-contacts">
+        {a.contacts.map((p, i) => (
+          <div class="ah-contact">
+            <div class="ah-contact__bar" style={`background:${i % 2 ? C.blue : C.red};`}></div>
+            <div class="ah-contact__region">{p.region}</div>
+            <div class="ah-contact__name">{p.name}</div>
+            <a class="ah-contact__link" href={`mailto:${p.email}`}>{p.email}</a>
+            <a class="ah-contact__link" href={`tel:${p.phone.replace(/[^0-9+]/g, '')}`}>{p.phone}</a>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- 7 · CTA -->
+  <Section sm label="Ausbildung CTA">
+    <Container>
+      <div class="ah-cta-band">
+        <h2 class="ah-cta-band__t">Dein Handwerk wartet nicht. Wir auch nicht.</h2>
+        <Button variant="primary" size="lg" href={a.applyUrl}>Ausbildung bei Feickert ansehen</Button>
       </div>
     </Container>
   </Section>
 </BaseLayout>
 
 <style>
-  .ausb-title {
+  /* ── Hero ── */
+  .ah-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(32px, 5vw, 72px);
+    align-items: center;
+  }
+  .ah-title {
     margin-top: 22px;
     font-family: var(--font-primary);
     font-weight: 700;
-    letter-spacing: -0.028em;
-    line-height: 1;
-    font-size: clamp(36px, 4.6vw, 64px);
-    color: var(--n900);
+    letter-spacing: -0.035em;
+    line-height: 0.92;
+    font-size: clamp(48px, 7vw, 96px);
+    color: #fff;
     text-wrap: balance;
   }
-  .ausb-parent {
-    margin-top: 22px;
+  .ah-parent {
+    margin-top: 24px;
     display: flex;
     gap: 14px;
     align-items: flex-start;
-    max-width: 720px;
-    padding: 16px 18px;
-    background: var(--n25);
+    max-width: 560px;
+    padding: 14px 16px;
+    background: rgba(255, 255, 255, 0.04);
     border-left: 3px solid var(--color-blue);
   }
-  .ausb-parent__tag {
+  .ah-parent__tag {
     flex-shrink: 0;
     font-family: var(--font-mono);
-    font-size: 10.5px;
+    font-size: 10px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--color-blue);
     padding-top: 2px;
   }
-  .ausb-parent__txt {
+  .ah-parent__txt {
     font-family: var(--font-primary);
-    font-weight: 400;
-    font-size: 14.5px;
-    line-height: 1.6;
-    color: var(--n700);
-    margin: 0;
+    font-weight: 300;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.72);
   }
-  .ausb-lead {
+  .ah-lead {
     margin-top: 22px;
-    max-width: 720px;
+    max-width: 540px;
     font-family: var(--font-primary);
     font-weight: 300;
     font-size: clamp(15px, 1.2vw, 18px);
     line-height: 1.7;
-    color: var(--n600);
+    color: rgba(255, 255, 255, 0.7);
   }
-  .ausb-steps {
-    margin-top: clamp(32px, 4vw, 52px);
+  .ah-cta {
+    margin-top: 30px;
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .ah-ghost {
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 3px;
+    transition: border-color 0.2s;
+  }
+  .ah-ghost:hover {
+    border-color: #fff;
+  }
+  .ah-media {
+    position: relative;
+    aspect-ratio: 3/4;
+    max-height: 460px;
+  }
+  .ah-media__stripe {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--color-red);
+    z-index: 1;
+  }
+
+  /* ── Kennzahlen ── */
+  .ah-facts {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 22px;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 16px;
   }
-  .ausb-step {
-    border-top: 2px solid var(--n900);
-    padding-top: 18px;
+  .ah-fact {
+    position: relative;
+    background: #1c1c1c;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: clamp(26px, 2.8vw, 38px) clamp(20px, 2vw, 28px) clamp(24px, 2.4vw, 32px);
+    overflow: hidden;
   }
-  .ausb-step__no {
+  .ah-fact__bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 3px;
+  }
+  .ah-fact__v {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: clamp(44px, 5.2vw, 74px);
+    letter-spacing: -0.04em;
+    line-height: 0.84;
+  }
+  .ah-fact__l {
+    margin-top: 14px;
     font-family: var(--font-mono);
     font-size: 11px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--color-red);
+    color: rgba(255, 255, 255, 0.5);
   }
-  .ausb-step__t {
-    margin-top: 10px;
+
+  /* ── Schritte ── */
+  .ah-steps {
+    margin-top: var(--block);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+  }
+  .ah-step {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    border-top: 2px solid var(--n900);
+    padding-top: 20px;
+  }
+  .ah-step__no {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: clamp(40px, 4.4vw, 64px);
+    letter-spacing: -0.04em;
+    line-height: 0.8;
+    flex-shrink: 0;
+  }
+  .ah-step__t {
     font-family: var(--font-primary);
     font-size: 20px;
     font-weight: 600;
     color: var(--n900);
     letter-spacing: -0.01em;
   }
-  .ausb-step__d {
+  .ah-step__d {
     margin-top: 10px;
     font-family: var(--font-primary);
     font-weight: 300;
@@ -185,47 +324,73 @@ const a = AUSBILDUNG;
     line-height: 1.65;
     color: var(--n600);
   }
-  .ausb-grid {
-    margin-top: clamp(20px, 2.4vw, 32px);
+
+  /* ── Standorte ── */
+  .ah-locs {
+    margin-top: var(--block);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
     gap: 18px;
   }
-  .ausb-card {
+  .ah-loc {
     position: relative;
     background: #fff;
     border: 1px solid var(--n150);
-    padding: 26px 24px 28px;
+    padding: 28px 26px 30px;
     overflow: hidden;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
   }
-  .ausb-card__bar {
+  .ah-loc:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 24px 44px -28px rgba(0, 0, 0, 0.45);
+  }
+  .ah-loc__bar {
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
     height: 3px;
   }
-  .ausb-card__region {
+  .ah-loc__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .ah-loc__region {
+    font-family: var(--font-primary);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--n900);
+    line-height: 1.1;
+  }
+  .ah-loc__count {
+    flex-shrink: 0;
+    text-align: right;
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 0.8;
+    letter-spacing: -0.04em;
+    color: var(--n900);
+  }
+  .ah-loc__count span {
+    display: block;
+    margin-top: 5px;
     font-family: var(--font-mono);
-    font-size: 10.5px;
+    font-size: 9.5px;
+    font-weight: 400;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--n400);
   }
-  .ausb-card__h {
-    margin-top: 6px;
-    font-family: var(--font-primary);
-    font-size: 21px;
-    font-weight: 700;
-    letter-spacing: -0.015em;
-    color: var(--n900);
-  }
-  .ausb-list {
-    margin: 18px 0 0;
+  .ah-list {
+    margin: 20px 0 0;
     padding: 0;
     list-style: none;
   }
-  .ausb-list li {
+  .ah-list li {
     font-family: var(--font-primary);
     font-weight: 300;
     font-size: 14.5px;
@@ -235,7 +400,7 @@ const a = AUSBILDUNG;
     position: relative;
     border-bottom: 1px solid var(--n100);
   }
-  .ausb-list li::before {
+  .ah-list li::before {
     content: '';
     position: absolute;
     left: 0;
@@ -245,51 +410,62 @@ const a = AUSBILDUNG;
     background: var(--color-red);
     transform: rotate(45deg);
   }
-  .ausb-dual {
-    background: var(--n900);
-    color: #fff;
-    padding: clamp(28px, 3.4vw, 48px);
-  }
-  .ausb-dual__t {
-    font-family: var(--font-primary);
-    font-size: clamp(22px, 2.6vw, 32px);
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    color: #fff;
-  }
-  .ausb-dual__lead {
-    margin-top: 12px;
+
+  /* ── Duales Studium ── */
+  .ah-dual-head {
     max-width: 680px;
+  }
+  .ah-dual-title {
+    margin-top: 18px;
+    font-family: var(--font-primary);
+    font-size: clamp(26px, 3.2vw, 44px);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.02;
+    color: #fff;
+    text-wrap: balance;
+  }
+  .ah-dual-lead {
+    margin-top: 16px;
     font-family: var(--font-primary);
     font-weight: 300;
-    font-size: 15px;
+    font-size: clamp(15px, 1.2vw, 17px);
     line-height: 1.65;
     color: rgba(255, 255, 255, 0.66);
   }
-  .ausb-dual__grid {
-    margin-top: 28px;
+  .ah-dual-grid {
+    margin-top: clamp(28px, 3.4vw, 44px);
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 22px;
   }
-  .ausb-variant {
+  .ah-variant {
+    position: relative;
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.12);
-    padding: 24px;
+    padding: 28px 26px 26px;
   }
-  .ausb-variant__t {
+  .ah-variant__no {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 0.8;
+    letter-spacing: -0.03em;
+  }
+  .ah-variant__t {
+    margin-top: 14px;
     font-family: var(--font-primary);
     font-size: 16px;
     font-weight: 600;
     line-height: 1.35;
     color: #fff;
   }
-  .ausb-checklist {
+  .ah-checklist {
     margin: 16px 0 0;
     padding: 0;
     list-style: none;
   }
-  .ausb-checklist li {
+  .ah-checklist li {
     position: relative;
     font-family: var(--font-primary);
     font-weight: 300;
@@ -299,7 +475,7 @@ const a = AUSBILDUNG;
     padding: 7px 0 7px 22px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
-  .ausb-checklist li::before {
+  .ah-checklist li::before {
     content: '✓';
     position: absolute;
     left: 0;
@@ -308,44 +484,45 @@ const a = AUSBILDUNG;
     font-size: 13px;
     font-weight: 700;
   }
-  .ausb-contacts__sub {
-    margin-top: 12px;
-    max-width: 620px;
-    font-family: var(--font-primary);
-    font-weight: 300;
-    font-size: 15px;
-    line-height: 1.6;
-    color: var(--n600);
-  }
-  .ausb-contacts__grid {
-    margin-top: 24px;
+
+  /* ── Ansprechpartner ── */
+  .ah-contacts {
+    margin-top: var(--block);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     gap: 16px;
   }
-  .ausb-contact {
+  .ah-contact {
+    position: relative;
     background: #fff;
     border: 1px solid var(--n150);
-    border-top: 3px solid var(--color-blue);
-    padding: 22px 22px 24px;
+    padding: 26px 22px 26px;
+    overflow: hidden;
   }
-  .ausb-contact__region {
+  .ah-contact__bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 3px;
+  }
+  .ah-contact__region {
     font-family: var(--font-mono);
     font-size: 11px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--n400);
   }
-  .ausb-contact__name {
+  .ah-contact__name {
     margin-top: 8px;
     font-family: var(--font-primary);
-    font-size: 18px;
+    font-size: 19px;
     font-weight: 600;
     color: var(--n900);
   }
-  .ausb-contact__link {
+  .ah-contact__link {
     display: block;
-    margin-top: 8px;
+    margin-top: 9px;
     font-family: var(--font-primary);
     font-size: 14px;
     font-weight: 400;
@@ -353,10 +530,35 @@ const a = AUSBILDUNG;
     text-decoration: none;
     word-break: break-word;
   }
-  .ausb-contact__link:hover {
+  .ah-contact__link:hover {
     text-decoration: underline;
   }
-  .ausb-cta {
-    margin-top: 28px;
+
+  /* ── CTA ── */
+  .ah-cta-band {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .ah-cta-band__t {
+    font-family: var(--font-primary);
+    font-size: clamp(26px, 3.2vw, 42px);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    color: var(--n900);
+    max-width: 620px;
+    text-wrap: balance;
+  }
+
+  @media (max-width: 920px) {
+    .ah-grid {
+      grid-template-columns: 1fr;
+    }
+    .ah-media {
+      max-height: 380px;
+    }
   }
 </style>
