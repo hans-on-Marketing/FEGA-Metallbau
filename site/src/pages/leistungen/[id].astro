@@ -14,7 +14,8 @@ import PageNav from '@/components/PageNav.astro';
 import AdapterKonfigurator from '@/components/islands/AdapterKonfigurator.tsx';
 import MietparkKonfigurator from '@/components/islands/MietparkKonfigurator.tsx';
 import { C, ACCENTS } from '@/lib/theme';
-import { SERVICES, COMPANY } from '@/data/content';
+import { withBase } from '@/lib/url';
+import { SERVICES, COMPANY, CERTIFICATES } from '@/data/content';
 
 export function getStaticPaths() {
   return SERVICES.map((s) => ({ params: { id: s.id }, props: { s } }));
@@ -126,6 +127,34 @@ const serviceSchema = {
   </Section>
 
   {s.id === 'maschinenbau' && (
+    <Section sm bg={C.n900} id="zertifikate">
+      <Container>
+        <Overline color={accent}>{CERTIFICATES.overline}</Overline>
+        <h2 class="cert-headline">{CERTIFICATES.headline}</h2>
+        <p class="cert-lead">{CERTIFICATES.lead}</p>
+        <div class="cert-grid">
+          {CERTIFICATES.items.map((c) => (
+            <div class="cert-card">
+              {c.img && (
+                <a href={withBase('/' + c.img)} target="_blank" rel="noopener" class="cert-thumb">
+                  <img src={withBase('/' + c.img)} alt={`Zertifikat: ${c.title}`} loading="lazy" />
+                </a>
+              )}
+              <h3 class="cert-card__t">{c.title}</h3>
+              <p class="cert-card__d">{c.desc}</p>
+              <div class="cert-card__rows">
+                {c.rows.map((r) => (
+                  <div class="cert-row"><span class="cert-row__k">{r[0]}</span><span class="cert-row__v">{r[1]}</span></div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+        <p class="cert-note">{CERTIFICATES.note}</p>
+      </Container>
+    </Section>
+  )}
+  {s.id === 'maschinenbau' && (
     <Section sm bg={C.n25} id="adapter-konfigurator">
       <AdapterKonfigurator client:visible />
     </Section>
@@ -223,5 +252,101 @@ const serviceSchema = {
     .svc-body {
       grid-template-columns: 1fr;
     }
+  }
+
+  /* Zertifikate & Nachweise (dunkle Sektion) */
+  .cert-headline {
+    margin-top: 18px;
+    font-family: var(--font-primary);
+    font-size: clamp(26px, 3.2vw, 42px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+    color: #fff;
+    max-width: 620px;
+    text-wrap: balance;
+  }
+  .cert-lead {
+    margin-top: 18px;
+    max-width: 720px;
+    font-family: var(--font-primary);
+    font-weight: 300;
+    font-size: clamp(15px, 1.2vw, 18px);
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.72);
+  }
+  .cert-grid {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 22px;
+  }
+  .cert-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 3px;
+    padding: 28px;
+  }
+  .cert-thumb {
+    display: block;
+    margin: -28px -28px 22px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    background: #fff;
+  }
+  .cert-thumb img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .cert-card__t {
+    font-family: var(--font-primary);
+    font-size: 18px;
+    font-weight: 500;
+    color: #fff;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+  .cert-card__d {
+    margin-top: 10px;
+    font-family: var(--font-primary);
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.6);
+  }
+  .cert-card__rows {
+    margin-top: 18px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .cert-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .cert-row__k {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+    flex-shrink: 0;
+  }
+  .cert-row__v {
+    font-family: var(--font-primary);
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.85);
+    text-align: right;
+  }
+  .cert-note {
+    margin-top: 26px;
+    max-width: 720px;
+    font-family: var(--font-primary);
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.5);
   }
 </style>

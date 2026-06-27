@@ -98,6 +98,7 @@ export const SERVICES: Service[] = [
     buyer: 'Für den Einkauf: gleichbleibende Qualität nach EXC 3, reproduzierbare Fertigung und ein fester Ansprechpartner – auch für Serien und Rahmenaufträge.',
     body: [
       'Gefertigt nach DIN EN 1090-2 / EXC 3 und nach Maschinenrichtlinie 2006/42/EG. Die Adapter erfüllen die aktuellen Anforderungen an Sicherheit und Bedienbarkeit – nicht auf dem Papier, sondern im Einsatz.',
+      'Die Tragfähigkeit wird per FE-Berechnung durch ein externes Ingenieurbüro nachgewiesen – mit definierten Werkstoffen (S355J2 für die tragenden Bauteile, 42CrMo4 für die Bolzen). So ist jede Konstruktion rechnerisch abgesichert, bevor sie in den Einsatz geht.',
       'Sie brauchen mehr als einen Adapter? Wir entwickeln und bauen Anbaukonstruktionen aller Art – von der ersten Zeichnung bis zum geprüften, fertigen Bauteil.',
     ],
     features: [
@@ -108,7 +109,7 @@ export const SERVICES: Service[] = [
     ],
     specs: [
       ['Norm', 'DIN EN 1090-2 · EXC 3'], ['Richtlinie', 'Maschinenrichtlinie 2006/42/EG'],
-      ['Werkstoffeigenschaften', 'Bruch- & Schlagfestigkeit, Ermüdungsfestigkeit'], ['Vorteil', 'Gewichtsoptimiert – weniger Verbrauch & Emission'],
+      ['Werkstoff', 'S355J2 (1.0570) · Bolzen 42CrMo4 (1.7225)'], ['Vorteil', 'Gewichtsoptimiert – weniger Verbrauch & Emission'],
     ],
     gallery: ['adapter-produkt.jpg', 'adapter-baustelle.jpg', 'adapter-bohrgeraet.jpg', 'fertigung-rahmen.jpg'],
     badges: ['DIN EN 1090-2 · EXC 3', 'Maschinenrichtlinie 2006/42/EG'],
@@ -204,6 +205,38 @@ export const SERVICES: Service[] = [
     cta: 'Jetzt anfragen und das passende Anbaugerät mieten.',
   },
 ];
+
+/* Zertifikate & Nachweise — ausschließlich gesicherte Angaben, abgelesen aus dem
+   Original-TÜV-SÜD-Zertifikat bzw. der statischen Berechnung (HFR Ingenieure). */
+export const CERTIFICATES = {
+  overline: 'Zertifikate & Nachweise',
+  headline: 'Geprüft, dokumentiert, nachweisbar.',
+  lead: 'Die Stahlbaufertigung in der Feickert-Unternehmensgruppe ist nach DIN EN 1090-2 bis zur höchsten Ausführungsklasse EXC3 zertifiziert. Die Tragfähigkeit unserer Lastaufnahme- und Adapterkonstruktionen wird zusätzlich per FE-Berechnung durch ein externes Ingenieurbüro nachgewiesen.',
+  items: [
+    {
+      title: 'Werkseigene Produktionskontrolle nach EN 1090-2 · bis EXC3',
+      desc: 'Konformität der werkseigenen Produktionskontrolle für tragende Bauteile und Bausätze für Stahltragwerke bis Ausführungsklasse EXC3.',
+      rows: [
+        ['Zertifikat-Nr.', '0036-CPR-1090-1.00867.TÜV SÜD.2020.003'],
+        ['Prüfstelle', 'TÜV SÜD Industrie Service GmbH · Notified Body 0036'],
+        ['Inhaber', 'Feickert Spezialtiefbau GmbH · Feickert-Unternehmensgruppe'],
+        ['Erstausstellung', '31.07.2020'],
+      ] as [string, string][],
+      img: null as string | null, // Zertifikatsbild – sobald als Datei vorliegt, hier Dateiname eintragen
+    },
+    {
+      title: 'Statischer Nachweis · FE-Berechnung',
+      desc: 'Die Tragfähigkeit unserer Lastaufnahme- und Schnellwechsel-Adapterkonstruktionen wird per Finite-Elemente-Berechnung durch ein externes Ingenieurbüro für Tragwerksplanung nachgewiesen.',
+      rows: [
+        ['Verfahren', 'FE-/FEM-Berechnung, Nachweis im Grenzzustand der Tragfähigkeit'],
+        ['Werkstoff', 'S355J2 (1.0570) · Bolzen 42CrMo4 (1.7225)'],
+        ['Grundlage', 'DIN EN 1090-2 · Maschinenrichtlinie 2006/42/EG'],
+      ] as [string, string][],
+      img: null as string | null,
+    },
+  ],
+  note: 'Zertifikatsinhaber ist die Feickert Spezialtiefbau GmbH als Teil der Feickert-Unternehmensgruppe – die EXC3-geprüfte Stahlbaufertigung steht damit auch FEGA-Aufträgen zur Verfügung.',
+};
 
 /* Service-Bild fürs Karten-/Kachelraster (null = Platzhalter). */
 export const SVC_IMG: Record<string, string | null> = {

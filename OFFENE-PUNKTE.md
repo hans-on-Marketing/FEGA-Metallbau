@@ -176,11 +176,19 @@ Pages-Settings hinterlegen.
 - **Telefonnummer vereinheitlicht:** verifiziert über feickert-bau.de + FEGA-Prospekt →
   einheitlich **06471 / 502-0** (Anzeige) bzw. `tel:+4964715020` (Link). Damit sind
   Anzeige, Klick-Ziel und Impressum konsistent. (Punkt 3 erledigt.)
-- **Werkstoff-Spec korrigiert:** Beschriftung „Werkstoff" → **„Werkstoffeigenschaften"**
-  (der Wert „Bruch- & Schlagfestigkeit, Ermüdungsfestigkeit" ist damit fachlich korrekt
-  eingeordnet). **Weiterhin offen:** die tatsächliche Stahlgüte/Werkstoffbezeichnung
-  (z. B. S355/S690QL) war online nicht verifizierbar — bitte von FEGA nachreichen, dann
-  als eigenes „Werkstoff"-Feld ergänzen. (Punkt 2 teilweise; kein Raten.)
+- **Werkstoff geklärt und eingetragen (Punkt 2 erledigt):** Aus der statischen FE-Berechnung
+  (HFR Ingenieure, Projekt 2022798a, „Baustoffe") verifiziert: tragende Bauteile aus
+  **S355J2 (Werkstoff-Nr. 1.0570)**, Bolzen aus **42CrMo4 (1.7225)**. Die Maschinenbau-Spec
+  zeigt jetzt `Werkstoff: S355J2 (1.0570) · Bolzen 42CrMo4 (1.7225)`.
+- **Zertifikate & Nachweise (neu):** Auf der Maschinenbau-Seite (`#zertifikate`) ergänzt:
+  EN-1090-2-/EXC3-Zertifikat (TÜV SÜD, Nr. 0036-CPR-1090-1.00867.TÜV SÜD.2020.003) sowie der
+  Hinweis auf den externen FE-Statiknachweis. **Wichtig/ehrlich beschriftet:** Zertifikats-
+  inhaber ist die **Feickert Spezialtiefbau GmbH** (Schwesterfirma, gleiche Adresse), nicht
+  die FEGA GmbH selbst — so auch auf der Seite ausgewiesen. **Offen:** (a) das eigentliche
+  Zertifikats**bild** als Datei (kam nur inline im Chat an) → sobald als JPG/PNG vorhanden,
+  in `site/public/` ablegen + Dateinamen in `CERTIFICATES.items[0].img` eintragen; (b)
+  nächstes Überwachungsaudit war 30.07.2024 — bitte bestätigen, dass das Zertifikat aktuell
+  noch gültig ist (ggf. neuere Fassung nachreichen).
 - **Karriere-Ansprechpartnerin:** Platzhalter „Sabine Wagner" entfernt → echter
   Bewerbungskanal **bewerbung@feickert-bau.de** (Rolle „Bewerbung & Personal").
   (GF-Blocker erledigt.)
