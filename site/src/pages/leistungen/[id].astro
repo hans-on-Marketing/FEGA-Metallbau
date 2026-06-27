@@ -23,8 +23,23 @@ export function getStaticPaths() {
 const { s } = Astro.props;
 const accent = ACCENTS[s.accent];
 const galleryCols = s.gallery.length >= 3 ? 'repeat(auto-fit,minmax(240px,1fr))' : 'repeat(2,1fr)';
+const site = Astro.site ?? new URL('https://hans-on-marketing.github.io');
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: s.label,
+  serviceType: s.label,
+  description: s.seoDesc ?? s.lead,
+  areaServed: COMPANY.region,
+  provider: { '@type': 'Organization', name: COMPANY.legal, url: site.href },
+};
 ---
-<BaseLayout title={`${s.label} – ${COMPANY.legal}`} description={s.lead}>
+<BaseLayout
+  title={s.seoTitle ?? `${s.label} – ${COMPANY.legal}`}
+  description={s.seoDesc ?? s.lead}
+  schemas={[serviceSchema]}
+>
   <InnerHero overline={s.label} accent={accent} title={s.headline} kicker={s.kicker} lead={s.lead} badges={s.badges}>
     <div slot="media">
       {s.hero ? (

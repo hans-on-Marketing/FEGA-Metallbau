@@ -14,8 +14,8 @@ export const COMPANY = {
   claim: 'Was wir liefern, hält. Punkt.',
   since: 1980,
   region: 'Westerwald / Taunus',
-  phone: '06471-5020',
-  phoneHref: 'tel:00496471502156',
+  phone: '06471 / 502-0',
+  phoneHref: 'tel:+4964715020',
   email: 'info@feickert-bau.de',
   group: 'Feickert Unternehmensgruppe',
   groupSeat: 'Weilburg / Lahn',
@@ -83,12 +83,15 @@ export interface Service {
   gallery: string[]; // Dateinamen
   badges: string[];
   cta?: string;
+  seoTitle?: string;
+  seoDesc?: string;
 }
 
 /* Fünf Leistungssäulen. accent ∈ blue|red|black. */
 export const SERVICES: Service[] = [
   {
     id: 'maschinenbau', label: 'Maschinenbau', kicker: 'Produktion · Aufarbeitung', no: '01', accent: 'blue',
+    seoTitle: 'Schnellwechsel-Adapter für Bagger nach EXC 3 | FEGA Maschinenbau', seoDesc: 'Schnellwechsel-Adapter und Anbaukonstruktionen für Erdbewegungsmaschinen – gefertigt nach DIN EN 1090-2 / EXC 3. Liebherr-kompatibel, mechanisch & hydraulisch.',
     hero: 'adapter-detail.jpg',
     headline: 'Adapter, die passen. Nicht ungefähr.',
     lead: 'Schnellwechsel-Adapter für Erdbewegungsmaschinen, abgestimmt auf Ihr Trägergerät und den echten Einsatz. Gefertigt nach DIN EN 1090-2 / EXC 3 – dokumentiert, reproduzierbar, prüfbar.',
@@ -105,13 +108,14 @@ export const SERVICES: Service[] = [
     ],
     specs: [
       ['Norm', 'DIN EN 1090-2 · EXC 3'], ['Richtlinie', 'Maschinenrichtlinie 2006/42/EG'],
-      ['Werkstoff', 'Bruch- & Schlagfestigkeit, Ermüdungsfestigkeit'], ['Vorteil', 'Gewichtsoptimiert – weniger Verbrauch & Emission'],
+      ['Werkstoffeigenschaften', 'Bruch- & Schlagfestigkeit, Ermüdungsfestigkeit'], ['Vorteil', 'Gewichtsoptimiert – weniger Verbrauch & Emission'],
     ],
     gallery: ['adapter-produkt.jpg', 'adapter-baustelle.jpg', 'adapter-bohrgeraet.jpg', 'fertigung-rahmen.jpg'],
     badges: ['DIN EN 1090-2 · EXC 3', 'Maschinenrichtlinie 2006/42/EG'],
   },
   {
     id: 'metallbau', label: 'Metallbau', kicker: 'Geländer · Treppen · Türen · Tore · Überdachung · Carports · Anbaubalkone', no: '02', accent: 'red',
+    seoTitle: 'Metallbau Westerwald: Geländer, Treppen & Überdachungen | FEGA', seoDesc: 'Metallbau aus einer Hand seit 1980: Geländer, Stahltreppen, Tore, Überdachungen und Carports – Konstruktion, Fertigung und Montage termintreu im Westerwald/Taunus.',
     hero: 'metallbau-ueberdachung.jpg',
     headline: 'Metall, das Jahrzehnte bleibt.',
     lead: 'Seit 1980 fertigen und montieren wir Metall – Geländer, Treppen, Tore, Überdachungen. Konstruktion, Fertigung und Montage aus einer Hand, termintreu auf die Baustelle.',
@@ -134,6 +138,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: 'pumpentechnik', label: 'Pumpentechnik', kicker: 'Pumpenprüfung · -reparatur · -vermietung · -verkauf', no: '03', accent: 'blue',
+    seoTitle: 'Pumpenprüfstand & DGUV3-Pumpenprüfung | FEGA Pumpentechnik', seoDesc: 'Pumpenprüfung, Reparatur, Vermietung und Verkauf: moderner Pumpenprüfstand seit 2016, dokumentiert nach DGUV3. Marken Auras und Tsurumi, schnelle Ersatzbeschaffung.',
     hero: null,
     headline: 'Eine Pumpe, die läuft, kostet weniger als eine, die steht.',
     lead: 'Seit 2016 betreiben wir einen modernen Pumpenprüfstand. Wir prüfen, dokumentieren, reparieren – und liefern Ersatz, wenn es schnell gehen muss.',
@@ -155,6 +160,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: 'maschinenhandel', label: 'Maschinenhandel', kicker: 'Verkauf · Handel', no: '04', accent: 'black',
+    seoTitle: 'Baustellengerät & Pumpen kaufen (Auras, Tsurumi) | FEGA', seoDesc: 'Handelsgesellschaft für Baustellengerät: leistungsstarke Pumpen von Auras und Tsurumi, Schnellwechselsysteme und Anbaugeräte. Beratung statt Katalog, kurze Beschaffungswege.',
     hero: 'handel-umschlag.jpg', heroDark: true,
     headline: 'Baustellengerät aus einer Hand.',
     lead: 'Als Handelsgesellschaft mit den nötigen Konzessionen liefern wir Baustellengerät – Schwerpunkt: leistungsstarke Pumpen von Auras und Tsurumi.',
@@ -176,6 +182,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: 'mietpark', label: 'Fega Mietpark', kicker: 'Gerätevermietung · FMP', no: '05', accent: 'red',
+    seoTitle: 'Schnellwechseladapter & Pumpen mieten | FEGA Mietpark', seoDesc: 'Mietpark für Schnellwechseladapter, Anbaugeräte und leistungsstarke Pumpen – geprüft, sofort einsatzbereit, mit verschiedenen Trägergeräten kompatibel. Planbare Mietkosten.',
     hero: 'mietgeraet.jpg',
     headline: 'Passgenau mieten, sofort einsatzbereit.',
     lead: 'Schnellwechselsysteme, Anbaugeräte und leistungsstarke Pumpen – geprüft, sofort verfügbar, ohne Wartezeit.',

@@ -17,14 +17,47 @@ import ArrowLink from '@/components/ArrowLink.astro';
 import JobBoard from '@/components/islands/JobBoard.tsx';
 import FAQ from '@/components/islands/FAQ.tsx';
 import { C } from '@/lib/theme';
-import { KARRIERE, COMPANY } from '@/data/content';
+import { KARRIERE, COMPANY, JOBS } from '@/data/content';
 
 const k = KARRIERE;
 const c = KARRIERE.contact;
+
+const site = Astro.site ?? new URL('https://hans-on-marketing.github.io');
+const datePosted = new Date().toISOString().slice(0, 10);
+const empType = (t: string) => (t === 'Teilzeit' ? 'PART_TIME' : 'FULL_TIME');
+
+// JobPosting-Schema nur für FEGA-eigene Stellen (Feickert-Stellen liegen
+// kanonisch auf feickert-bau.de und werden dort ausgezeichnet).
+const jobSchemas = JOBS.filter((j) => j.company === 'FEGA').map((j) => ({
+  '@context': 'https://schema.org',
+  '@type': 'JobPosting',
+  title: `${j.title} (${j.mwd})`,
+  description: [j.intro || j.desc, j.aufgaben?.length ? 'Aufgaben: ' + j.aufgaben.join('; ') + '.' : '']
+    .filter(Boolean)
+    .join(' '),
+  datePosted,
+  employmentType: empType(j.type),
+  hiringOrganization: { '@type': 'Organization', name: COMPANY.legal, sameAs: site.href },
+  jobLocation: {
+    '@type': 'Place',
+    address: { '@type': 'PostalAddress', addressLocality: j.ort, addressCountry: 'DE' },
+  },
+}));
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: KARRIERE.faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
 ---
 <BaseLayout
-  title="Karriere – FEGA GmbH"
-  description="Hands-on gesucht: Metallfacharbeiter, Schweißer/Schlosser und Ausbildung zum Metallbauer (m/w/d) am Standort Weilburg/Lahn. Schnellbewerbung direkt an der Stelle."
+  title="Karriere bei FEGA: Metallbauer, Schweißer & Ausbildung (m/w/d) | Weilburg"
+  description="Hands-on gesucht: Metallfacharbeiter, Schweißer/Schlosser und Ausbildung zum Metallbauer (m/w/d) in Weilburg/Lahn — plus alle Tiefbau-Stellen der Feickert-Gruppe. Schnellbewerbung direkt an der Stelle."
+  schemas={[...jobSchemas, faqSchema]}
 >
   <!-- 1 · Hero -->
   <Section sm style="padding-top:clamp(44px,5.5vw,80px);padding-bottom:clamp(40px,5vw,72px);">

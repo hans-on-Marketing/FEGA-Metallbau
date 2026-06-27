@@ -62,7 +62,7 @@ export default function AdapterKonfigurator() {
         </p>
       </div>
       <div style={{ background: '#fff', border: '1px solid ' + C.n150, padding: 'clamp(24px,3vw,40px)' }}>
-        <div className="adapter-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 0.75fr', gap: 'clamp(24px,3vw,48px)', alignItems: 'start' }}>
+        <div className="adapter-grid">
           {/* Left: controls */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
             <div>
@@ -112,7 +112,7 @@ export default function AdapterKonfigurator() {
           </div>
 
           {/* Right: result */}
-          <div style={{ background: C.n900, color: '#fff', padding: 'clamp(22px,3vw,34px)', position: 'sticky', top: 90 }}>
+          <div className="konfig-result" style={{ background: C.n900, color: '#fff', padding: 'clamp(22px,3vw,34px)' }}>
             <div style={{ fontFamily: C.mono, fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.42)', marginBottom: 20 }}>Ihre Konfiguration</div>
             {!configured ? (
               <p style={{ fontFamily: C.font, fontWeight: 300, fontSize: 14, color: 'rgba(255,255,255,0.38)', lineHeight: 1.65 }}>

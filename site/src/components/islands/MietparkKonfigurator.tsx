@@ -42,7 +42,7 @@ export default function MietparkKonfigurator() {
           <span className="overline__text">Mietpark-Konfigurator</span>
         </span>
       </div>
-      <div className="mietpark-grid" style={{ display: 'grid', gridTemplateColumns: '1.3fr 0.7fr', gap: 'clamp(24px,4vw,56px)', alignItems: 'stretch' }}>
+      <div className="mietpark-grid">
         <div style={{ background: '#fff', border: '1px solid ' + C.n150, padding: 'clamp(24px,3vw,40px)', display: 'flex', flexDirection: 'column', gap: 28 }}>
           <div>
             <FieldLabel>1 · Gerät wählen</FieldLabel>

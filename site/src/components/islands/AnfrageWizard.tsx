@@ -324,11 +324,11 @@ export default function AnfrageWizard() {
 
         {step === 2 && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(200px,1fr))', gap: 16 }}>
               <Input label="Name *" id="w-name" placeholder="Max Mustermann" value={data.name} onChange={(e) => set('name', e.target.value)} error={tried && !data.name.trim() ? 'Bitte ausfüllen' : undefined} />
               <Input label="Unternehmen" id="w-firma" placeholder="Firma" value={data.firma} onChange={(e) => set('firma', e.target.value)} />
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(200px,1fr))', gap: 16 }}>
               <Input label="E-Mail *" id="w-email" type="email" placeholder="name@firma.de" value={data.email} onChange={(e) => set('email', e.target.value)} error={tried && !emailOk ? 'Gültige E-Mail angeben' : undefined} />
               <Input label="Telefon" id="w-tel" type="tel" placeholder="+49 …" value={data.telefon} onChange={(e) => set('telefon', e.target.value)} />
             </div>

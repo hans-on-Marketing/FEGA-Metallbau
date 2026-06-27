@@ -138,7 +138,7 @@ function JobRow({ j, open, onToggle }: { j: Job; open: boolean; onToggle: () => 
       {open && !applyOpen && (
         <div style={{ paddingBottom: 36, maxWidth: 900 }}>
           {!isExternal ? (
-            <div className="jobrow-media" style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr 1fr', gap: 12, marginBottom: 28 }}>
+            <div className="jobrow-media" style={{ marginBottom: 28 }}>
               <Ph label="Fertigung FEGA" ratio="4/3" />
               <Ph label="Werkstatt" ratio="4/3" dark />
               <div style={{ background: C.n900, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}>

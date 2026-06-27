@@ -10,12 +10,14 @@ interface Props {
   description?: string;
   ogImage?: string;
   ogType?: string;
+  schemas?: Record<string, unknown>[]; // zusätzliche JSON-LD-Blöcke je Seite
 }
 const {
   title = COMPANY.legalLong,
   description = 'FEGA GmbH – Metallbau, Maschinenbau, Pumpentechnik, Maschinenhandel und Mietpark. Ein Lieferant für die Region Westerwald / Taunus. Gefertigt nach DIN EN 1090-2 · EXC 3.',
   ogImage = '/og-image.jpg',
   ogType = 'website',
+  schemas = [],
 } = Astro.props;
 
 const site = Astro.site ?? new URL('https://hans-on-marketing.github.io');
@@ -73,6 +75,9 @@ const orgSchema = {
     <meta name="twitter:image" content={ogImageUrl} />
 
     <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+    {schemas.map((sc) => (
+      <script type="application/ld+json" set:html={JSON.stringify(sc)} />
+    ))}
   </head>
   <body>
     <div style="display:flex;flex-direction:column;min-height:100vh;background:#fff;">

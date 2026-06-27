@@ -160,3 +160,25 @@ Unterpfad. Für den echten Live-Betrieb unter **fega-metallbau.de**:
 `site = https://fega-metallbau.de`, `base = '/'` setzen (dann greifen `robots.txt`,
 `canonical` und `og:image` ohne Unterpfad). Alternativ eine Custom Domain in den
 Pages-Settings hinterlegen.
+
+---
+
+## Changelog 27.06.2026 (erledigt / präzisiert)
+
+- **Telefonnummer vereinheitlicht:** verifiziert über feickert-bau.de + FEGA-Prospekt →
+  einheitlich **06471 / 502-0** (Anzeige) bzw. `tel:+4964715020` (Link). Damit sind
+  Anzeige, Klick-Ziel und Impressum konsistent. (Punkt 3 erledigt.)
+- **Werkstoff-Spec korrigiert:** Beschriftung „Werkstoff" → **„Werkstoffeigenschaften"**
+  (der Wert „Bruch- & Schlagfestigkeit, Ermüdungsfestigkeit" ist damit fachlich korrekt
+  eingeordnet). **Weiterhin offen:** die tatsächliche Stahlgüte/Werkstoffbezeichnung
+  (z. B. S355/S690QL) war online nicht verifizierbar — bitte von FEGA nachreichen, dann
+  als eigenes „Werkstoff"-Feld ergänzen. (Punkt 2 teilweise; kein Raten.)
+- **Karriere-Ansprechpartnerin:** Platzhalter „Sabine Wagner" entfernt → echter
+  Bewerbungskanal **bewerbung@feickert-bau.de** (Rolle „Bewerbung & Personal").
+  (GF-Blocker erledigt.)
+- **Karriere-Seite auf Du-Ansprache** umgestellt; **alle Feickert-Tiefbau-Stellen**
+  ergänzt (verlinkt zu feickert-bau.de).
+- **SEO erweitert:** JobPosting-Schema (FEGA-Stellen), FAQPage-Schema (Karriere),
+  Service-Schema (Leistungsseiten), keyword-stärkere Leistungs-Titles/Descriptions.
+- **Responsive:** Konfigurator-Grids (Adapter/Mietpark), Job-Board-Bildraster und
+  Wizard-Felder brechen jetzt auf Mobil sauber um; Ergebnis-Spalte nicht mehr sticky.
