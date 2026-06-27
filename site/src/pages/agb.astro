@@ -2,10 +2,15 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import LegalLayout from '@/components/LegalLayout.astro';
 import { AGB } from '@/data/content';
+import { withBase } from '@/lib/url';
 const A = AGB;
 ---
-<BaseLayout title="AGB – FEGA GmbH" description="Allgemeine Geschäftsbedingungen der FEGA GmbH für Lieferungen, Leistungen und Angebote gegenüber Unternehmern." ogType="article">
-  <LegalLayout kicker="Rechtliches" title="AGB" lead={A.intro} draft={A.draft}>
+<BaseLayout title="AGB – FEGA GmbH" description="Allgemeine Geschäftsbedingungen der FEGA Metallbau und Handelsgesellschaft mbH für Lieferungen, Leistungen und Zahlungen (Stand 02.2024)." ogType="article">
+  <LegalLayout kicker="Rechtliches" title="AGB" lead={A.intro}>
+    <div class="legal-block" style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;">
+      <span style="font-family:var(--font-mono);font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--n500);">{A.stand}</span>
+      <a href={withBase('/FEGA-AGB.pdf')} target="_blank" rel="noopener" style="font-family:var(--font-primary);font-size:14px;font-weight:500;color:var(--n900);text-decoration:underline;text-underline-offset:3px;">AGB als PDF herunterladen →</a>
+    </div>
     {A.sections.map((s) => (
       <div class="legal-block">
         <h2 class="legal-h">{s.h}</h2>

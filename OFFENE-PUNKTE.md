@@ -83,10 +83,18 @@ gemäß Auftrag **nicht verändert** — die folgenden Punkte sind nur dokumenti
 4. **E-Mail** `info@feickert-bau.de` ist eine **Gruppen-Adresse**, nicht
    FEGA-spezifisch. Unverändert. Bitte prüfen, ob eine FEGA-eigene Adresse gewünscht
    ist.
-5. **Impressum/Register** (Betreiberin FVB Feickert, HRB 3326, USt-IdNr.
-   DE 200791987, GF-Namen) — als Entwurf markiert, unverändert. Rechtlich prüfen.
-6. **Datenschutz & AGB** sind als „Entwurf" gekennzeichnete Mustertexte → vor
-   Live-Gang rechtlich prüfen lassen.
+5. **Impressum/Register – Register-Nummer.** Das Impressum nennt **HRB 3326**, das ist
+   die Nummer der **FVB Feickert Verwaltungs und Beteiligungs GmbH** (Betreiberin der
+   Website). Die FEGA GmbH selbst ist unter einer **anderen** HRB-Nummer eingetragen.
+   Der jetzige Impressumstext ist 1:1 von der Live-Seite übernommen und damit korrekt
+   für die Betreiberin — falls ein eigenständiges FEGA-Impressum gewünscht ist, bitte
+   die FEGA-Registernummer nennen.
+6. **Datenschutz & AGB sind jetzt die echten Texte von der Live-Seite** (Datenschutz-
+   erklärung Wortlaut fega-metallbau.de; AGB Stand 02.2024 aus der Original-PDF). Die
+   „Entwurf"-Kennzeichnung ist entfernt. Inhaltlicher Hinweis: Die Datenschutzerklärung
+   referenziert noch das veraltete **EU-US Privacy Shield** und Dienste wie **AddThis** —
+   das ist der aktuelle Stand der Live-Seite, sollte aber bei Gelegenheit
+   datenschutzrechtlich aktualisiert werden.
 7. **Karriere: Benefits & Ansprechpartner/in** sind als Platzhalter markiert (mit HR
    abstimmen, bevor sie live gehen).
 
@@ -182,3 +190,12 @@ Pages-Settings hinterlegen.
   Service-Schema (Leistungsseiten), keyword-stärkere Leistungs-Titles/Descriptions.
 - **Responsive:** Konfigurator-Grids (Adapter/Mietpark), Job-Board-Bildraster und
   Wizard-Felder brechen jetzt auf Mobil sauber um; Ergebnis-Spalte nicht mehr sticky.
+- **Echte Rechtstexte eingepflegt:** Datenschutz (voller Wortlaut der Live-Seite,
+  §§ 1–8), AGB (Original-PDF Stand 02.2024, Ziffern 1–9) und Impressum (FVB Feickert,
+  HRB 3326, Urheberrecht + Teledienstgesetz-Hinweis) ersetzen die bisherigen
+  Mustertexte; „Entwurf"-Banner entfernt. Die **AGB-PDF** liegt unter
+  `site/public/FEGA-AGB.pdf` und ist auf der AGB-Seite als Download verlinkt.
+- **Zertifikate:** Die gelieferte AGB-PDF enthält **keine** Zertifikatsabbildungen —
+  nur den FEGA-Briefkopf (Anschrift/Tel./E-Mail). Für eine „Zertifikate/Nachweise"-
+  Sektion müssten die Zertifikate (z. B. EN-1090-Werkszeugnis, DGUV3) **separat** als
+  Bild/PDF bereitgestellt werden. **Offen.**

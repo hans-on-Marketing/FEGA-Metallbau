@@ -5,7 +5,7 @@ import { DATENSCHUTZ } from '@/data/content';
 const D = DATENSCHUTZ;
 ---
 <BaseLayout title="Datenschutz – FEGA GmbH" description="Informationen zur Verarbeitung personenbezogener Daten beim Besuch der FEGA-Website und bei Nutzung des Anfrage-Konfigurators (DSGVO)." ogType="article">
-  <LegalLayout kicker="Rechtliches" title="Datenschutz" lead={D.intro} draft={D.draft}>
+  <LegalLayout kicker="Rechtliches" title="Datenschutz" lead={D.intro}>
     {D.sections.map((s) => (
       <div class="legal-block">
         <h2 class="legal-h">{s.h}</h2>
