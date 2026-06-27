@@ -269,36 +269,75 @@ export interface Job {
   type: string;
   ort: string;
   desc: string;
-  intro: string;
-  aufgaben: string[];
-  profil: string[];
-  benefits: string[];
+  company: 'FEGA' | 'Feickert';
+  intro?: string;
+  aufgaben?: string[];
+  profil?: string[];
+  benefits?: string[];
+  external?: string; // externe Stellen-URL (Feickert-Gruppe)
 }
 
 export const JOBS: Job[] = [
+  // ── FEGA GmbH (eigene Stellen, Du-Ansprache) ──
   {
-    id: 'metallfacharbeiter', title: 'Metallfacharbeiter in der Produktion', mwd: 'm/w/d', type: 'Vollzeit', ort: 'Weilburg/Lahn',
-    desc: 'Sie übernehmen Aufgaben im Stahlbau, Anbau, Austrenn- und Anpassungsarbeiten sowie Fugen- und Brennarbeiten.',
-    intro: 'Als Metallfacharbeiter (m/w/d) sind Sie in unserer Produktion das Rückgrat der Fertigung – von der Rohstahlbearbeitung bis zum geprüften Bauteil.',
+    id: 'metallfacharbeiter', title: 'Metallfacharbeiter in der Produktion', mwd: 'm/w/d', type: 'Vollzeit', ort: 'Weilburg/Lahn', company: 'FEGA',
+    desc: 'Du übernimmst Aufgaben im Stahlbau, Anbau, Austrenn- und Anpassungsarbeiten sowie Fugen- und Brennarbeiten.',
+    intro: 'Als Metallfacharbeiter (m/w/d) bist du in unserer Produktion das Rückgrat der Fertigung – von der Rohstahlbearbeitung bis zum geprüften Bauteil.',
     aufgaben: ['Stahlbau- und Anbauarbeiten an Geräteadaptern und Anbaukonstruktionen', 'Austrenn- und Anpassungsarbeiten nach technischer Zeichnung', 'Fugen-, Brenn- und Schweißarbeiten', 'Sicht- und Maßkontrolle der gefertigten Teile'],
     profil: ['Abgeschlossene Ausbildung als Metallbauer, Konstruktionsmechaniker o. ä.', 'Schweißkenntnisse (MAG/WIG) von Vorteil', 'Lesen technischer Zeichnungen', 'Sorgfalt, Teamfähigkeit und Zuverlässigkeit'],
     benefits: ['Sicherer Arbeitsplatz in einer starken Unternehmensgruppe', 'Moderne Maschinen- und Geräteausstattung', 'Leistungsgerechte Vergütung', 'Kurze Wege und ein eingespieltes Team'],
   },
   {
-    id: 'ausbildung-metallbauer', title: 'Ausbildung zum Metallbauer', mwd: 'm/w/d', type: 'Ausbildung', ort: 'Weilburg/Lahn',
-    desc: 'Die Tätigkeiten eines Metallbauers sind vielfältig. Er arbeitet mit verschiedensten Metallen und erschafft Konstruktionen, die noch Jahrzehnte bestehen.',
-    intro: 'Starten Sie Ihre Ausbildung dort, wo Metall zu Hause ist. Sie lernen das Handwerk von Grund auf – an echten Projekten und mit erfahrenen Kollegen an Ihrer Seite.',
+    id: 'ausbildung-metallbauer', title: 'Ausbildung zum Metallbauer', mwd: 'm/w/d', type: 'Ausbildung', ort: 'Weilburg/Lahn', company: 'FEGA',
+    desc: 'Die Tätigkeiten eines Metallbauers sind vielfältig. Du arbeitest mit verschiedensten Metallen und erschaffst Konstruktionen, die noch Jahrzehnte bestehen.',
+    intro: 'Starte deine Ausbildung dort, wo Metall zu Hause ist. Du lernst das Handwerk von Grund auf – an echten Projekten und mit erfahrenen Kollegen an deiner Seite.',
     aufgaben: ['Bearbeiten und Umformen verschiedenster Metalle', 'Schweißen, Trennen, Bohren und Montieren', 'Lesen und Umsetzen technischer Zeichnungen', 'Mitarbeit an Geräteadaptern, Treppen, Geländern und Überdachungen'],
     profil: ['Mindestens Hauptschulabschluss', 'Handwerkliches Geschick und Interesse an Technik', 'Zuverlässigkeit und Lernbereitschaft', 'Freude an der Arbeit im Team'],
     benefits: ['Übernahmechancen nach erfolgreicher Ausbildung', 'Persönliche Betreuung während der gesamten Lehrzeit', 'Abwechslungsreiche, praxisnahe Ausbildung', 'Perspektive in einer wachsenden Gruppe'],
   },
   {
-    id: 'schweisser-schlosser', title: 'Schweißer / Schlosser', mwd: 'm/w/d', type: 'Vollzeit', ort: 'Weilburg/Lahn',
-    desc: 'Sie fertigen und montieren Stahlkonstruktionen und Anbauteile – sauber, maßhaltig und nach Norm.',
-    intro: 'Sie beherrschen Ihr Handwerk und arbeiten gerne genau? Dann verstärken Sie unser Team in der Fertigung von Adaptern, Anbaukonstruktionen und Metallbau.',
+    id: 'schweisser-schlosser', title: 'Schweißer / Schlosser', mwd: 'm/w/d', type: 'Vollzeit', ort: 'Weilburg/Lahn', company: 'FEGA',
+    desc: 'Du fertigst und montierst Stahlkonstruktionen und Anbauteile – sauber, maßhaltig und nach Norm.',
+    intro: 'Du beherrschst dein Handwerk und arbeitest gerne genau? Dann verstärke unser Team in der Fertigung von Adaptern, Anbaukonstruktionen und Metallbau.',
     aufgaben: ['Schweißen von Stahlkonstruktionen (MAG/WIG)', 'Schlosser- und Montagearbeiten', 'Fertigung nach Zeichnung und Norm (DIN EN 1090-2)', 'Qualitäts- und Maßprüfung der eigenen Arbeit'],
     profil: ['Ausbildung als Schweißer, Schlosser oder Metallbauer', 'Gültige Schweißerprüfungen von Vorteil', 'Selbstständige, präzise Arbeitsweise', 'Bereitschaft zu gelegentlicher Montage vor Ort'],
     benefits: ['Unbefristete Anstellung', 'Moderne Schweiß- und Fertigungstechnik', 'Faire Bezahlung und geregelte Arbeitszeiten', 'Kollegiales Umfeld in einem Familienbetrieb'],
+  },
+  // ── Feickert-Unternehmensgruppe (Tiefbau) — Details & Bewerbung auf feickert-bau.de ──
+  {
+    id: 'feickert-facharbeiter', title: 'Facharbeiter Tiefbau', mwd: 'm/w/d', type: 'Vollzeit', ort: 'Rhein-Main-Gebiet', company: 'Feickert',
+    desc: 'Schwerer Kanalbau, Wasserleitungsbau und Straßenbau im Rhein-Main-Gebiet.',
+    external: 'https://www.feickert-bau.de/facharbeiter-tiefbau-35781-weilburg-hessen-m-w-d/',
+  },
+  {
+    id: 'feickert-spezialtiefbauer', title: 'Spezialtiefbauer', mwd: 'm/w/d', type: 'Vollzeit', ort: 'Rhein-Main / Luxemburg', company: 'Feickert',
+    desc: 'Einsätze im Spezialtiefbau im Rhein-Main-Gebiet oder in Luxemburg.',
+    external: 'https://www.feickert-bau.de/spezialtiefbauer-35781-weilburg-hessen-m-w-d/',
+  },
+  {
+    id: 'feickert-kanalbauer', title: 'Kanalbauer', mwd: 'm/w/d', type: 'Vollzeit', ort: 'Weilburg/Hessen', company: 'Feickert',
+    desc: 'Kanal- und Wasserleitungsbau im Tiefbau.',
+    external: 'https://www.feickert-bau.de/kanalbauer-35781-weilburg-hessen/',
+  },
+  {
+    id: 'feickert-baggerfahrer', title: 'Baggerfahrer Tiefbau', mwd: 'm/w/d', type: 'Vollzeit', ort: 'Weilburg/Hessen', company: 'Feickert',
+    desc: 'Bedienung von Baggern für Tiefbauarbeiten.',
+    external: 'https://www.feickert-bau.de/baggerfahrer-tiefbau-35781-weilburg-hessen/',
+  },
+  {
+    id: 'feickert-bauleiter', title: 'Bauleiter Tiefbau', mwd: 'm/w/d', type: 'Vollzeit', ort: 'Rhein-Main / Weilburg', company: 'Feickert',
+    desc: 'Leitung von Baustellen im Rhein-Main-Gebiet, Büroaufgaben in Weilburg-Gaudernbach.',
+    external: 'https://www.feickert-bau.de/bauleiter-tiefbau-35781-weilburg-hessen/',
+  },
+  {
+    id: 'feickert-bauabrechner', title: 'Bauabrechner Tiefbau', mwd: 'm/w/d', type: 'Vollzeit', ort: 'Weilburg/Gaudernbach', company: 'Feickert',
+    desc: 'Rechnungslegung auf Baustellen und Büroaufgaben im Tiefbau.',
+    external: 'https://www.feickert-bau.de/bauabrechner-tiefbau-weilburg-hessen-m-w-d/',
+  },
+  {
+    id: 'feickert-bauzeichner', title: 'Bauzeichner Tiefbau', mwd: 'm/w/d', type: 'Vollzeit', ort: 'Weilburg/Hessen', company: 'Feickert',
+    desc: 'Erstellung technischer Zeichnungen im Tiefbau.',
+    external: 'https://www.feickert-bau.de/bauzeichner-m-w-d-tiefbau-weilburg-hessen/',
   },
 ];
 
@@ -325,7 +364,7 @@ export const KARRIERE = {
   hero: {
     overline: 'Karriere bei FEGA',
     title: 'Hands-on gesucht.',
-    lead: 'Schweißen, montieren, konstruieren — bei FEGA arbeiten Sie an Teilen, die auf echten Baustellen stehen. Kein Schreibtisch. Echte Arbeit, die Jahrzehnte hält.',
+    lead: 'Schweißen, montieren, konstruieren — bei FEGA arbeitest du an Teilen, die auf echten Baustellen stehen. Kein Schreibtisch. Echte Arbeit, die Jahrzehnte hält.',
     trust: ['Familienbetrieb seit 1980', 'Teil der Feickert-Gruppe', 'Standort Weilburg/Lahn'],
   },
   facts: [
@@ -335,15 +374,15 @@ export const KARRIERE = {
     { v: '30', l: 'Tage Urlaub' },
   ],
   pillars: [
-    { no: '01', t: 'Moderner Maschinenpark', d: 'CNC-Brennschneiden, MAG/WIG-Schweißanlagen und digitale Messtechnik. Sie arbeiten mit Technik auf der Höhe der Zeit.' },
+    { no: '01', t: 'Moderner Maschinenpark', d: 'CNC-Brennschneiden, MAG/WIG-Schweißanlagen und digitale Messtechnik. Du arbeitest mit Technik auf der Höhe der Zeit.' },
     { no: '02', t: 'Team statt Betrieb', d: 'Direkte Wege, flache Hierarchien. Bei FEGA kennt jeder jeden — und wer Verantwortung trägt, bekommt sie auch.' },
-    { no: '03', t: 'Feickert-Rückhalt', d: 'Als Teil der Feickert-Unternehmensgruppe stehen Ihnen Stabilität und Perspektiven offen, die ein einzelner Betrieb nicht bieten kann.' },
+    { no: '03', t: 'Feickert-Rückhalt', d: 'Als Teil der Feickert-Unternehmensgruppe stehen dir Stabilität und Perspektiven offen, die ein einzelner Betrieb nicht bieten kann.' },
   ],
   benefits: [
     { t: '30 Tage Urlaub', d: 'Plus Sonderurlaub zu besonderen Anlässen.' },
-    { t: 'Betriebliche Altersvorsorge', d: 'Wir legen für Ihre Rente etwas drauf.' },
+    { t: 'Betriebliche Altersvorsorge', d: 'Wir legen für deine Rente etwas drauf.' },
     { t: 'Weihnachts- & Urlaubsgeld', d: 'Jahressonderzahlungen, planbar und fair.' },
-    { t: 'JobRad & Bike-Leasing', d: 'Ihr Wunschrad günstig über die Firma.' },
+    { t: 'JobRad & Bike-Leasing', d: 'Dein Wunschrad günstig über die Firma.' },
     { t: 'Sicherer Arbeitsplatz', d: 'Rückhalt einer wachsenden Unternehmensgruppe.' },
     { t: 'Moderne Ausstattung', d: 'Maschinen, Werkzeug und Arbeitskleidung gestellt.' },
     { t: 'Weiterbildung', d: 'Schweißprüfungen, Lehrgänge und Qualifizierung.' },
@@ -351,28 +390,28 @@ export const KARRIERE = {
     { t: 'Mitarbeitershop & Vorteile', d: 'Vergünstigungen über Gruppe und Partner.' },
   ],
   paths: [
-    { tag: 'Ausbildung', t: 'Ausbildung zum Metallbauer', d: 'Lernen Sie das Handwerk von Grund auf — an echten Projekten, mit erfahrenen Kollegen an Ihrer Seite.', action: 'job', target: 'ausbildung-metallbauer', cta: 'Zur Ausbildungsstelle', featured: true },
-    { tag: 'Berufserfahrene', t: 'Fachkräfte in Fertigung & Montage', d: 'Schweißer, Schlosser, Metallfacharbeiter: Bringen Sie Ihr Können dort ein, wo Präzision zählt.', action: 'jobs', cta: 'Offene Stellen' },
-    { tag: 'Quereinstieg', t: 'Quer- & Wiedereinsteiger', d: 'Handwerkliches Geschick und Motivation? Wir lernen Sie ein und qualifizieren Sie weiter.', action: 'mail', cta: 'Initiativ bewerben' },
+    { tag: 'Ausbildung', t: 'Ausbildung zum Metallbauer', d: 'Lerne das Handwerk von Grund auf — an echten Projekten, mit erfahrenen Kollegen an deiner Seite.', action: 'job', target: 'ausbildung-metallbauer', cta: 'Zur Ausbildungsstelle', featured: true },
+    { tag: 'Berufserfahrene', t: 'Fachkräfte in Fertigung & Montage', d: 'Schweißer, Schlosser, Metallfacharbeiter: Bring dein Können dort ein, wo Präzision zählt.', action: 'jobs', cta: 'Offene Stellen' },
+    { tag: 'Quereinstieg', t: 'Quer- & Wiedereinsteiger', d: 'Handwerkliches Geschick und Motivation? Wir lernen dich ein und qualifizieren dich weiter.', action: 'mail', cta: 'Initiativ bewerben' },
   ] as { tag: string; t: string; d: string; action: 'job' | 'jobs' | 'mail'; target?: string; cta: string; featured?: boolean }[],
   process: [
     { no: '01', t: 'Bewerbung senden', d: 'Schnellbewerbung direkt an der Stelle oder per E-Mail. Für den ersten Schritt reicht ein Lebenslauf.' },
-    { no: '02', t: 'Schnelle Rückmeldung', d: 'Wir sichten Ihre Unterlagen und melden uns in der Regel innerhalb weniger Tage.' },
-    { no: '03', t: 'Persönliches Kennenlernen', d: 'Gespräch und Rundgang durch die Fertigung — Sie sehen, wo und mit wem Sie arbeiten.' },
-    { no: '04', t: 'Vertrag & Start', d: 'Passt es für beide Seiten, klären wir die Details und stimmen Ihren Starttermin ab.' },
+    { no: '02', t: 'Schnelle Rückmeldung', d: 'Wir sichten deine Unterlagen und melden uns in der Regel innerhalb weniger Tage.' },
+    { no: '03', t: 'Persönliches Kennenlernen', d: 'Gespräch und Rundgang durch die Fertigung — du siehst, wo und mit wem du arbeitest.' },
+    { no: '04', t: 'Vertrag & Start', d: 'Passt es für beide Seiten, klären wir die Details und stimmen deinen Starttermin ab.' },
   ],
   contact: {
-    name: 'Sabine Wagner',
-    role: 'Personal & Bewerbungen',
-    note: 'Fragen vor der Bewerbung? Rufen Sie mich an oder schreiben Sie kurz — ich helfe gern weiter.',
+    name: 'Bewerbung & Personal',
+    role: 'Feickert-Unternehmensgruppe · FEGA GmbH',
+    note: 'Fragen vor der Bewerbung? Ruf an oder schreib kurz — wir helfen dir gern weiter.',
     phone: COMPANY.phone,
     phoneHref: COMPANY.phoneHref,
-    email: COMPANY.email,
+    email: 'bewerbung@feickert-bau.de',
   },
   faq: [
-    { q: 'Welche Unterlagen brauche ich für die Bewerbung?', a: 'Für den ersten Schritt genügt ein Lebenslauf. Zeugnisse und Nachweise können Sie später nachreichen.' },
+    { q: 'Welche Unterlagen brauche ich für die Bewerbung?', a: 'Für den ersten Schritt genügt ein Lebenslauf. Zeugnisse und Nachweise kannst du später nachreichen.' },
     { q: 'Wie schnell bekomme ich eine Rückmeldung?', a: 'In der Regel innerhalb weniger Tage. Bei hohem Aufkommen kann es etwas länger dauern — wir melden uns in jedem Fall.' },
-    { q: 'Kann ich mich initiativ bewerben?', a: 'Ja. Auch ohne passende Ausschreibung freuen wir uns über Ihre Initiativbewerbung per E-Mail.' },
+    { q: 'Kann ich mich initiativ bewerben?', a: 'Ja. Auch ohne passende Ausschreibung freuen wir uns über deine Initiativbewerbung per E-Mail.' },
     { q: 'Bietet ihr Praktika oder Probearbeiten an?', a: 'Ja. Schnupper- und Praktikumstage sind nach Absprache möglich — gerade für Schulabgänger ein guter Einstieg.' },
     { q: 'Arbeite ich nur in der Werkstatt oder auch auf Montage?', a: 'Je nach Position. Die Fertigung findet überwiegend in Weilburg statt, Montagen gelegentlich vor Ort in der Region.' },
     { q: 'Ab wann kann ich anfangen?', a: 'Der Starttermin wird individuell abgestimmt. Ausbildungsstellen beginnen in der Regel zum 1. August.' },

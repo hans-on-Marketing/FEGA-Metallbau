@@ -198,10 +198,10 @@ const refs = REFERENCES.slice(0, 3);
           <Overline color={C.red}>Karriere</Overline>
           <h2 class="h2-mid">Hands-on gesucht.</h2>
           <p class="body-lead" style="max-width:500px;">
-            Schweißen, montieren, konstruieren — bei FEGA arbeiten Sie an Teilen, die auf echten Baustellen stehen. Kein Schreibtisch. Echte Arbeit.
+            Schweißen, montieren, konstruieren — bei FEGA arbeitest du an Teilen, die auf echten Baustellen stehen. Kein Schreibtisch. Echte Arbeit.
           </p>
           <div style="margin-top:30px;display:grid;gap:14px;">
-            {JOBS.map((j) => (
+            {JOBS.filter((j) => j.company === 'FEGA').map((j) => (
               <a class="kar-job" href={withBase('/karriere')}>
                 <span>
                   <span style="display:block;font-family:var(--font-primary);font-size:17px;font-weight:500;color:var(--n900);">{j.title} <span style="color:var(--n400);font-weight:400;font-size:14px;">({j.mwd})</span></span>

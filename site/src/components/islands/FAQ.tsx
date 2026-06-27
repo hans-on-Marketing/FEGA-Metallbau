@@ -1,6 +1,6 @@
 import React from 'react';
 import { C } from '@/lib/theme';
-import { COMPANY, KARRIERE } from '@/data/content';
+import { KARRIERE } from '@/data/content';
 
 /* FAQ-Akkordeon (Karriere). Erste Frage initial geöffnet. */
 export default function FAQ() {
@@ -18,8 +18,8 @@ export default function FAQ() {
           </h2>
           <p style={{ marginTop: 18, maxWidth: 380, fontFamily: C.font, fontWeight: 300, fontSize: 15, lineHeight: 1.65, color: C.n600 }}>
             Noch etwas offen?{' '}
-            <a href={'mailto:' + COMPANY.email} style={{ color: C.blue, textDecoration: 'none', fontWeight: 500 }}>
-              Schreiben Sie uns.
+            <a href={'mailto:' + KARRIERE.contact.email} style={{ color: C.blue, textDecoration: 'none', fontWeight: 500 }}>
+              Schreib uns.
             </a>
           </p>
         </div>
