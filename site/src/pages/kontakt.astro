@@ -4,7 +4,9 @@ import Container from '@/components/Container.astro';
 import Section from '@/components/Section.astro';
 import Overline from '@/components/Overline.astro';
 import AnfrageWizard from '@/components/islands/AnfrageWizard.tsx';
-import { COMPANY } from '@/data/content';
+import SectionHead from '@/components/SectionHead.astro';
+import { C } from '@/lib/theme';
+import { COMPANY, TEAM } from '@/data/content';
 
 const chips: [string, string, string | null][] = [
   ['Telefon', COMPANY.phone, COMPANY.phoneHref],
@@ -38,6 +40,23 @@ const chips: [string, string, string | null][] = [
         </div>
       </div>
       <AnfrageWizard client:load />
+    </Container>
+  </Section>
+
+  <!-- Ansprechpartner / Team -->
+  <Section sm bg={C.n25} label="Ansprechpartner">
+    <Container>
+      <SectionHead overline={TEAM.overline} accent={C.blue} max={620} intro={TEAM.lead}>{TEAM.title}</SectionHead>
+      <div class="team-grid">
+        {TEAM.members.map((m, i) => (
+          <div class="team-card">
+            <div class="team-card__bar" style={`background:${i % 2 ? C.blue : C.red};`}></div>
+            <div class="team-card__name">{m.name}</div>
+            <div class="team-card__role">{m.role}</div>
+            <a class="team-card__mail" href={`mailto:${m.email}`}>{m.email}</a>
+          </div>
+        ))}
+      </div>
     </Container>
   </Section>
 </BaseLayout>
@@ -83,5 +102,53 @@ const chips: [string, string, string | null][] = [
     font-size: 14px;
     font-weight: 500;
     color: var(--n900);
+  }
+  .team-grid {
+    margin-top: var(--block);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+  }
+  .team-card {
+    position: relative;
+    background: #fff;
+    border: 1px solid var(--n150);
+    padding: 24px 22px 26px;
+    overflow: hidden;
+  }
+  .team-card__bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 3px;
+  }
+  .team-card__name {
+    font-family: var(--font-primary);
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--n900);
+  }
+  .team-card__role {
+    margin-top: 6px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--n500);
+  }
+  .team-card__mail {
+    display: inline-block;
+    margin-top: 14px;
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--color-blue);
+    text-decoration: none;
+    word-break: break-word;
+  }
+  .team-card__mail:hover {
+    text-decoration: underline;
   }
 </style>

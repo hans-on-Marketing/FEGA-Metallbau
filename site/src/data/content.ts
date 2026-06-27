@@ -102,17 +102,20 @@ export const SERVICES: Service[] = [
       'Sie brauchen mehr als einen Adapter? Wir entwickeln und bauen Anbaukonstruktionen aller Art – von der ersten Zeichnung bis zum geprüften, fertigen Bauteil.',
     ],
     features: [
-      { t: 'Schnellwechsel-Adapter', d: 'Liebherr-kompatibel, mechanisch und hydraulisch.' },
-      { t: 'Anbaukonstruktionen', d: 'Entwicklung und Bau dynamisch beanspruchbarer Bauteile.' },
-      { t: 'Aufarbeitung', d: 'Defekte Adapter und Bohrungen zurück auf Soll-Maß.' },
+      { t: 'Schnellwechsel-Adapter', d: 'Aufnahmeplatten und werkzeugseitige Geräteadapter, Liebherr-kompatibel (LIKUFIX & OilQuick), mechanisch und hydraulisch.' },
+      { t: 'Roboter-Schweißanlage', d: 'Hochpräzise Schweißroboter mit Schwenktischen für Werkstücke bis 6.000 mm Länge und 1.200 mm Durchmesser – mit maßgeschneiderten Lehren.' },
+      { t: 'Anbaukonstruktionen & Sonderbauten', d: 'Entwicklung und Bau dynamisch beanspruchbarer Bauteile aller Art.' },
+      { t: 'Sandstrahlen & Regeneration', d: '30-Fuß-Sandstrahlcontainer für Teile bis 6 m und 1,5 t: strahlen, Lager erneuern, Struktur verstärken, grundieren, in RAL-Farbe lackieren.' },
+      { t: 'Aufarbeitung', d: 'Defekte Adapter und Bohrungen zurück auf Soll-Maß, Hydraulikkupplungen nach Herstellervorgabe instand gesetzt.' },
       { t: 'Aus einem Haus', d: 'Konstruktion, Fertigung, Prüfung. Ein Lieferant, eine Verantwortung.' },
     ],
     specs: [
-      ['Norm', 'DIN EN 1090-2 · EXC 3'], ['Richtlinie', 'Maschinenrichtlinie 2006/42/EG'],
-      ['Werkstoff', 'S355J2 (1.0570) · Bolzen 42CrMo4 (1.7225)'], ['Vorteil', 'Gewichtsoptimiert – weniger Verbrauch & Emission'],
+      ['Norm', 'DIN EN 1090-1/-2 · EXC 3'], ['Richtlinie', 'Maschinenrichtlinie 2006/42/EG'],
+      ['Werkstoff', 'S355J2 (1.0570) · Bolzen 42CrMo4 (1.7225)'], ['Schnellwechsel', 'LIKUFIX & OilQuick verfügbar'],
+      ['Schweißanlage', 'Roboter · bis 6.000 mm / Ø 1.200 mm'], ['Vorteil', 'Gewichtsoptimiert – weniger Verbrauch & Emission'],
     ],
     gallery: ['adapter-produkt.jpg', 'adapter-baustelle.jpg', 'adapter-bohrgeraet.jpg', 'fertigung-rahmen.jpg'],
-    badges: ['DIN EN 1090-2 · EXC 3', 'Maschinenrichtlinie 2006/42/EG'],
+    badges: ['DIN EN 1090-1/-2 · EXC 3', 'LIKUFIX & OilQuick', 'Maschinenrichtlinie 2006/42/EG'],
   },
   {
     id: 'metallbau', label: 'Metallbau', kicker: 'Geländer · Treppen · Türen · Tore · Überdachung · Carports · Anbaubalkone', no: '02', accent: 'red',
@@ -123,19 +126,22 @@ export const SERVICES: Service[] = [
     buyer: 'Für den Einkauf: ein Gewerk weniger zu koordinieren – ein Ansprechpartner von der Planung bis zur montierten Anlage.',
     body: [
       'Vom Geländer über die Stahltreppe bis zur kompletten Überdachung: Wir konstruieren, fertigen und montieren. Sauber verarbeitet, langlebig, nach Termin – ohne Überraschungen.',
+      'Dazu Bauschlosserarbeiten in Stahl und Edelstahl V2a, Kunstschmiedearbeiten, Brüstungen und Vergitterungen sowie Stahl- und Anlagenbau – Stege, Arbeitsbühnen, Hallen und Installationen. Im Westerwald, Taunus und Rhein-Main-Gebiet.',
     ],
     features: [
       { t: 'Geländer & Treppen', d: 'Innen und außen, Stahl verzinkt oder beschichtet.' },
       { t: 'Türen & Tore', d: 'Maßgefertigte Bauschlosserarbeiten.' },
       { t: 'Überdachung & Carports', d: 'Wetterschutz in Stahlbauweise.' },
       { t: 'Anbaubalkone', d: 'Vorgehängte Konstruktionen, statisch geprüft.' },
+      { t: 'Edelstahl & Kunstschmiede', d: 'Bauschlosserarbeiten in Stahl und Edelstahl V2a, Brüstungen, Vergitterungen, Kunstschmiede.' },
+      { t: 'Stahl- & Anlagenbau', d: 'Stege, Arbeitsbühnen, Hallen und Installationsarbeiten in Stahlbauweise.' },
     ],
     specs: [
-      ['Seit', '1980'], ['Region', 'Westerwald / Taunus'],
-      ['Leistung', 'Fertigung & Montage aus einer Hand'], ['Zusatz', 'Anbaukonstruktionen aller Art'],
+      ['Seit', '1980'], ['Region', 'Westerwald · Taunus · Rhein-Main'],
+      ['Werkstoffe', 'Stahl · Edelstahl V2a'], ['Leistung', 'Fertigung & Montage aus einer Hand'],
     ],
     gallery: ['metallbau-treppe-innen.jpg', 'metallbau-treppe-aussen.jpg', 'metallbau-rampe.jpg', 'metallbau-einhausung.jpg'],
-    badges: ['Bauschlosserarbeiten', 'Fertigung & Montage'],
+    badges: ['Stahl & Edelstahl V2a', 'Kunstschmiede', 'Fertigung & Montage'],
   },
   {
     id: 'pumpentechnik', label: 'Pumpentechnik', kicker: 'Pumpenprüfung · -reparatur · -vermietung · -verkauf', no: '03', accent: 'blue',
@@ -172,14 +178,15 @@ export const SERVICES: Service[] = [
     features: [
       { t: 'Pumpen', d: 'Leistungsstarke Geräte von Auras und Tsurumi.' },
       { t: 'Schnellwechselsysteme', d: 'Adapter und Anbaugeräte, passgenau.' },
+      { t: 'Schmölz SchachtFIX', d: 'Autorisierter Händler für SchachtFIX-Spezialwerkzeuge für den Tiefbau.' },
       { t: 'Beratung', d: 'Ersatzbeschaffung und technische Beratung, kein Verkaufsgerede.' },
     ],
     specs: [
       ['Segment', 'Handelsgesellschaft'], ['Konzessionen', 'Vertrieb von Baustellengerät'],
-      ['Schwerpunkt', 'Pumpen – Verkauf & Vermietung'], ['Marken', 'Auras · Tsurumi'],
+      ['Schwerpunkt', 'Pumpen – Verkauf & Vermietung'], ['Marken', 'Auras · Tsurumi · Schmölz SchachtFIX'],
     ],
     gallery: ['adapter-rohre.jpg'],
-    badges: ['Auras', 'Tsurumi'],
+    badges: ['Auras', 'Tsurumi', 'Schmölz SchachtFIX'],
   },
   {
     id: 'mietpark', label: 'Fega Mietpark', kicker: 'Gerätevermietung · FMP', no: '05', accent: 'red',
@@ -193,15 +200,17 @@ export const SERVICES: Service[] = [
     ],
     features: [
       { t: 'Schnellwechseladapter', d: 'Mechanisch und hydraulisch.' },
+      { t: 'FEGA Power Spaten', d: 'Für Baggerklasse 16–36 t · Schnittbreite 780 mm · 2.560 mm lang · ca. 625 kg. Für Grabenverbau, Kanal- und Leitungsbau, Unterfangungen und Schachtarbeiten.' },
+      { t: 'Schwanenhals', d: 'Anbaugerät für den Tiefbau-Einsatz, sofort verfügbar.' },
       { t: 'Hydrostatische Rüttelplatte', d: 'Leistungsstark, sofort verfügbar.' },
       { t: 'Pumpen', d: 'Von Auras und Tsurumi.' },
     ],
     specs: [
-      ['Programm', 'Schnellwechsel · Anbaugeräte · Pumpen'], ['Zustand', 'Geprüft, sofort einsatzbereit'],
+      ['Programm', 'Schnellwechsel · Power Spaten · Schwanenhals · Pumpen'], ['Zustand', 'Geprüft, sofort einsatzbereit'],
       ['Kompatibel', 'Verschiedene Trägergeräte'], ['Marken', 'Auras · Tsurumi'],
     ],
     gallery: ['adapter-feld.jpg', 'rohrheber.jpg'],
-    badges: ['Mechanisch & hydraulisch', 'Sofort einsatzbereit'],
+    badges: ['FEGA Power Spaten', 'Mechanisch & hydraulisch', 'Sofort einsatzbereit'],
     cta: 'Jetzt anfragen und das passende Anbaugerät mieten.',
   },
 ];
@@ -260,6 +269,7 @@ export const ABOUT = {
     { t: 'Termingebunden', d: 'Verbindliche Fertigungs- und Montagetermine. Kein Raten, keine Überraschungen auf der Baustelle.' },
     { t: 'Ein Ansprechpartner', d: 'Konstruktion, Fertigung, Montage, Prüfung. Ein Kontakt, eine Verantwortung.' },
     { t: 'Maschinenrichtlinie', d: 'Adapter nach Maschinenrichtlinie 2006/42/EG. Sicherheit ist kein Kompromiss, sie ist die Grundlage.' },
+    { t: 'Der Kunde steht an erster Stelle', d: 'Metall ist unsere Leidenschaft – und partnerschaftlicher, verlässlicher Umgang die Grundlage. Als Familienbetrieb bauen wir auf langfristige Beziehungen.' },
   ],
   timeline: [
     { y: '1980', t: 'Gründung', d: 'Partner für Metallbau und Bauschlosserarbeiten in der Region.' },
@@ -455,6 +465,79 @@ export const KARRIERE = {
     { q: 'Bietet ihr Praktika oder Probearbeiten an?', a: 'Ja. Schnupper- und Praktikumstage sind nach Absprache möglich — gerade für Schulabgänger ein guter Einstieg.' },
     { q: 'Arbeite ich nur in der Werkstatt oder auch auf Montage?', a: 'Je nach Position. Die Fertigung findet überwiegend in Weilburg statt, Montagen gelegentlich vor Ort in der Region.' },
     { q: 'Ab wann kann ich anfangen?', a: 'Der Starttermin wird individuell abgestimmt. Ausbildungsstellen beginnen in der Regel zum 1. August.' },
+  ],
+};
+
+/* Ausbildung in der Feickert-Unternehmensgruppe (Muttergesellschaft von FEGA).
+   Quelle: feickert-bau.de/wir-bilden-aus/ — 1:1 übernommen, Du-Ansprache. */
+export const AUSBILDUNG = {
+  overline: 'Ausbildung in der Feickert-Gruppe',
+  title: 'Die Ausbildung bei Feickert',
+  parentNote:
+    'FEGA ist Teil der Feickert-Unternehmensgruppe – unserer Muttergesellschaft. Über die Gruppe stehen dir an mehreren Standorten zusätzliche Ausbildungswege im Bau offen, weit über den Metallbau hinaus.',
+  lead:
+    'Eine gute Ausbildung ist ein wichtiger Baustein für deine berufliche Zukunft. Über drei Jahre lernst du sowohl in der Schule die Theorie als auch in einem unserer Betriebe die Praxis deines Handwerks. Damit legen wir den Grundstein für deine berufliche Entwicklung.',
+  steps: [
+    {
+      no: 'Schritt 1',
+      t: 'Im Praktikum lernen wir uns kennen',
+      d: 'Der Start in eine Ausbildung gelingt am besten, wenn du vorher etwas vom Unternehmensalltag gesehen hast. In einem Praktikum kannst du dein neues Berufsziel genauer kennenlernen – wir lernen dich kennen und du uns.',
+    },
+    {
+      no: 'Schritt 2',
+      t: 'In der Ausbildung wirst du Teil des Teams',
+      d: 'Starte deinen Weg auf dem Bau, lerne neue Techniken und Geräte kennen und arbeite in einem Umfeld, in dem es auf deine Leistung ankommt. Jeder Einzelne ist wichtig und trägt seinen Teil zum Ganzen bei – das gilt auch für unsere Auszubildenden.',
+    },
+  ],
+  standorte: [
+    { region: 'Feickert Hessen', gaenge: ['Baugeräteführer', 'Maurer', 'Kanalbauer', 'Rohrleitungsbauer', 'Spezialtiefbauer', 'Straßenbauer', 'Industriekauffrau/Industriekaufmann', 'Fachinformatiker – Fachrichtung Systemintegration'] },
+    { region: 'Feickert Sachsen-Anhalt', gaenge: ['Baugeräteführer', 'Kanalbauer', 'Rohrleitungsbauer', 'Straßenbauer'] },
+    { region: 'Feickert Thüringen', gaenge: ['Baugeräteführer', 'Kanalbauer', 'Maurer', 'Rohrleitungsbauer', 'Straßenbauer'] },
+  ],
+  dual: {
+    title: 'Noch ein Schritt? Duales Studium',
+    lead: 'Umfassende Ausbildung, verbunden mit einer langfristigen beruflichen Perspektive. Im Bereich des Dualen Studiums bieten wir zwei Varianten an:',
+    variants: [
+      {
+        t: 'a) Ausbildungsvergütung, verbunden mit dem Studiengang Bauingenieur (Bachelor/Master)',
+        points: [
+          'Dreijährige Berufsausbildung zum Baufacharbeiter in Ausbildungszentren und Berufsschulen (z. B. BBZ Frankfurt, BBZ Magdeburg, BBZ Weimar – je nach Kapazität des BBZ) sowie in einem der Unternehmen der Feickert-Gruppe',
+          'Parallel dazu Vorlesungen in kooperierenden Universitäten (z. B. Goethe-Universität Frankfurt, Universität Kassel, Hochschule Magdeburg-Stendal, Fachhochschule Erfurt)',
+          'Nach Abschluss der Gesellenprüfung ein Hochschulstudium bis zum Erreichen des Bachelors',
+          'Ausbildungsvergütung nach Tarifvertrag (Stand 2023): 1. Lehrjahr 935 EUR · 2. Lehrjahr 1230 EUR · 3. Lehrjahr 1495 EUR · 4. Lehrjahr 1580 EUR',
+        ],
+      },
+      {
+        t: 'b) Studienkredit für den Studiengang Bauingenieur (Bachelor/Master)',
+        points: [
+          'Monatliche Förderung zur Studienunterstützung an einer beliebigen Universität/FH',
+          'Praktikum im Unternehmen während des Studiums',
+          'Unterstützung mit 1580 EUR pro Monat (bei Abbruch ohne Verschulden der Firma keine Rückzahlung der Unterstützungsleistungen)',
+        ],
+      },
+    ],
+  },
+  contacts: [
+    { region: 'Hessen', name: 'Andre Schilbock', email: 'andre.schilbock@feickert-bau.de', phone: '06471/502169' },
+    { region: 'Sachsen-Anhalt', name: 'Susanne Hunold', email: 'susanne.hunold@feickert-bau.de', phone: '034743/96470' },
+    { region: 'Thüringen', name: 'Lars Erbach', email: 'lars.erbach@feickert-bau.de', phone: '036200/634610' },
+  ],
+  applyUrl: 'https://www.feickert-bau.de/wir-bilden-aus/',
+};
+
+/* Ansprechpartner / Team — aus der FEGA-Firmenvorstellung (öffentlich). */
+export const TEAM = {
+  overline: 'Ansprechpartner',
+  title: 'Ihr direkter Draht zu FEGA.',
+  lead: 'Kein Callcenter, keine Warteschleife: Sprechen Sie direkt mit den Menschen, die Ihr Anliegen bearbeiten.',
+  members: [
+    { name: 'Axel Schupp', role: 'Geschäftsführung', email: 'axel.schupp@feickert-bau.de' },
+    { name: 'Chris Wettstein', role: 'Produktionsleiter Maschinenbau', email: 'chris.wettstein@feickert-bau.de' },
+    { name: 'Patrick Störzel', role: 'Innendienst Maschinenbau', email: 'patrick.stoerzel@feickert-bau.de' },
+    { name: 'Oliver Schäfer', role: 'Konstruktion & Entwicklung', email: 'oliver.schaefer@feickert-bau.de' },
+    { name: 'Muhammed Akyol', role: 'Technischer Leiter Metallbau', email: 'muhammed.akyol@feickert-bau.de' },
+    { name: 'Eberhard Börner', role: 'Metallbau · Planung & Konstruktion', email: 'eberhard.boerner@feickert-bau.de' },
+    { name: 'Kim Winkler', role: 'Elektromeister', email: 'kim-dennis.winkler@feickert-bau.de' },
   ],
 };
 

@@ -203,6 +203,24 @@ Pages-Settings hinterlegen.
   HRB 3326, Urheberrecht + Teledienstgesetz-Hinweis) ersetzen die bisherigen
   Mustertexte; „Entwurf"-Banner entfernt. Die **AGB-PDF** liegt unter
   `site/public/FEGA-AGB.pdf` und ist auf der AGB-Seite als Download verlinkt.
+- **Feickert-Ausbildung integriert:** Neue Sektion auf `/karriere` (`#ausbildung-feickert`),
+  klar als **Muttergesellschaft** ausgewiesen — Ausbildungsgänge der Standorte Hessen,
+  Sachsen-Anhalt, Thüringen, Duales Studium (beide Varianten inkl. Vergütung) und die drei
+  Bundesland-Ansprechpartner (Schilbock/Hunold/Erbach). Quelle: feickert-bau.de/wir-bilden-aus.
+- **Inhalte aus der Firmenvorstellung-PDF übernommen** (per Recherche-Agent, nur belastbare
+  Fakten): Maschinenbau → Roboter-Schweißanlage (bis 6.000 mm / Ø 1.200 mm), Sandstrahlen &
+  Regeneration (bis 6 m / 1,5 t), LIKUFIX **& OilQuick**, Aufnahmeplatten/Sonderbauten, Norm
+  präzisiert auf DIN EN 1090-**1/-2**. Metallbau → Edelstahl V2a, Kunstschmiede, Stahl-/Anlagenbau
+  (Stege, Bühnen, Hallen), Region zusätzlich Rhein-Main. Maschinenhandel → Schmölz SchachtFIX
+  (autorisierter Händler). Mietpark → **FEGA Power Spaten** (16–36 t, 780 mm, 2.560 mm, ~625 kg)
+  und Schwanenhals. Über uns → Leitbild „Der Kunde steht an erster Stelle / Metall ist unsere
+  Leidenschaft". Kontakt → **echte Ansprechpartner/Team** (7 Personen mit Funktion + E-Mail).
+  Bewusst **weggelassen** (unsicher/heikel): Kran-Traglast „6,3t" (nur vom Foto), Änderung des
+  Firmen-Rechtsnamens, exakte Hausadresse im Impressum.
+- **Noch ungenutzte PDF-Bilder** (für später, falls echte Fotos gewünscht): Schweißer-Cover,
+  Roboteranlage/Werkstatt (S. 24), Geräteadapter-Produktfotos (S. 14/16), Power Spaten im
+  Einsatz (S. 28), Metallbau-Referenzen (S. 18), Pumpen (S. 20), SchachtFIX-Baustelle (S. 26),
+  Deutschland-Standortkarte (S. 17). Aktuell weiterhin Platzhalter (Foto-Toggle in OptImage).
 - **Zertifikate:** Die gelieferte AGB-PDF enthält **keine** Zertifikatsabbildungen —
   nur den FEGA-Briefkopf (Anschrift/Tel./E-Mail). Für eine „Zertifikate/Nachweise"-
   Sektion müssten die Zertifikate (z. B. EN-1090-Werkszeugnis, DGUV3) **separat** als

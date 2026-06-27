@@ -17,7 +17,7 @@ import ArrowLink from '@/components/ArrowLink.astro';
 import JobBoard from '@/components/islands/JobBoard.tsx';
 import FAQ from '@/components/islands/FAQ.tsx';
 import { C } from '@/lib/theme';
-import { KARRIERE, COMPANY, JOBS } from '@/data/content';
+import { KARRIERE, COMPANY, JOBS, AUSBILDUNG } from '@/data/content';
 
 const k = KARRIERE;
 const c = KARRIERE.contact;
@@ -186,6 +186,79 @@ const faqSchema = {
     <JobBoard client:visible />
   </Section>
 
+  <!-- 6b · Ausbildung in der Feickert-Gruppe (Muttergesellschaft) -->
+  <Section sm label="Ausbildung Feickert-Gruppe" id="ausbildung-feickert">
+    <Container>
+      <div class="ausb-head">
+        <Overline color={C.blue}>{AUSBILDUNG.overline}</Overline>
+        <h2 class="ausb-title">{AUSBILDUNG.title}</h2>
+        <div class="ausb-parent">
+          <span class="ausb-parent__tag">Muttergesellschaft</span>
+          <p class="ausb-parent__txt">{AUSBILDUNG.parentNote}</p>
+        </div>
+        <p class="ausb-lead">{AUSBILDUNG.lead}</p>
+      </div>
+
+      <div class="ausb-steps">
+        {AUSBILDUNG.steps.map((s) => (
+          <div class="ausb-step">
+            <div class="ausb-step__no">{s.no}</div>
+            <h3 class="ausb-step__t">{s.t}</h3>
+            <p class="ausb-step__d">{s.d}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="ausb-grid">
+        {AUSBILDUNG.standorte.map((st, i) => (
+          <div class="ausb-card">
+            <div class="ausb-card__bar" style={`background:${i % 2 ? C.blue : C.red};`}></div>
+            <div class="ausb-card__region">Ausbildungsgänge</div>
+            <h3 class="ausb-card__h">{st.region}</h3>
+            <ul class="ausb-list">
+              {st.gaenge.map((g) => <li>{g}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <div class="ausb-dual">
+        <h3 class="ausb-dual__t">{AUSBILDUNG.dual.title}</h3>
+        <p class="ausb-dual__lead">{AUSBILDUNG.dual.lead}</p>
+        <div class="ausb-dual__grid">
+          {AUSBILDUNG.dual.variants.map((v) => (
+            <div class="ausb-variant">
+              <h4 class="ausb-variant__t">{v.t}</h4>
+              <ul class="ausb-checklist">
+                {v.points.map((p) => <li>{p}</li>)}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="ausb-contacts">
+        <div class="ausb-contacts__head">
+          <Overline color={C.red}>Kontakt</Overline>
+          <p class="ausb-contacts__sub">Für Infos stehen wir dir gern zur Verfügung – deine Ansprechpartner nach Bundesländern:</p>
+        </div>
+        <div class="ausb-contacts__grid">
+          {AUSBILDUNG.contacts.map((p) => (
+            <div class="ausb-contact">
+              <div class="ausb-contact__region">{p.region}</div>
+              <div class="ausb-contact__name">{p.name}</div>
+              <a class="ausb-contact__link" href={`mailto:${p.email}`}>{p.email}</a>
+              <a class="ausb-contact__link" href={`tel:${p.phone.replace(/[^0-9+]/g, '')}`}>{p.phone}</a>
+            </div>
+          ))}
+        </div>
+        <div class="ausb-cta">
+          <Button variant="primary" size="lg" href={AUSBILDUNG.applyUrl}>Ausbildung bei Feickert ansehen</Button>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
   <!-- 7 · Bewerbungsprozess -->
   <Section sm label="Bewerbungsprozess">
     <Container>
@@ -260,5 +333,264 @@ const faqSchema = {
     .kh-grid {
       grid-template-columns: 1fr;
     }
+  }
+
+  /* ── Ausbildung Feickert-Gruppe ── */
+  .ausb-title {
+    margin-top: 18px;
+    font-family: var(--font-primary);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.0;
+    font-size: clamp(30px, 3.6vw, 50px);
+    color: var(--n900);
+    text-wrap: balance;
+  }
+  .ausb-parent {
+    margin-top: 20px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    max-width: 720px;
+    padding: 16px 18px;
+    background: var(--n25);
+    border-left: 3px solid var(--color-blue);
+  }
+  .ausb-parent__tag {
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-blue);
+    padding-top: 2px;
+  }
+  .ausb-parent__txt {
+    font-family: var(--font-primary);
+    font-weight: 400;
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--n700);
+    margin: 0;
+  }
+  .ausb-lead {
+    margin-top: 22px;
+    max-width: 720px;
+    font-family: var(--font-primary);
+    font-weight: 300;
+    font-size: clamp(15px, 1.2vw, 18px);
+    line-height: 1.7;
+    color: var(--n600);
+  }
+  .ausb-steps {
+    margin-top: clamp(32px, 4vw, 52px);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 22px;
+  }
+  .ausb-step {
+    border-top: 2px solid var(--n900);
+    padding-top: 18px;
+  }
+  .ausb-step__no {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-red);
+  }
+  .ausb-step__t {
+    margin-top: 10px;
+    font-family: var(--font-primary);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--n900);
+    letter-spacing: -0.01em;
+  }
+  .ausb-step__d {
+    margin-top: 10px;
+    font-family: var(--font-primary);
+    font-weight: 300;
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--n600);
+  }
+  .ausb-grid {
+    margin-top: clamp(28px, 3.4vw, 44px);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+  }
+  .ausb-card {
+    position: relative;
+    background: #fff;
+    border: 1px solid var(--n150);
+    padding: 26px 24px 28px;
+    overflow: hidden;
+  }
+  .ausb-card__bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 3px;
+  }
+  .ausb-card__region {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--n400);
+  }
+  .ausb-card__h {
+    margin-top: 6px;
+    font-family: var(--font-primary);
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--n900);
+  }
+  .ausb-list {
+    margin: 18px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .ausb-list li {
+    font-family: var(--font-primary);
+    font-weight: 300;
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: var(--n700);
+    padding: 8px 0 8px 18px;
+    position: relative;
+    border-bottom: 1px solid var(--n100);
+  }
+  .ausb-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 15px;
+    width: 7px;
+    height: 7px;
+    background: var(--color-red);
+    transform: rotate(45deg);
+  }
+  .ausb-dual {
+    margin-top: clamp(34px, 4vw, 56px);
+    background: var(--n900);
+    color: #fff;
+    padding: clamp(28px, 3.4vw, 48px);
+  }
+  .ausb-dual__t {
+    font-family: var(--font-primary);
+    font-size: clamp(22px, 2.6vw, 32px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  .ausb-dual__lead {
+    margin-top: 12px;
+    max-width: 680px;
+    font-family: var(--font-primary);
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.66);
+  }
+  .ausb-dual__grid {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 22px;
+  }
+  .ausb-variant {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 24px;
+  }
+  .ausb-variant__t {
+    font-family: var(--font-primary);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: #fff;
+  }
+  .ausb-checklist {
+    margin: 16px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .ausb-checklist li {
+    position: relative;
+    font-family: var(--font-primary);
+    font-weight: 300;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 7px 0 7px 22px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .ausb-checklist li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 7px;
+    color: var(--color-blue);
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .ausb-contacts {
+    margin-top: clamp(34px, 4vw, 56px);
+  }
+  .ausb-contacts__sub {
+    margin-top: 12px;
+    max-width: 620px;
+    font-family: var(--font-primary);
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--n600);
+  }
+  .ausb-contacts__grid {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .ausb-contact {
+    background: #fff;
+    border: 1px solid var(--n150);
+    border-top: 3px solid var(--color-blue);
+    padding: 22px 22px 24px;
+  }
+  .ausb-contact__region {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--n400);
+  }
+  .ausb-contact__name {
+    margin-top: 8px;
+    font-family: var(--font-primary);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--n900);
+  }
+  .ausb-contact__link {
+    display: block;
+    margin-top: 8px;
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--color-blue);
+    text-decoration: none;
+    word-break: break-word;
+  }
+  .ausb-contact__link:hover {
+    text-decoration: underline;
+  }
+  .ausb-cta {
+    margin-top: 28px;
   }
 </style>
