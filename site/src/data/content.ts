@@ -50,6 +50,7 @@ export const SLUG: Record<string, string> = {
   'ueber-uns': '/ueber-uns',
   feickert: '/unternehmensgruppe',
   referenzen: '/referenzen',
+  nachhaltigkeit: '/nachhaltigkeit',
   karriere: '/karriere',
   ausbildung: '/ausbildung',
   kontakt: '/kontakt',
@@ -525,6 +526,39 @@ export const AUSBILDUNG = {
     { region: 'Thüringen', name: 'Lars Erbach', email: 'lars.erbach@feickert-bau.de', phone: '036200/634610' },
   ],
   applyUrl: 'https://www.feickert-bau.de/wir-bilden-aus/',
+};
+
+/* Nachhaltigkeit — nur belastbare, qualitative Aussagen (keine erfundenen Kennzahlen).
+   Quelle: FEGA-Firmenvorstellung (Recycling, Gewichtsersparnis, Materialeigenschaften). */
+export const NACHHALTIGKEIT = {
+  overline: 'Verantwortung',
+  title: 'Was hält, muss man nicht ersetzen.',
+  lead: 'Nachhaltigkeit ist bei uns kein Etikett, sondern Folge unserer Arbeitsweise: langlebige Bauteile, Reparatur statt Wegwerfen und kurze Wege. Was lange hält und sich aufarbeiten lässt, spart Material, Geld und Emissionen.',
+  facts: [
+    { v: 'EXC 3', l: 'dokumentierte Fertigungsqualität' },
+    { v: '6 m', l: 'Aufarbeitung bis Bauteillänge' },
+    { v: 'Recycling', l: 'Stahlschrott im Materialkreislauf' },
+    { v: '1 Lieferant', l: 'kurze Wege, weniger Transporte' },
+  ],
+  pillars: [
+    { no: '01', t: 'Langlebigkeit by design', d: 'Wir fertigen aus hochfesten Werkstoffen (z. B. S355J2) mit hoher Bruch-, Schlag- und Ermüdungsfestigkeit. Was Jahrzehnte hält, muss nicht ersetzt werden – die wirksamste Form von Ressourcenschonung.' },
+    { no: '02', t: 'Reparatur & Aufarbeitung', d: 'Defekte Adapter bringen wir zurück auf Soll-Maß, Hydraulikkupplungen setzen wir instand, Pumpen prüfen und reparieren wir auf dem eigenen Prüfstand. Aufarbeiten statt Neukauf.' },
+    { no: '03', t: 'Materialkreislauf', d: 'Anfallenden Stahlschrott führen wir dem Materialkreislauf zu und nutzen ihn für die Herstellung neuer Produkte.' },
+    { no: '04', t: 'Weniger Gewicht, weniger Verbrauch', d: 'Unsere Adapter und Anbaukonstruktionen sind gewichtsoptimiert. Geringeres Gewicht am Trägergerät bedeutet weniger Kraftstoffverbrauch und weniger Emissionen im täglichen Einsatz.' },
+    { no: '05', t: 'Regional & aus einer Hand', d: 'Metallbau, Maschinenbau, Pumpen und Miete von einem Lieferanten in der Region – das spart Transporte, Schnittstellen und Wege.' },
+    { no: '06', t: 'Verantwortung als Familienbetrieb', d: 'Als Familienbetrieb in dritter Generation denken wir langfristig: in Ausbildung, in faire Zusammenarbeit und in beständige Partnerschaften.' },
+  ],
+  cycle: {
+    overline: 'Kreislauf statt Einbahnstraße',
+    title: 'Reparieren. Aufarbeiten. Weiterverwenden.',
+    lead: 'Statt Bauteile bei kleinen Defekten zu ersetzen, bringen wir sie zurück in den Einsatz – dokumentiert und nach Norm.',
+    steps: [
+      { t: 'Prüfen', d: 'Zustand von Adapter, Bauteil oder Pumpe dokumentiert erfassen.' },
+      { t: 'Instandsetzen', d: 'Bohrungen auf Soll-Maß, Kupplungen instand, Verschleißteile ersetzen.' },
+      { t: 'Aufbereiten', d: 'Sandstrahlen (bis 6 m / 1,5 t), Struktur verstärken, grundieren, in RAL-Farbe lackieren.' },
+      { t: 'Weiter im Einsatz', d: 'Zurück auf die Baustelle statt Neukauf – Schrott geht in den Materialkreislauf.' },
+    ],
+  },
 };
 
 /* Ansprechpartner / Team — aus der FEGA-Firmenvorstellung (öffentlich). */

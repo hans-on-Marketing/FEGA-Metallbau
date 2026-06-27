@@ -1,0 +1,369 @@
+---
+/* ============================================================================
+   FEGA — Nachhaltigkeit. Langlebigkeit, Reparatur/Aufarbeitung, Materialkreislauf,
+   Gewicht/Emissionen, Regionalität. Bildplätze für später gelieferte Fotos.
+   ========================================================================== */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import Section from '@/components/Section.astro';
+import Overline from '@/components/Overline.astro';
+import SectionHead from '@/components/SectionHead.astro';
+import Button from '@/components/Button.astro';
+import Placeholder from '@/components/Placeholder.astro';
+import BrandBars from '@/components/BrandBars.astro';
+import { C } from '@/lib/theme';
+import { NACHHALTIGKEIT, COMPANY } from '@/data/content';
+
+const n = NACHHALTIGKEIT;
+---
+<BaseLayout
+  title="Nachhaltigkeit bei FEGA: Langlebigkeit, Reparatur & Materialkreislauf"
+  description="Nachhaltigkeit als Folge der Arbeitsweise: langlebige Bauteile nach EXC 3, Reparatur und Aufarbeitung statt Neukauf, Stahlschrott im Materialkreislauf und gewichtsoptimierte Konstruktionen für weniger Verbrauch."
+>
+  <!-- 1 · Hero (dunkel) -->
+  <Section sm bg={C.n900} style="color:#fff;position:relative;overflow:hidden;">
+    <BrandBars height={4} style="position:absolute;left:0;right:0;top:0;" />
+    <Container>
+      <div class="nh-grid">
+        <div>
+          <Overline onDark>{n.overline}</Overline>
+          <h1 class="nh-title">{n.title}</h1>
+          <p class="nh-lead">{n.lead}</p>
+          <div class="nh-cta">
+            <Button variant="primary" size="lg" href="/kontakt">Anfrage stellen</Button>
+            <a class="nh-ghost" href="#kreislauf">Wie der Kreislauf funktioniert →</a>
+          </div>
+        </div>
+        <div class="nh-media">
+          <Placeholder label="Nachhaltigkeit / Werkstatt · Foto folgt" dark ratio="4/5" style="position:absolute;inset:0;" />
+          <div class="nh-media__stripe"></div>
+          <BrandBars height={4} style="position:absolute;left:0;right:0;bottom:0;" />
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- 2 · Kennzahlen -->
+  <Section sm bg="#161616" style="color:#fff;padding-top:0;">
+    <Container>
+      <div class="nh-facts">
+        {n.facts.map((f, i) => (
+          <div class="nh-fact">
+            <div class="nh-fact__bar" style={`background:${i % 2 ? C.blue : C.red};`}></div>
+            <div class="nh-fact__v" style={`color:${i === 1 ? C.blue : '#fff'};`}>{f.v}</div>
+            <div class="nh-fact__l">{f.l}</div>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- 3 · Säulen -->
+  <Section sm label="Nachhaltigkeits-Säulen">
+    <Container>
+      <SectionHead overline="Unser Ansatz" accent={C.blue} max={640}
+        intro="Sechs Hebel, die zusammenwirken – jeder davon spart real Ressourcen, nicht nur auf dem Papier.">Nachhaltig, weil's hält.</SectionHead>
+      <div class="nh-pillars">
+        {n.pillars.map((p, i) => (
+          <div class="nh-pillar">
+            <div class="nh-pillar__no" style={`color:${i % 2 ? C.blue : C.red};`}>{p.no}</div>
+            <h2 class="nh-pillar__t">{p.t}</h2>
+            <p class="nh-pillar__d">{p.d}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- 4 · Kreislauf (dunkel, mit Bildplatz) -->
+  <Section sm bg={C.n900} style="color:#fff;position:relative;" id="kreislauf" label="Kreislauf">
+    <BrandBars height={4} style="position:absolute;left:0;right:0;top:0;" />
+    <Container>
+      <div class="nh-cycle">
+        <div class="nh-cycle__media">
+          <Placeholder label="Aufarbeitung / Sandstrahlen · Foto folgt" dark ratio="4/3" style="position:absolute;inset:0;" />
+          <div class="nh-media__stripe"></div>
+        </div>
+        <div>
+          <Overline onDark>{n.cycle.overline}</Overline>
+          <h2 class="nh-cycle__t">{n.cycle.title}</h2>
+          <p class="nh-cycle__lead">{n.cycle.lead}</p>
+          <ol class="nh-steps">
+            {n.cycle.steps.map((s, i) => (
+              <li class="nh-step">
+                <span class="nh-step__no" style={`color:${i % 2 ? C.blue : C.red};`}>{String(i + 1).padStart(2, '0')}</span>
+                <span>
+                  <span class="nh-step__t">{s.t}</span>
+                  <span class="nh-step__d">{s.d}</span>
+                </span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- 5 · CTA -->
+  <Section sm label="Nachhaltigkeit CTA">
+    <Container>
+      <div class="nh-cta-band">
+        <h2 class="nh-cta-band__t">Langlebig gebaut, regional geliefert. Sprechen wir darüber.</h2>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;">
+          <Button variant="primary" size="lg" href="/kontakt">Anfrage stellen</Button>
+          <a class="nh-phone" href={COMPANY.phoneHref}>{COMPANY.phone}</a>
+        </div>
+      </div>
+    </Container>
+  </Section>
+</BaseLayout>
+
+<style>
+  /* ── Hero ── */
+  .nh-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(32px, 5vw, 72px);
+    align-items: center;
+  }
+  .nh-title {
+    margin-top: 22px;
+    font-family: var(--font-primary);
+    font-weight: 700;
+    letter-spacing: -0.032em;
+    line-height: 0.98;
+    font-size: clamp(40px, 6vw, 84px);
+    color: #fff;
+    text-wrap: balance;
+  }
+  .nh-lead {
+    margin-top: 24px;
+    max-width: 560px;
+    font-family: var(--font-primary);
+    font-weight: 300;
+    font-size: clamp(15px, 1.2vw, 18px);
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .nh-cta {
+    margin-top: 30px;
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .nh-ghost {
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 3px;
+    transition: border-color 0.2s;
+  }
+  .nh-ghost:hover {
+    border-color: #fff;
+  }
+  .nh-media {
+    position: relative;
+    aspect-ratio: 4/5;
+    max-height: 480px;
+  }
+  .nh-media__stripe {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--color-red);
+    z-index: 1;
+  }
+
+  /* ── Kennzahlen ── */
+  .nh-facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  .nh-fact {
+    position: relative;
+    background: #1c1c1c;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: clamp(26px, 2.8vw, 38px) clamp(20px, 2vw, 28px) clamp(24px, 2.4vw, 32px);
+    overflow: hidden;
+  }
+  .nh-fact__bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 3px;
+  }
+  .nh-fact__v {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: clamp(30px, 3.4vw, 50px);
+    letter-spacing: -0.03em;
+    line-height: 0.9;
+  }
+  .nh-fact__l {
+    margin-top: 14px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  /* ── Säulen ── */
+  .nh-pillars {
+    margin-top: var(--block);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 0;
+    border-top: 1px solid var(--n200);
+  }
+  .nh-pillar {
+    padding: 34px 28px 38px 0;
+    border-bottom: 1px solid var(--n100);
+    height: 100%;
+  }
+  .nh-pillar__no {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: clamp(36px, 4vw, 56px);
+    letter-spacing: -0.03em;
+    line-height: 0.9;
+  }
+  .nh-pillar__t {
+    margin-top: 16px;
+    font-family: var(--font-primary);
+    font-size: 21px;
+    font-weight: 600;
+    color: var(--n900);
+    letter-spacing: -0.01em;
+  }
+  .nh-pillar__d {
+    margin-top: 10px;
+    font-family: var(--font-primary);
+    font-weight: 300;
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--n600);
+    max-width: 340px;
+  }
+
+  /* ── Kreislauf ── */
+  .nh-cycle {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: clamp(32px, 5vw, 72px);
+    align-items: center;
+  }
+  .nh-cycle__media {
+    position: relative;
+    aspect-ratio: 4/3;
+  }
+  .nh-cycle__t {
+    margin-top: 18px;
+    font-family: var(--font-primary);
+    font-size: clamp(26px, 3.2vw, 44px);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.02;
+    color: #fff;
+    text-wrap: balance;
+  }
+  .nh-cycle__lead {
+    margin-top: 16px;
+    max-width: 560px;
+    font-family: var(--font-primary);
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.66);
+  }
+  .nh-steps {
+    margin: 28px 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: none;
+  }
+  .nh-step {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .nh-step__no {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 40px;
+  }
+  .nh-step__t {
+    display: block;
+    font-family: var(--font-primary);
+    font-size: 17px;
+    font-weight: 600;
+    color: #fff;
+  }
+  .nh-step__d {
+    display: block;
+    margin-top: 5px;
+    font-family: var(--font-primary);
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.65);
+  }
+
+  /* ── CTA ── */
+  .nh-cta-band {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .nh-cta-band__t {
+    font-family: var(--font-primary);
+    font-size: clamp(26px, 3.2vw, 42px);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    color: var(--n900);
+    max-width: 640px;
+    text-wrap: balance;
+  }
+  .nh-phone {
+    display: inline-flex;
+    align-items: center;
+    height: 52px;
+    padding: 0 24px;
+    border: 1px solid var(--n200);
+    color: var(--n900);
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 2px;
+  }
+
+  @media (max-width: 920px) {
+    .nh-grid {
+      grid-template-columns: 1fr;
+    }
+    .nh-media {
+      max-height: 400px;
+    }
+    .nh-cycle {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

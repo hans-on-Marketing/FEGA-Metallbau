@@ -221,6 +221,14 @@ Pages-Settings hinterlegen.
   Roboteranlage/Werkstatt (S. 24), Geräteadapter-Produktfotos (S. 14/16), Power Spaten im
   Einsatz (S. 28), Metallbau-Referenzen (S. 18), Pumpen (S. 20), SchachtFIX-Baustelle (S. 26),
   Deutschland-Standortkarte (S. 17). Aktuell weiterhin Platzhalter (Foto-Toggle in OptImage).
+- **Nachhaltigkeitsseite (neu):** `/nachhaltigkeit` im cineastischen Look angelegt —
+  Hero, Kennzahlen, 6 Säulen (Langlebigkeit, Reparatur/Aufarbeitung, Materialkreislauf,
+  Gewicht/Emissionen, Regionalität, Familienbetrieb) und Kreislauf-Block (Prüfen →
+  Instandsetzen → Aufbereiten → Weiterverwenden). Inhalte qualitativ und belegt aus der
+  Firmenvorstellung; **bewusst keine erfundenen Kennzahlen** (CO₂-Einsparung, Recyclingquote
+  liegen nicht belastbar vor). Verlinkt im Footer (Spalte „Unternehmen"); **noch nicht** im
+  Top-Menü (würde 8 Punkte → zu eng; auf Wunsch ergänze ich es). **Offen:** 2 Bildplätze warten
+  auf Fotos → `nachhaltigkeit-hero.jpg` (4:5 hoch) und `nachhaltigkeit-kreislauf.jpg` (4:3).
 - **Zertifikate:** Die gelieferte AGB-PDF enthält **keine** Zertifikatsabbildungen —
   nur den FEGA-Briefkopf (Anschrift/Tel./E-Mail). Für eine „Zertifikate/Nachweise"-
   Sektion müssten die Zertifikate (z. B. EN-1090-Werkszeugnis, DGUV3) **separat** als
