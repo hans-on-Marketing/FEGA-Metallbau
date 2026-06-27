@@ -1,0 +1,19 @@
+---
+/* Beschrifteter Streifen-Platzhalter — echte Fotos bewusst entfernt. */
+interface Props {
+  label?: string;
+  ratio?: string;
+  dark?: boolean;
+  class?: string;
+  style?: string;
+}
+const { label = 'Bild', ratio, dark = false, class: cls = '', style = '' } = Astro.props;
+const ratioStyle = ratio ? `aspect-ratio:${ratio};` : '';
+---
+<div class={`ph${dark ? ' ph--dark' : ''}${cls ? ' ' + cls : ''}`} style={`${ratioStyle}${style}`}>
+  <div class="ph__inner">
+    <div class="ph__diamond"></div>
+    <div class="ph__label">{label}</div>
+    <div class="ph__sub">Bildplatz</div>
+  </div>
+</div>

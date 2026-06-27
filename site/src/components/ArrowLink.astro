@@ -1,0 +1,23 @@
+---
+/* Pfeil-Link mit Hover-Unterstrich + Pfeil-Shift (CSS-getrieben). */
+import { withBase } from '@/lib/url';
+interface Props {
+  href?: string;
+  color?: string;
+  onDark?: boolean;
+  external?: boolean;
+  class?: string;
+}
+const { href, color, onDark = false, external = false, class: cls = '' } = Astro.props;
+const c = color || (onDark ? '#fff' : 'var(--n900)');
+const ext = external || (href && href.startsWith('http'));
+---
+<a
+  href={withBase(href)}
+  class={`arrow-link${cls ? ' ' + cls : ''}`}
+  style={`color:${c}`}
+  {...ext ? { target: '_blank', rel: 'noreferrer' } : {}}
+>
+  <span class="arrow-link__label"><slot /></span>
+  <span class="arrow-link__arrow">&#8594;</span>
+</a>

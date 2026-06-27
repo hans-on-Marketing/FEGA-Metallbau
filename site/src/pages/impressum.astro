@@ -1,0 +1,44 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import LegalLayout from '@/components/LegalLayout.astro';
+import { IMPRESSUM } from '@/data/content';
+const I = IMPRESSUM;
+---
+<BaseLayout title="Impressum – FEGA GmbH" description="Impressum und Anbieterkennzeichnung der FEGA GmbH im Rahmen der Feickert-Unternehmensgruppe." ogType="article">
+  <LegalLayout kicker="Rechtliches" title="Impressum" lead="Angaben gemäß § 5 DDG / § 5 TMG.">
+    <div class="legal-block">
+      <h2 class="legal-h">Anbieter</h2>
+      <p class="legal-p">
+        <strong style="font-weight:500;">{I.entity}</strong><br />
+        {I.address.map((l) => (<>{l}<br /></>))}
+      </p>
+      <div style="font-family:var(--font-primary);font-weight:300;font-size:14px;color:var(--n500);">{I.note}</div>
+    </div>
+
+    <div class="legal-block">
+      <h2 class="legal-h">Kontakt</h2>
+      {I.contact.map((c) => (
+        <div class="legal-row"><span class="legal-row__k">{c[0]}</span><span class="legal-row__v">{c[1]}</span></div>
+      ))}
+    </div>
+
+    <div class="legal-block">
+      <h2 class="legal-h">Registereintrag</h2>
+      {I.register.map((c) => (
+        <div class="legal-row"><span class="legal-row__k">{c[0]}</span><span class="legal-row__v">{c[1]}</span></div>
+      ))}
+    </div>
+
+    <div class="legal-block">
+      <h2 class="legal-h">Geschäftsführung</h2>
+      <p class="legal-p">{I.gf.join(' · ')}</p>
+    </div>
+
+    {I.sections.map((s) => (
+      <div class="legal-block">
+        <h2 class="legal-h">{s.h}</h2>
+        {s.p.map((p) => <p class="legal-p">{p}</p>)}
+      </div>
+    ))}
+  </LegalLayout>
+</BaseLayout>

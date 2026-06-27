@@ -1,0 +1,61 @@
+---
+/* Einfacher Abschluss-CTA (Titel + Anfrage-Button + Telefon). */
+import Container from './Container.astro';
+import Section from './Section.astro';
+import Button from './Button.astro';
+import { C } from '@/lib/theme';
+import { COMPANY } from '@/data/content';
+
+interface Props {
+  title: string;
+  ctaLabel?: string;
+  bg?: string;
+}
+const { title, ctaLabel = 'Anfrage stellen', bg = C.n25 } = Astro.props;
+---
+<Section sm bg={bg}>
+  <Container>
+    <div class="cta-simple">
+      <h2 class="cta-simple__title">{title}</h2>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;">
+        <Button href="/kontakt" variant="primary" size="lg">{ctaLabel}</Button>
+        <a href={COMPANY.phoneHref} class="cta-simple__phone">{COMPANY.phone}</a>
+      </div>
+    </div>
+  </Container>
+</Section>
+
+<style>
+  .cta-simple {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .cta-simple__title {
+    font-family: var(--font-primary);
+    font-size: clamp(26px, 3.2vw, 42px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+    color: var(--n900);
+    max-width: 620px;
+    text-wrap: balance;
+  }
+  .cta-simple__phone {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0 24px;
+    height: 48px;
+    border: 1px solid var(--n200);
+    color: var(--n900);
+    text-decoration: none;
+    border-radius: 2px;
+  }
+</style>

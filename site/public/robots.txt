@@ -1,0 +1,36 @@
+# robots.txt — FEGA GmbH
+
+# Alle Standard-Crawler dürfen die gesamte Website indexieren.
+User-agent: *
+Allow: /
+
+# KI-/Answer-Engine-Crawler ausdrücklich ERLAUBT (GEO – Zitierfähigkeit).
+# Diese Bots werden bewusst NICHT blockiert.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://hans-on-marketing.github.io/FEGA-Metallbau/sitemap-index.xml

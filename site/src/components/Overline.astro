@@ -1,0 +1,13 @@
+---
+interface Props {
+  color?: string;
+  onDark?: boolean;
+}
+const { color, onDark = false } = Astro.props;
+const barColor = color || (onDark ? '#fff' : 'var(--color-blue)');
+const textColor = onDark ? 'rgba(255,255,255,0.78)' : color || 'var(--color-blue)';
+---
+<span class="overline">
+  <span class="overline__bar" style={`background:${barColor}`}></span>
+  <span class="overline__text" style={`color:${textColor}`}><slot /></span>
+</span>

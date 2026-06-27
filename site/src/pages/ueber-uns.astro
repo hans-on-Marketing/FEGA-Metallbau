@@ -1,0 +1,319 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import Section from '@/components/Section.astro';
+import Overline from '@/components/Overline.astro';
+import SectionHead from '@/components/SectionHead.astro';
+import Button from '@/components/Button.astro';
+import OptImage from '@/components/OptImage.astro';
+import ServiceTiles from '@/components/ServiceTiles.astro';
+import CTASimple from '@/components/CTASimple.astro';
+import { C } from '@/lib/theme';
+import { ABOUT } from '@/data/content';
+
+const metrics = [
+  { v: '1980', l: 'Gründungsjahr' },
+  { v: 'EXC 3', l: 'Fertigungsklasse' },
+  { v: '5', l: 'Leistungsbereiche' },
+  { v: '2019', l: 'Adapter-Zertifizierung' },
+];
+
+// Fertigung · Schweißen · Montage · Qualitätskontrolle → echte Motive
+const strip = ['fertigung-bauteile.jpg', 'hero-team.jpg', 'adapter-baustelle.jpg', 'fertigung-detail.jpg'];
+---
+<BaseLayout title="Über uns – FEGA GmbH" description={ABOUT.lead}>
+  <!-- 1. Cinematic dark hero -->
+  <section class="ueber-hero">
+    <div class="ueber-hero__stripes"></div>
+    <Container style="position:relative;">
+      <div style="max-width:860px;">
+        <div class="ueber-hero__kicker">FEGA GmbH · Weilburg/Lahn · seit 1980</div>
+        <h1 class="ueber-hero__h1">Metall kennt<br />keine Kompromisse.</h1>
+        <div class="ueber-hero__rule"></div>
+        <p class="ueber-hero__lead">
+          Schweißnähte nach DIN EN 1090-2 · EXC 3. Adapter nach Maschinenrichtlinie. Metallbau, der Jahrzehnte hält.
+        </p>
+      </div>
+      <div class="ueber-metrics">
+        {metrics.map((m, i) => (
+          <div class="ueber-metric" style={`border-right:${i < 3 ? '1px solid rgba(255,255,255,0.09)' : 'none'};`}>
+            <div class="ueber-metric__v" style={`color:${i === 0 ? C.blue : '#fff'};`}>{m.v}</div>
+            <div class="ueber-metric__l">{m.l}</div>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- 2. 4-photo strip -->
+  <Section sm bg={C.n25} style="padding-top:clamp(32px,4vw,56px);padding-bottom:clamp(32px,4vw,56px);">
+    <Container>
+      <div class="ueber-strip">
+        {strip.map((name) => (
+          <OptImage name={name} ratio="4/3" sizes="(max-width:920px) 50vw, 25vw" />
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- 3. Narrative -->
+  <Section sm>
+    <Container>
+      <div class="ueber-narrative">
+        <div>
+          <Overline>Seit 1980</Overline>
+          <h2 class="ueber-narrative__h2">Vom Bauschlosser<br />zum Spezialfertiger.</h2>
+          <div style="margin-top:30px;display:flex;gap:14px;flex-wrap:wrap;">
+            <Button href="/kontakt" variant="primary">Anfrage stellen</Button>
+          </div>
+        </div>
+        <div>
+          {ABOUT.paras.map((p) => <p class="ueber-narrative__p">{p}</p>)}
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- 4. Engineering values -->
+  <Section sm bg={C.n25}>
+    <Container>
+      <SectionHead overline="Arbeitsweise" max={600}>Wie wir fertigen.</SectionHead>
+      <div class="ueber-values">
+        {ABOUT.values.map((v, i) => (
+          <div class="ueber-value">
+            <div class="ueber-value__no" style={`color:${i % 2 ? C.red : C.blue};`}>{String(i + 1).padStart(2, '0')}</div>
+            <h3 class="ueber-value__t">{v.t}</h3>
+            <p class="ueber-value__d">{v.d}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- 5. Milestones -->
+  <Section sm bg={C.n900} style="color:#fff;">
+    <Container>
+      <SectionHead overline="Meilensteine" max={560} onDark>Stationen.</SectionHead>
+      <div class="ueber-timeline">
+        {ABOUT.timeline.map((m, i) => (
+          <div class="ueber-tl" style={`border-right:${i < 2 ? '1px solid rgba(255,255,255,0.1)' : 'none'};`}>
+            <div class="ueber-tl__y" style={`color:${C.blue};`}>{m.y}</div>
+            <h3 class="ueber-tl__t">{m.t}</h3>
+            <p class="ueber-tl__d">{m.d}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- 6. Service tiles -->
+  <ServiceTiles />
+
+  <!-- 7. CTA -->
+  <CTASimple title="Bereit, Ihren Bedarf zu besprechen?" />
+</BaseLayout>
+
+<style>
+  /* 1. Hero */
+  .ueber-hero {
+    background: #111111;
+    color: #fff;
+    padding: clamp(88px, 11vw, 160px) 0 clamp(64px, 8vw, 112px);
+    position: relative;
+    overflow: hidden;
+  }
+  .ueber-hero__stripes {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(45deg, #0e0e0e 0 1px, transparent 1px 56px);
+    opacity: 0.45;
+  }
+  .ueber-hero__kicker {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-blue);
+    margin-bottom: 30px;
+  }
+  .ueber-hero__h1 {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: clamp(52px, 8vw, 116px);
+    letter-spacing: -0.038em;
+    line-height: 0.93;
+    color: #fff;
+    text-wrap: balance;
+  }
+  .ueber-hero__rule {
+    margin-top: 42px;
+    width: min(540px, 90%);
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-blue) 0%, var(--color-red) 55%, transparent 100%);
+  }
+  .ueber-hero__lead {
+    margin-top: 30px;
+    max-width: 540px;
+    font-family: var(--font-primary);
+    font-weight: 300;
+    font-size: clamp(17px, 1.5vw, 21px);
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.72);
+  }
+  .ueber-metrics {
+    margin-top: 72px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+  }
+  .ueber-metric {
+    padding: 32px 28px 8px 0;
+  }
+  .ueber-metric__v {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: clamp(30px, 3.8vw, 56px);
+    letter-spacing: -0.03em;
+    line-height: 0.9;
+  }
+  .ueber-metric__l {
+    margin-top: 10px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.36);
+  }
+
+  /* 2. Photo strip */
+  .ueber-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+
+  /* 3. Narrative */
+  .ueber-narrative {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: clamp(36px, 5vw, 80px);
+    align-items: start;
+  }
+  .ueber-narrative__h2 {
+    margin-top: 20px;
+    font-family: var(--font-primary);
+    font-size: clamp(30px, 3.4vw, 48px);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    color: var(--n900);
+    text-wrap: balance;
+  }
+  .ueber-narrative__p {
+    margin-bottom: 22px;
+    font-family: var(--font-primary);
+    font-weight: 300;
+    font-size: clamp(15px, 1.2vw, 17.5px);
+    line-height: 1.8;
+    color: var(--n600);
+  }
+
+  /* 4. Engineering values */
+  .ueber-values {
+    margin-top: var(--block);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0;
+    border-top: 1px solid var(--n200);
+  }
+  .ueber-value {
+    padding: 34px 28px 38px 0;
+    border-bottom: 1px solid var(--n100);
+    height: 100%;
+  }
+  .ueber-value__no {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin-bottom: 16px;
+  }
+  .ueber-value__t {
+    font-family: var(--font-primary);
+    font-size: 21px;
+    font-weight: 600;
+    color: var(--n900);
+    letter-spacing: -0.01em;
+  }
+  .ueber-value__d {
+    margin-top: 10px;
+    font-family: var(--font-primary);
+    font-weight: 300;
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--n600);
+  }
+
+  /* 5. Milestones */
+  .ueber-timeline {
+    margin-top: var(--block);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+  }
+  .ueber-tl {
+    padding: 40px 28px 8px 0;
+  }
+  .ueber-tl__y {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: clamp(44px, 5.5vw, 72px);
+    letter-spacing: -0.035em;
+    line-height: 0.88;
+  }
+  .ueber-tl__t {
+    margin-top: 18px;
+    font-family: var(--font-primary);
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+  }
+  .ueber-tl__d {
+    margin-top: 10px;
+    max-width: 300px;
+    font-family: var(--font-primary);
+    font-weight: 300;
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  /* Responsive */
+  @media (max-width: 920px) {
+    .ueber-metrics {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .ueber-strip {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .ueber-narrative {
+      grid-template-columns: 1fr;
+    }
+    .ueber-timeline {
+      grid-template-columns: 1fr;
+    }
+    .ueber-tl {
+      border-right: none !important;
+    }
+  }
+  @media (max-width: 560px) {
+    .ueber-metrics {
+      grid-template-columns: 1fr;
+    }
+    .ueber-strip {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

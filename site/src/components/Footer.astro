@@ -1,0 +1,261 @@
+---
+import Container from './Container.astro';
+import BrandBars from './BrandBars.astro';
+import Button from './Button.astro';
+import { COMPANY, SERVICES, LEGAL, PORTAL, SLUG } from '@/data/content';
+import { withBase } from '@/lib/url';
+
+const social: [string, string][] = [
+  ['Facebook', 'https://www.facebook.com/FeickertBau'],
+  ['YouTube', 'https://www.youtube.com/channel/UCAhOl-DFFusCtc9DfCK1qpQ'],
+  ['Instagram', 'https://www.instagram.com/feickert.bauunternehmen/'],
+];
+const unternehmen: [string, string][] = [
+  ['Über uns', '/ueber-uns'],
+  ['Unternehmensgruppe', '/unternehmensgruppe'],
+  ['Referenzen', '/referenzen'],
+  ['Karriere', '/karriere'],
+  ['Kontakt', '/kontakt'],
+];
+const now = new Date();
+const year = now.getFullYear();
+// Sichtbares "Stand"-Datum (Build-Zeitpunkt) — GEO/Aktualitätssignal.
+const updated = now.toLocaleDateString('de-DE', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<footer class="footer">
+  <BrandBars height={4} />
+  <Container style="padding-top:72px;padding-bottom:30px;">
+    <!-- top claim row -->
+    <div class="footer__top">
+      <div style="max-width:540px;">
+        <img src={withBase("/fega-logo.png")} alt="FEGA GmbH" style="height:46px;width:auto;display:block;margin-bottom:20px;" />
+        <div class="footer__claim">
+          Ein Lieferant für Metallbau,<br />Maschinenbau und Pumpentechnik.
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+        <a href={COMPANY.phoneHref} class="footer__phone-btn">{COMPANY.phone}</a>
+        <Button href="/kontakt" variant="primary" size="lg">Anfrage stellen</Button>
+      </div>
+    </div>
+
+    <div class="footer__cols">
+      <div>
+        <p class="footer__about">
+          {COMPANY.legalLong}. Ihr verlässlicher Partner in der Region {COMPANY.region} — seit {COMPANY.since}.
+        </p>
+        <div class="footer__group">Teil der {COMPANY.group}, {COMPANY.groupSeat}.</div>
+        <div class="footer__social">
+          {social.map((s) => (
+            <a href={s[1]} target="_blank" rel="noreferrer">{s[0]}</a>
+          ))}
+        </div>
+      </div>
+      <div>
+        <div class="footer__head">Leistungen</div>
+        {SERVICES.map((s) => (
+          <a class="f-link" href={withBase(SLUG[s.id])}>{s.label}</a>
+        ))}
+      </div>
+      <div>
+        <div class="footer__head">Unternehmen</div>
+        {unternehmen.map((u) => (
+          <a class="f-link" href={withBase(u[1])}>{u[0]}</a>
+        ))}
+      </div>
+      <div>
+        <div class="footer__head">Kontakt</div>
+        <a class="f-link" href={COMPANY.phoneHref}>{COMPANY.phone}</a>
+        <a class="f-link" href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
+        <div class="footer__addr">{COMPANY.street}<br />{COMPANY.zip} {COMPANY.city}</div>
+      </div>
+    </div>
+
+    <!-- Portal: Intern + Kunden/Partner -->
+    <div class="footer__portal">
+      <div>
+        <div class="footer__head">Intern</div>
+        {PORTAL.intern.map((l) => (
+          <a class="f-link" href={l.href} target="_blank" rel="noreferrer">{l.label}</a>
+        ))}
+      </div>
+      <div>
+        <div class="footer__head">Kunden / Partner</div>
+        {PORTAL.partner.map((l) => (
+          <a class="f-link" href={l.href} target="_blank" rel="noreferrer">{l.label}</a>
+        ))}
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span class="footer__copy">© {year} {COMPANY.legal}. Alle Rechte vorbehalten. <span class="footer__updated">· Stand: {updated}</span></span>
+      <div class="footer__legal">
+        {LEGAL.map((l) =>
+          l.page ? (
+            <a href={withBase(SLUG[l.page])}>{l.label}</a>
+          ) : (
+            <a href={l.href} target="_blank" rel="noreferrer">{l.label}</a>
+          )
+        )}
+      </div>
+    </div>
+  </Container>
+</footer>
+
+<style>
+  .footer {
+    background: var(--n50);
+    color: var(--n900);
+    border-top: 1px solid var(--n150);
+  }
+  .footer__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 28px;
+    flex-wrap: wrap;
+    padding-bottom: 44px;
+    margin-bottom: 48px;
+    border-bottom: 1px solid var(--n150);
+  }
+  .footer__claim {
+    font-family: var(--font-primary);
+    font-size: clamp(20px, 2vw, 28px);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    color: var(--n900);
+    line-height: 1.2;
+  }
+  .footer__phone-btn {
+    display: inline-flex;
+    align-items: center;
+    height: 48px;
+    padding: 0 22px;
+    border: 1px solid var(--n300);
+    color: var(--n900);
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 2px;
+  }
+  .footer__cols {
+    display: grid;
+    grid-template-columns: 1.7fr 1fr 1fr 1.2fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .footer__about {
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--n600);
+    max-width: 330px;
+  }
+  .footer__group {
+    margin-top: 18px;
+    font-family: var(--font-primary);
+    font-size: 13px;
+    color: var(--n500);
+  }
+  .footer__social {
+    margin-top: 22px;
+    display: flex;
+    gap: 16px;
+  }
+  .footer__social a {
+    font-family: var(--font-primary);
+    font-size: 12.5px;
+    color: var(--n500);
+    text-decoration: none;
+  }
+  .footer__social a:hover {
+    color: var(--n900);
+  }
+  .footer__head {
+    font-family: var(--font-primary);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--n400);
+    margin-bottom: 20px;
+  }
+  .f-link {
+    display: block;
+    margin-bottom: 11px;
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--n600);
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.15s;
+    width: fit-content;
+  }
+  .f-link:hover {
+    color: var(--n900);
+  }
+  .footer__addr {
+    margin-top: 10px;
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--n600);
+    line-height: 1.7;
+  }
+  .footer__portal {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--n150);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    max-width: 460px;
+  }
+  .footer__bottom {
+    margin-top: 52px;
+    padding-top: 22px;
+    border-top: 1px solid var(--n150);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer__copy {
+    font-family: var(--font-primary);
+    font-size: 12.5px;
+    color: var(--n400);
+  }
+  .footer__updated {
+    color: var(--n500);
+    white-space: nowrap;
+  }
+  .footer__legal {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+  .footer__legal a {
+    font-family: var(--font-primary);
+    font-size: 12.5px;
+    color: var(--n500);
+    text-decoration: none;
+  }
+  .footer__legal a:hover {
+    color: var(--n900);
+  }
+  @media (max-width: 860px) {
+    .footer__cols {
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+  }
+  @media (max-width: 520px) {
+    .footer__cols {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

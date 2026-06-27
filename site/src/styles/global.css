@@ -1,0 +1,497 @@
+/* ============================================================================
+   FEGA — globale Styles. Design-Tokens (Farbe/Typo), Reset, Basis.
+   Schrift: Barlow (Google Fonts) — wuchtig, geometrisch, Maschinenbau.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300&family=Barlow+Condensed:wght@600;700;800;900&display=swap');
+
+:root {
+  /* ── Brand primaries ── */
+  --color-blue: #006db6;
+  --color-blue-dk: #004f96;
+  --color-blue-700: #005ea8;
+  --color-blue-50: #eef6fc;
+  --color-red: #ee413e;
+  --color-red-dk: #cc2d2a;
+  --color-black: #111111;
+  --color-white: #ffffff;
+
+  /* ── Neutral scale ── */
+  --n950: #0a0a0a;
+  --n900: #111111;
+  --n800: #1f1f1f;
+  --n700: #333333;
+  --n600: #4d4d4d;
+  --n500: #666666;
+  --n400: #888888;
+  --n300: #aaaaaa;
+  --n200: #cccccc;
+  --n150: #dddddd;
+  --n100: #eeeeee;
+  --n50: #f5f5f5;
+  --n25: #fafafa;
+
+  /* ── Type ── */
+  --font-primary: 'Barlow', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-display: 'Barlow Condensed', 'Barlow', sans-serif;
+  --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+
+  /* ── Layout ── */
+  --max-w: 1320px;
+  --container-pad: clamp(20px, 5vw, 80px);
+
+  /* ── Section padding (density = luftig) ── */
+  --sec: 128px;
+  --sec-sm: 96px;
+  --block: 76px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-weight: 300;
+  color: var(--n900);
+  background: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font-family: inherit;
+}
+
+::selection {
+  background: var(--color-blue);
+  color: #fff;
+}
+
+@keyframes fega-rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Shared layout primitives ── */
+.container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--container-pad);
+}
+.container--wide {
+  max-width: 1500px;
+}
+
+.section {
+  padding: var(--sec) 0;
+}
+.section--sm {
+  padding: var(--sec-sm) 0;
+}
+
+/* ── Overline / eyebrow ── */
+.overline {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.overline__bar {
+  width: 26px;
+  height: 2px;
+  flex-shrink: 0;
+  background: var(--color-blue);
+}
+.overline__text {
+  font-family: var(--font-primary);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-blue);
+}
+.overline--ondark .overline__text {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+/* ── Striped image placeholder (echte Fotos bewusst entfernt) ── */
+.ph {
+  position: relative;
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: repeating-linear-gradient(135deg, #ececec 0 16px, #f4f4f4 16px 32px);
+  border: 1px solid #e2e2e2;
+}
+.ph--dark {
+  background: repeating-linear-gradient(135deg, #161616 0 16px, #1b1b1b 16px 32px);
+  border-color: #2a2a2a;
+}
+.ph__inner {
+  text-align: center;
+  padding: 14px 18px;
+}
+.ph__diamond {
+  width: 20px;
+  height: 20px;
+  margin: 0 auto 12px;
+  border: 1.5px solid #c6c6c6;
+  transform: rotate(45deg);
+}
+.ph--dark .ph__diamond {
+  border-color: rgba(255, 255, 255, 0.38);
+}
+.ph__label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8a8a8a;
+}
+.ph--dark .ph__label {
+  color: rgba(255, 255, 255, 0.66);
+}
+.ph__sub {
+  margin-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: #b6b6b6;
+}
+.ph--dark .ph__sub {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* ── Brand bar motif (blue/red/black, echoes the logo) ── */
+.brand-bars {
+  display: flex;
+  width: 100%;
+}
+.brand-bars > i {
+  display: block;
+}
+.brand-bars > i:nth-child(1) {
+  flex: 2;
+  background: var(--color-blue);
+}
+.brand-bars > i:nth-child(2) {
+  flex: 1;
+  background: var(--color-red);
+}
+.brand-bars > i:nth-child(3) {
+  flex: 1;
+  background: var(--color-black);
+}
+
+/* ── Arrow link ── */
+.arrow-link {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-primary);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--n900);
+  background: none;
+  border: none;
+  text-decoration: none;
+}
+.arrow-link__label {
+  box-shadow: inset 0 0 0 transparent;
+  transition: box-shadow 0.2s;
+}
+.arrow-link:hover .arrow-link__label {
+  box-shadow: inset 0 -1px 0 currentColor;
+}
+.arrow-link__arrow {
+  display: inline-block;
+  transition: transform 0.28s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.arrow-link:hover .arrow-link__arrow {
+  transform: translateX(5px);
+}
+
+/* ── Spec list (key/value) ── */
+.spec-list {
+  margin: 0;
+  border-top: 1px solid var(--n200);
+}
+.spec-list--ondark {
+  border-top-color: rgba(255, 255, 255, 0.14);
+}
+.spec-list__row {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 20px;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--n100);
+}
+.spec-list--ondark .spec-list__row {
+  border-bottom-color: rgba(255, 255, 255, 0.14);
+}
+.spec-list__dt {
+  font-family: var(--font-primary);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--n400);
+}
+.spec-list--ondark .spec-list__dt {
+  color: rgba(255, 255, 255, 0.4);
+}
+.spec-list__dd {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--n900);
+}
+.spec-list--ondark .spec-list__dd {
+  color: rgba(255, 255, 255, 0.96);
+}
+
+/* ── Buttons (design-system primitive) ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-primary);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: 2px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 150ms ease, color 150ms ease, border-color 150ms ease,
+    box-shadow 150ms ease;
+}
+.btn--sm {
+  font-size: 12px;
+  padding: 6px 14px;
+  min-height: 32px;
+}
+.btn--md {
+  font-size: 13px;
+  padding: 10px 20px;
+  min-height: 40px;
+}
+.btn--lg {
+  font-size: 14px;
+  padding: 13px 28px;
+  min-height: 48px;
+}
+.btn--primary {
+  background: var(--color-blue);
+  color: #fff;
+  border-color: var(--color-blue);
+}
+.btn--primary:hover {
+  background: #005a99;
+  border-color: #005a99;
+}
+.btn--danger {
+  background: var(--color-red);
+  color: #fff;
+  border-color: var(--color-red);
+}
+.btn--danger:hover {
+  background: var(--color-red-dk);
+  border-color: var(--color-red-dk);
+}
+.btn[disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* secondary "SecBtn" — outline, used next to primary CTAs */
+.sec-btn {
+  font-family: var(--font-primary);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0 24px;
+  height: 48px;
+  cursor: pointer;
+  background: transparent;
+  color: var(--n900);
+  border: 1px solid var(--n200);
+  border-radius: 2px;
+  transition: all 0.18s ease;
+}
+.sec-btn:hover {
+  background: var(--n50);
+  border-color: var(--n400);
+}
+.sec-btn--ondark {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.45);
+}
+.sec-btn--ondark:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #fff;
+}
+
+/* ── Badge ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  line-height: 1;
+  white-space: nowrap;
+  padding: 3px 8px;
+  min-height: 20px;
+}
+.badge--blue {
+  background: var(--color-blue);
+  color: #fff;
+}
+.badge--red {
+  background: var(--color-red);
+  color: #fff;
+}
+.badge--black {
+  background: var(--n900);
+  color: #fff;
+}
+.badge--outline {
+  background: transparent;
+  color: var(--color-blue);
+  border: 1px solid var(--color-blue);
+}
+
+/* ── Rechtsseiten (Impressum/Datenschutz/AGB) ── */
+.legal-block {
+  margin-bottom: 38px;
+}
+.legal-h {
+  font-family: var(--font-primary);
+  font-size: clamp(18px, 1.6vw, 22px);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--n900);
+  margin-bottom: 14px;
+}
+.legal-p {
+  font-family: var(--font-primary);
+  font-weight: 300;
+  font-size: 15.5px;
+  line-height: 1.75;
+  color: var(--n900);
+  margin-bottom: 12px;
+  max-width: 720px;
+}
+.legal-row {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 18px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--n100);
+}
+.legal-row__k {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--n400);
+}
+.legal-row__v {
+  font-family: var(--font-primary);
+  font-size: 15px;
+  color: var(--n900);
+}
+.legal-draft {
+  margin-top: 26px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  max-width: 640px;
+  padding: 14px 18px;
+  background: var(--color-blue-50);
+  border-left: 3px solid var(--color-blue);
+}
+.legal-draft__tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-blue);
+  margin-top: 1px;
+  white-space: nowrap;
+}
+.legal-draft__txt {
+  font-family: var(--font-primary);
+  font-weight: 300;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--n600);
+}
+@media (max-width: 520px) {
+  .legal-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}
+
+/* visually-hidden utility */
+.vh {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

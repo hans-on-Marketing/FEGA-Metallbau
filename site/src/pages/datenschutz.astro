@@ -1,0 +1,16 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import LegalLayout from '@/components/LegalLayout.astro';
+import { DATENSCHUTZ } from '@/data/content';
+const D = DATENSCHUTZ;
+---
+<BaseLayout title="Datenschutz – FEGA GmbH" description="Informationen zur Verarbeitung personenbezogener Daten beim Besuch der FEGA-Website und bei Nutzung des Anfrage-Konfigurators (DSGVO)." ogType="article">
+  <LegalLayout kicker="Rechtliches" title="Datenschutz" lead={D.intro} draft={D.draft}>
+    {D.sections.map((s) => (
+      <div class="legal-block">
+        <h2 class="legal-h">{s.h}</h2>
+        {s.p.map((p) => <p class="legal-p">{p}</p>)}
+      </div>
+    ))}
+  </LegalLayout>
+</BaseLayout>

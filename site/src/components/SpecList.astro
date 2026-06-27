@@ -1,0 +1,15 @@
+---
+interface Props {
+  rows: [string, string][];
+  onDark?: boolean;
+}
+const { rows, onDark = false } = Astro.props;
+---
+<dl class={`spec-list${onDark ? ' spec-list--ondark' : ''}`}>
+  {rows.map((r) => (
+    <div class="spec-list__row">
+      <dt class="spec-list__dt">{r[0]}</dt>
+      <dd class="spec-list__dd">{r[1]}</dd>
+    </div>
+  ))}
+</dl>

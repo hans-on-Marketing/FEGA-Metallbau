@@ -1,0 +1,36 @@
+---
+import Overline from './Overline.astro';
+interface Props {
+  overline?: string;
+  intro?: string;
+  align?: 'left' | 'center';
+  onDark?: boolean;
+  max?: number;
+  accent?: string;
+}
+const { overline, intro, align = 'left', onDark = false, max = 760, accent } = Astro.props;
+const center = align === 'center';
+const titleColor = onDark ? 'rgba(255,255,255,0.96)' : 'var(--n900)';
+const introColor = onDark ? 'rgba(255,255,255,0.62)' : 'var(--n600)';
+---
+<div
+  style={`max-width:${max}px;${center ? 'margin-left:auto;margin-right:auto;' : ''}text-align:${align};`}
+>
+  {overline && (
+    <div style={`margin-bottom:22px;${center ? 'display:flex;justify-content:center;' : ''}`}>
+      <Overline color={accent} onDark={onDark}>{overline}</Overline>
+    </div>
+  )}
+  <h2
+    style={`font-family:var(--font-primary);font-size:clamp(30px,3.8vw,54px);font-weight:600;letter-spacing:-0.02em;line-height:1.04;color:${titleColor};text-wrap:balance;`}
+  >
+    <slot />
+  </h2>
+  {intro && (
+    <p
+      style={`margin-top:22px;font-family:var(--font-primary);font-weight:300;font-size:clamp(16px,1.25vw,19px);line-height:1.62;color:${introColor};max-width:640px;${center ? 'margin-left:auto;margin-right:auto;' : ''}`}
+    >
+      {intro}
+    </p>
+  )}
+</div>

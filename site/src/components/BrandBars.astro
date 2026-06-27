@@ -1,0 +1,10 @@
+---
+interface Props {
+  height?: number;
+  style?: string;
+}
+const { height = 3, style = '' } = Astro.props;
+---
+<div class="brand-bars" style={`height:${height}px;${style}`}>
+  <i></i><i></i><i></i>
+</div>

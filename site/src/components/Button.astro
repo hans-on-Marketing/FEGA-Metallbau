@@ -1,0 +1,28 @@
+---
+/* Design-System-Button. Rendert <a> wenn href gesetzt, sonst <button>. */
+import { withBase } from '@/lib/url';
+interface Props {
+  variant?: 'primary' | 'danger';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  type?: 'button' | 'submit';
+  class?: string;
+  style?: string;
+  [key: string]: any;
+}
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  type = 'button',
+  class: cls = '',
+  style = '',
+  ...rest
+} = Astro.props;
+const className = `btn btn--${variant} btn--${size}${cls ? ' ' + cls : ''}`;
+---
+{href ? (
+  <a href={withBase(href)} class={className} style={style} {...rest}><slot /></a>
+) : (
+  <button type={type} class={className} style={style} {...rest}><slot /></button>
+)}

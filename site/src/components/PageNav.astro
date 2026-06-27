@@ -1,0 +1,67 @@
+---
+/* "Weitere Leistungen" — dunkle Liste der übrigen Service-Seiten. */
+import Container from './Container.astro';
+import Section from './Section.astro';
+import Overline from './Overline.astro';
+import { SERVICES, SLUG } from '@/data/content';
+import { ACCENTS } from '@/lib/theme';
+import { withBase } from '@/lib/url';
+
+interface Props {
+  currentId: string;
+}
+const { currentId } = Astro.props;
+const others = SERVICES.filter((s) => s.id !== currentId);
+---
+<Section sm bg="#111111" style="color:#fff;">
+  <Container>
+    <div style="margin-bottom:34px;"><Overline onDark>Weitere Leistungen</Overline></div>
+    <div class="pagenav-grid">
+      {others.map((s) => (
+        <a class="pagenav__item" href={withBase(SLUG[s.id])} style={`--accent:${ACCENTS[s.accent]};`}>
+          <div style="font-family:var(--font-mono);font-size:12px;color:rgba(255,255,255,0.4);">{s.no}</div>
+          <div class="pagenav__label">
+            {s.label}<span class="pagenav__arrow">&#8594;</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </Container>
+</Section>
+
+<style>
+  .pagenav-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+  }
+  .pagenav__item {
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    cursor: pointer;
+    padding: 24px 16px 26px 0;
+    text-decoration: none;
+  }
+  .pagenav__label {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-primary);
+    font-size: 18px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.82);
+    transition: color 0.2s;
+  }
+  .pagenav__item:hover .pagenav__label {
+    color: #fff;
+  }
+  .pagenav__arrow {
+    display: inline-block;
+    color: var(--accent);
+    transition: transform 0.25s;
+  }
+  .pagenav__item:hover .pagenav__arrow {
+    transform: translateX(5px);
+  }
+</style>

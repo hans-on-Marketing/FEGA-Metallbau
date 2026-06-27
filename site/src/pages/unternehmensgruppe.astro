@@ -1,0 +1,202 @@
+---
+/* Unternehmensgruppe Feickert — portiert aus FeickertPage (Prototyp). */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import Section from '@/components/Section.astro';
+import Overline from '@/components/Overline.astro';
+import SectionHead from '@/components/SectionHead.astro';
+import ArrowLink from '@/components/ArrowLink.astro';
+import Placeholder from '@/components/Placeholder.astro';
+import OptImage from '@/components/OptImage.astro';
+import BrandBars from '@/components/BrandBars.astro';
+import InnerHero from '@/components/InnerHero.astro';
+import ServiceTiles from '@/components/ServiceTiles.astro';
+import CTASimple from '@/components/CTASimple.astro';
+import { C } from '@/lib/theme';
+import { GROUP } from '@/data/content';
+---
+<BaseLayout
+  title="Unternehmensgruppe Feickert – FEGA GmbH"
+  description="FEGA gehört zur Feickert-Unternehmensgruppe (seit 1947, Weilburg/Lahn): Kanal- und Wasserleitungsbau, Spezialtiefbau und Ingenieurbau – bundesweit und in Luxemburg."
+>
+  <!-- 1. Hero -->
+  <InnerHero
+    overline="Unternehmensgruppe"
+    title="Wir leben Bau.<br />Seit drei Generationen."
+    lead={GROUP.lead}
+    ctaPrimary="Kontakt aufnehmen"
+    ctaSecondaryLabel="Zur Feickert-Gruppe"
+    ctaSecondaryHref="https://www.feickert-bau.de/"
+  >
+    <div slot="media" style="position:relative;">
+      <OptImage name="feickert-bagger.jpg" ratio="4/3" loading="eager" fetchpriority="high" sizes="(max-width:920px) 100vw, 50vw" />
+      <BrandBars height={4} />
+    </div>
+  </InnerHero>
+
+  <!-- 2. Feickert in Zahlen -->
+  <Section sm bg={C.n900} label="Feickert in Zahlen" style="color:#fff;position:relative;">
+    <BrandBars height={4} style="position:absolute;left:0;right:0;top:0;" />
+    <Container>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:28px;flex-wrap:wrap;margin-bottom:clamp(34px,4vw,54px);">
+        <div>
+          <Overline onDark>Feickert in Zahlen</Overline>
+          <h2 style="margin-top:18px;font-family:var(--font-primary);font-size:clamp(28px,3.2vw,46px);font-weight:700;letter-spacing:-0.026em;line-height:1.0;color:#fff;text-wrap:balance;">
+            Ein Mittelständler<br />mit Gewicht.
+          </h2>
+        </div>
+        <p style="max-width:380px;font-family:var(--font-primary);font-weight:300;font-size:clamp(15px,1.2vw,17px);line-height:1.65;color:rgba(255,255,255,0.6);">
+          Seit 1947 in Familienhand — und bis heute eines der führenden mittelständischen Tiefbauunternehmen Deutschlands.
+        </p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;">
+        {GROUP.facts.map((f, i) => {
+          const accent = i % 2 ? C.red : C.blue;
+          const parts = String(f.v).split(' ');
+          const big = parts[0];
+          const small = parts.slice(1).join(' ');
+          return (
+            <div style="position:relative;background:#161616;border:1px solid rgba(255,255,255,0.08);padding:clamp(28px,2.8vw,40px) clamp(22px,2vw,30px) clamp(26px,2.4vw,34px);overflow:hidden;">
+              <div style={`position:absolute;left:0;top:0;width:100%;height:3px;background:${accent};`}></div>
+              <div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;">
+                <span style={`font-family:var(--font-primary);font-weight:700;font-size:clamp(48px,5.6vw,88px);letter-spacing:-0.042em;line-height:0.84;color:${i === 0 ? C.blue : '#fff'};`}>{big}</span>
+                {small && <span style={`font-family:var(--font-primary);font-weight:600;font-size:clamp(15px,1.5vw,21px);letter-spacing:-0.01em;color:${i === 0 ? C.blue : 'rgba(255,255,255,0.85)'};`}>{small}</span>}
+              </div>
+              <div style="margin-top:16px;font-family:var(--font-mono);font-size:11.5px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);">{f.l}</div>
+            </div>
+          );
+        })}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- 3. Übersicht + Gesellschaften -->
+  <Section sm bg={C.n25}>
+    <Container>
+      <div class="grp-overview">
+        <div>
+          <Overline>{GROUP.seat}</Overline>
+          <div style="margin-top:22px;">
+            {GROUP.paras.map((p) => (
+              <p style="margin-bottom:18px;font-family:var(--font-primary);font-weight:300;font-size:clamp(16px,1.25vw,18px);line-height:1.75;color:var(--n900);max-width:560px;">{p}</p>
+            ))}
+          </div>
+          <div style="margin-top:30px;">
+            <ArrowLink href="https://www.feickert-bau.de/">feickert-bau.de</ArrowLink>
+          </div>
+        </div>
+        <div>
+          <Overline>Gesellschaften</Overline>
+          <div style="margin-top:20px;border-top:1px solid var(--n200);">
+            {GROUP.firms.map((firm) => (
+              <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:14px 0;border-bottom:1px solid var(--n150);">
+                <span style="font-family:var(--font-primary);font-size:15px;font-weight:500;color:var(--n900);">{firm.name}</span>
+                <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.05em;color:var(--n400);white-space:nowrap;">{firm.region}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- 4. Kernkompetenzen -->
+  <Section sm label="Kernkompetenzen">
+    <Container>
+      <SectionHead
+        overline="Kernkompetenzen"
+        intro="Von der Leitung im Boden bis zum konstruktiven Ingenieurbau deckt die Feickert-Gruppe das gesamte Tiefbau-Spektrum ab — FEGA liefert die Metall- und Gerätetechnik dazu."
+        max={700}
+      >Drei Bereiche. Ein Netzwerk.</SectionHead>
+      <div style="margin-top:var(--block);display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px;">
+        {GROUP.leistungen.map((l, i) => {
+          const accent = i % 2 ? C.red : C.blue;
+          return (
+            <div class="comp-card" style={`--accent:${accent};`}>
+              <div style="position:relative;">
+                <OptImage name={GROUP.competenceImgs[i]} ratio="16/10" sizes="(max-width:920px) 100vw, 33vw" />
+                <div style={`position:absolute;left:0;top:0;width:50px;height:50px;background:${accent};color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-primary);font-weight:700;font-size:20px;letter-spacing:-0.01em;`}>{String(i + 1).padStart(2, '0')}</div>
+              </div>
+              <div style="padding:24px 24px 28px;display:flex;flex-direction:column;flex:1;">
+                <h3 style="font-family:var(--font-primary);font-size:21px;font-weight:600;color:var(--n900);letter-spacing:-0.01em;">{l.t}</h3>
+                <p style="margin-top:10px;font-family:var(--font-primary);font-weight:300;font-size:14.5px;line-height:1.62;color:var(--n600);">{l.d}</p>
+                <div style="margin-top:auto;padding-top:18px;">
+                  <div style="border-top:1px solid var(--n100);padding-top:16px;">
+                    <ul style="list-style:none;margin:0;padding:0;">
+                      {l.points.map((p) => (
+                        <li style="display:flex;gap:10px;margin-bottom:9px;font-family:var(--font-primary);font-weight:400;font-size:13.5px;line-height:1.4;color:var(--n900);align-items:center;">
+                          <span style={`width:6px;height:6px;flex-shrink:0;background:${accent};transform:rotate(45deg);`}></span>{p}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- 5. Bundesweit + Luxemburg -->
+  <Section sm bg={C.n900} style="color:#fff;">
+    <Container>
+      <div class="grp-reach">
+        <div style="display:flex;justify-content:center;">
+          <OptImage name="deutschland.jpg" ratio="3/4" cover={false} sizes="240px" style="width:min(240px,70%);background:#111;padding:18px;" />
+        </div>
+        <div>
+          <Overline onDark>Bundesweit + Luxemburg</Overline>
+          <h2 style="margin-top:22px;font-family:var(--font-primary);font-size:clamp(30px,3.8vw,54px);font-weight:600;letter-spacing:-0.02em;line-height:1.05;color:#fff;text-wrap:balance;">
+            Tiefbau im gesamten Bundesgebiet — und darüber hinaus.
+          </h2>
+          <p style="margin-top:20px;max-width:480px;font-family:var(--font-primary);font-weight:300;font-size:16px;line-height:1.7;color:rgba(255,255,255,0.66);">
+            Von Standorten in Hessen, Sachsen-Anhalt und Thüringen realisiert die Feickert-Gruppe Projekte deutschlandweit sowie in Luxemburg. Als Teil dieser Gruppe wächst FEGA mit dem Know-how, das täglich im Einsatz entsteht.
+          </p>
+          <div style="margin-top:30px;">
+            <ArrowLink onDark external href="https://www.feickert-bau.de/">feickert-bau.de →</ArrowLink>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- 6. Service-Kacheln -->
+  <ServiceTiles />
+
+  <!-- 7. Abschluss-CTA -->
+  <CTASimple title="Gemeinsam bauen wir Ihr Projekt." />
+</BaseLayout>
+
+<style>
+  .grp-overview {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 5vw, 72px);
+    align-items: start;
+  }
+  .grp-reach {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: clamp(32px, 5vw, 72px);
+    align-items: center;
+  }
+  .comp-card {
+    background: #fff;
+    border: 1px solid var(--n150);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.2s;
+  }
+  .comp-card:hover {
+    border-color: var(--accent);
+  }
+  @media (max-width: 920px) {
+    .grp-overview,
+    .grp-reach {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

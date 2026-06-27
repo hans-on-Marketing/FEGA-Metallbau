@@ -1,0 +1,87 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import Section from '@/components/Section.astro';
+import Overline from '@/components/Overline.astro';
+import AnfrageWizard from '@/components/islands/AnfrageWizard.tsx';
+import { COMPANY } from '@/data/content';
+
+const chips: [string, string, string | null][] = [
+  ['Telefon', COMPANY.phone, COMPANY.phoneHref],
+  ['E-Mail', COMPANY.email, 'mailto:' + COMPANY.email],
+  ['Region', COMPANY.region, null],
+];
+---
+<BaseLayout title="Kontakt – FEGA GmbH" description="Stellen Sie Ihre Anfrage in wenigen Schritten zusammen – oder rufen Sie uns direkt an. Antwort in der Regel innerhalb von 24 Stunden.">
+  <Section sm style="padding-top:clamp(44px,5.5vw,80px);">
+    <Container>
+      <div style="max-width:760px;margin-bottom:clamp(30px,4vw,48px);">
+        <Overline>Kontakt · Anfrage in 3 Schritten</Overline>
+        <h1 class="kontakt-h1">Sprechen wir über Ihr Projekt.</h1>
+        <p class="kontakt-lead">
+          Stellen Sie Ihre Anfrage in wenigen Schritten zusammen — oder rufen Sie uns direkt an. Wir melden uns in der Regel innerhalb von 24 Stunden.
+        </p>
+        <div style="margin-top:26px;display:flex;gap:10px;flex-wrap:wrap;">
+          {chips.map((c) =>
+            c[2] ? (
+              <a href={c[2]} class="kontakt-chip">
+                <span class="kontakt-chip__k">{c[0]}</span>
+                <span class="kontakt-chip__v">{c[1]}</span>
+              </a>
+            ) : (
+              <span class="kontakt-chip">
+                <span class="kontakt-chip__k">{c[0]}</span>
+                <span class="kontakt-chip__v">{c[1]}</span>
+              </span>
+            )
+          )}
+        </div>
+      </div>
+      <AnfrageWizard client:load />
+    </Container>
+  </Section>
+</BaseLayout>
+
+<style>
+  .kontakt-h1 {
+    margin-top: 22px;
+    font-family: var(--font-primary);
+    font-weight: 700;
+    letter-spacing: -0.028em;
+    line-height: 1;
+    font-size: clamp(36px, 4.6vw, 64px);
+    color: var(--n900);
+    text-wrap: balance;
+  }
+  .kontakt-lead {
+    margin-top: 20px;
+    max-width: 560px;
+    font-family: var(--font-primary);
+    font-weight: 300;
+    font-size: clamp(16px, 1.3vw, 19px);
+    line-height: 1.6;
+    color: var(--n600);
+  }
+  .kontakt-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    border: 1px solid var(--n200);
+    background: #fff;
+    text-decoration: none;
+  }
+  .kontakt-chip__k {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--n400);
+  }
+  .kontakt-chip__v {
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--n900);
+  }
+</style>

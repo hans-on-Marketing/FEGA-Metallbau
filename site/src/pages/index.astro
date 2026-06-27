@@ -1,0 +1,619 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import Section from '@/components/Section.astro';
+import Overline from '@/components/Overline.astro';
+import SectionHead from '@/components/SectionHead.astro';
+import ArrowLink from '@/components/ArrowLink.astro';
+import BrandBars from '@/components/BrandBars.astro';
+import Placeholder from '@/components/Placeholder.astro';
+import OptImage from '@/components/OptImage.astro';
+import Button from '@/components/Button.astro';
+import Badge from '@/components/Badge.astro';
+import SpecList from '@/components/SpecList.astro';
+import Stat from '@/components/islands/Stat.tsx';
+import { C, ACCENTS } from '@/lib/theme';
+import { COMPANY, SERVICES, ABOUT, GROUP, JOBS, REFERENCES, SLUG, SVC_IMG } from '@/data/content';
+import { withBase } from '@/lib/url';
+
+const refs = REFERENCES.slice(0, 3);
+---
+<BaseLayout
+  title="FEGA GmbH – Metallbau, Maschinenbau & Pumpentechnik aus einer Hand"
+  description="FEGA GmbH aus dem Westerwald: Schnellwechsel-Adapter (DIN EN 1090-2 · EXC 3), Metallbau, Pumpentechnik, Maschinenhandel und Mietpark. Ein Lieferant, Angebot in der Regel innerhalb von 24 Stunden."
+>
+  <!-- ─── HERO · CINEMATIC (dunkel) ─── -->
+  <section data-screen-label="hero" class="hero">
+    <div style="position:absolute;inset:0;overflow:hidden;">
+      <OptImage name="hero-team.jpg" cover position="center 30%" loading="eager" fetchpriority="high" sizes="100vw" style="position:absolute;inset:0;width:100%;height:100%;" />
+    </div>
+    <div class="hero__grad"></div>
+    <Container style="position:relative;z-index:2;padding-top:120px;padding-bottom:clamp(56px,7vw,96px);width:100%;">
+      <div style="max-width:940px;">
+        <Overline onDark>FEGA GmbH · seit {COMPANY.since}</Overline>
+        <h1 class="hero__title">Was wir liefern,<br />hält. Punkt.</h1>
+        <p class="hero__lead">
+          Adapter nach Norm. Metallbau. Pumpenprüfung. Gerätemiete. Alles aus einer Hand — direkt aus der Produktion in {COMPANY.region}.
+        </p>
+        <div style="margin-top:38px;display:flex;gap:14px;flex-wrap:wrap;">
+          <Button href="/kontakt" variant="primary" size="lg">Anfrage stellen</Button>
+          <a href="#leistungen" class="sec-btn sec-btn--ondark">Unsere Leistungen</a>
+        </div>
+      </div>
+    </Container>
+    <BrandBars height={4} style="position:absolute;left:0;right:0;bottom:0;z-index:3;" />
+  </section>
+
+  <!-- ─── INTRO + STATS ─── -->
+  <Section sm>
+    <Container>
+      <div class="intro-grid">
+        <div>
+          <Overline>Wer wir sind</Overline>
+          <h2 class="intro__title">Ein Lieferant. Keine Kompromisse.</h2>
+          <p class="intro__lead">
+            FEGA fertigt, prüft und liefert — Adapter nach DIN EN 1090-2 / EXC 3, Metallbau, Pumpenservice und Gerätemiete. Direkt aus Westerwald. Seit {COMPANY.since}.
+          </p>
+        </div>
+        <div class="intro__stats">
+          {ABOUT.stats.map((s, i) => <Stat client:visible v={s.v} l={s.l} color={i === 2 ? C.blue : undefined} />)}
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ─── BUYER BAR ─── -->
+  <Section bg={C.n900} style="color:#fff;padding-top:clamp(40px,5vw,64px);padding-bottom:clamp(40px,5vw,64px);">
+    <Container>
+      <div class="buyer-grid">
+        {COMPANY.buyerPoints.map((b, i) => (
+          <div style={`padding-left:18px;border-left:2px solid ${i % 2 ? C.red : C.blue};`}>
+            <div style="font-family:var(--font-primary);font-size:clamp(16px,1.4vw,19px);font-weight:600;color:#fff;">{b[0]}</div>
+            <div style="margin-top:10px;font-family:var(--font-primary);font-weight:300;font-size:13.5px;line-height:1.55;color:rgba(255,255,255,0.62);">{b[1]}</div>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ─── SERVICES OVERVIEW ─── -->
+  <Section bg={C.n25} id="leistungen">
+    <Container>
+      <div class="svc-head">
+        <SectionHead overline="Unsere Leistungen" max={680}>Wie können wir Ihnen<br />weiterhelfen?</SectionHead>
+        <p class="svc-head__intro">
+          Von der Fertigung über den Handel bis zur Vermietung — fünf Bereiche, ein Ansprechpartner, abgestimmt auf Ihre Beschaffung.
+        </p>
+      </div>
+      <div class="svc-grid">
+        {SERVICES.map((s) => (
+          <a class="svc-card" href={withBase(SLUG[s.id])} style={`--accent:${ACCENTS[s.accent]};`}>
+            <div class="svc-card__media">
+              {SVC_IMG[s.id]
+                ? <OptImage name={SVC_IMG[s.id]} ratio="4/3" sizes="(max-width:920px) 100vw, 33vw" />
+                : <Placeholder label="Pumpenprüfstand" ratio="4/3" style="display:block;" />}
+              <span class="svc-card__bar"></span>
+              <span class="svc-card__veil"></span>
+            </div>
+            <div class="svc-card__body">
+              <div style="display:flex;align-items:baseline;gap:12px;">
+                <span style="font-family:var(--font-mono);font-size:12px;color:var(--n400);">{s.no}</span>
+                <h3 class="svc-card__title">{s.label}</h3>
+              </div>
+              <p class="svc-card__kicker">{s.kicker}</p>
+              <span class="svc-card__more">Mehr erfahren <span class="svc-card__arrow">&#8594;</span></span>
+            </div>
+          </a>
+        ))}
+        <!-- CTA card -->
+        <a class="svc-cta" href={withBase('/kontakt')}>
+          <div>
+            <div style="font-family:var(--font-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.7);">Beratung</div>
+            <div style="margin-top:16px;font-family:var(--font-primary);font-size:27px;font-weight:500;letter-spacing:-0.015em;line-height:1.12;">Noch unklar, was Sie brauchen?</div>
+            <p style="margin-top:14px;font-family:var(--font-primary);font-weight:300;font-size:15px;line-height:1.6;color:rgba(255,255,255,0.82);">Schildern Sie uns Ihr Vorhaben — wir empfehlen die passende Lösung und melden uns in der Regel innerhalb von 24 Stunden.</p>
+          </div>
+          <span class="svc-cta__more">Anfrage stellen <span class="svc-card__arrow">&#8594;</span></span>
+        </a>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ─── ADAPTER FEATURE ─── -->
+  <Section>
+    <Container>
+      <div class="adapter-feat">
+        <div>
+          <Overline>Seit 2019 · Geräteadapter</Overline>
+          <h2 class="h2-mid">Schnellwechsel-Adapter, die exakt passen.</h2>
+          <p class="body-lead">
+            Wir fertigen und vertreiben Adapter für diverse Erdbewegungsmaschinen — gefertigt nach DIN EN 1090-2 / EXC 3 und der Maschinenrichtlinie 2006/42/EG. Gewichtsoptimiert, präzise und langlebig.
+          </p>
+          <div style="margin-top:30px;margin-bottom:32px;">
+            <SpecList rows={[['Norm', 'DIN EN 1090-2 · EXC 3'], ['Richtlinie', 'Maschinenrichtlinie 2006/42/EG'], ['Systeme', 'Mechanisch & hydraulisch']]} />
+          </div>
+          <ArrowLink href={SLUG.maschinenbau} color={C.blue}>Zum Maschinenbau</ArrowLink>
+        </div>
+        <div>
+          <div style={`position:relative;background:${C.n50};border:1px solid ${C.n100};`}>
+            <OptImage name="adapter-produkt.jpg" ratio="5/4" cover={false} sizes="(max-width:920px) 100vw, 50vw" />
+            <div style="position:absolute;left:0;bottom:0;"><Badge variant="blue">EXC 3</Badge></div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ─── FEICKERT TEASER ─── -->
+  <Section bg={C.n900} style="color:#fff;position:relative;overflow:hidden;">
+    <Container>
+      <div class="feickert-teaser">
+        <div>
+          <div style="position:relative;">
+            <OptImage name="feickert-bagger.jpg" ratio="4/3" sizes="(max-width:920px) 100vw, 50vw" />
+            <BrandBars height={4} />
+          </div>
+        </div>
+        <div>
+          <Overline onDark>Unternehmensgruppe</Overline>
+          <h2 class="h2-mid" style="color:#fff;">Wir leben Bau.<br />Seit drei Generationen.</h2>
+          <p class="body-lead" style="color:rgba(255,255,255,0.7);max-width:480px;">
+            FEGA gehört zur {GROUP.name} mit Sitz in {GROUP.seat}. Seit 1947 in dritter Generation zu 100 % in Familienhand — mit Tiefbau und Spezialtiefbau im gesamten Bundesgebiet.
+          </p>
+          <div style="margin-top:34px;display:flex;gap:clamp(24px,4vw,52px);flex-wrap:wrap;margin-bottom:36px;">
+            {GROUP.facts.slice(0, 3).map((f, i) => <Stat client:visible v={f.v} l={f.l} onDark color={i === 0 ? C.blue : '#fff'} />)}
+          </div>
+          <ArrowLink href="/unternehmensgruppe" onDark>Mehr zur Unternehmensgruppe</ArrowLink>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ─── REFERENCES TEASER ─── -->
+  <Section sm>
+    <Container>
+      <div class="ref-head">
+        <SectionHead overline="Referenzen" max={520}>Ausgewählte Arbeiten</SectionHead>
+        <ArrowLink href="/referenzen" color={C.blue}>Alle Referenzen</ArrowLink>
+      </div>
+      <div class="ref-grid">
+        {refs.map((r) => (
+          <div>
+            <OptImage name={r.img} ratio="3/2" sizes="(max-width:920px) 100vw, 33vw" />
+            <div style="margin-top:14px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-blue);">{r.cat}</div>
+            <div style="margin-top:6px;font-family:var(--font-primary);font-size:16px;font-weight:400;color:var(--n900);">{r.t}</div>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ─── KARRIERE TEASER ─── -->
+  <Section bg={C.n25}>
+    <Container>
+      <div class="kar-teaser">
+        <div>
+          <OptImage name="werkstatt.jpg" ratio="4/5" sizes="(max-width:920px) 100vw, 40vw" />
+        </div>
+        <div>
+          <Overline color={C.red}>Karriere</Overline>
+          <h2 class="h2-mid">Hands-on gesucht.</h2>
+          <p class="body-lead" style="max-width:500px;">
+            Schweißen, montieren, konstruieren — bei FEGA arbeiten Sie an Teilen, die auf echten Baustellen stehen. Kein Schreibtisch. Echte Arbeit.
+          </p>
+          <div style="margin-top:30px;display:grid;gap:14px;">
+            {JOBS.map((j) => (
+              <a class="kar-job" href={withBase('/karriere')}>
+                <span>
+                  <span style="display:block;font-family:var(--font-primary);font-size:17px;font-weight:500;color:var(--n900);">{j.title} <span style="color:var(--n400);font-weight:400;font-size:14px;">({j.mwd})</span></span>
+                  <span style="display:block;margin-top:4px;font-family:var(--font-mono);font-size:11.5px;letter-spacing:0.06em;text-transform:uppercase;color:var(--color-blue);">{j.type}</span>
+                </span>
+                <span style="font-family:var(--font-primary);font-size:20px;color:var(--n300);">&#8594;</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ─── CTA BAND ─── -->
+  <Section sm bg={C.blue} style="color:#fff;">
+    <Container>
+      <div class="cta-band">
+        <div>
+          <h2 class="cta-band__title">Dann reden wir jetzt.</h2>
+          <p class="cta-band__lead">
+            Adapter. Metallbau. Pumpen. Miete. Wir haben’s. Angebot innerhalb von 24 Stunden — ohne Warteschleife.
+          </p>
+        </div>
+        <div style="display:flex;gap:14px;flex-shrink:0;flex-wrap:wrap;">
+          <a href={withBase('/kontakt')} class="cta-band__solid">Anfrage stellen</a>
+          <a href={COMPANY.phoneHref} class="cta-band__ghost">{COMPANY.phone}</a>
+        </div>
+      </div>
+    </Container>
+  </Section>
+</BaseLayout>
+
+<style define:vars={{ blue: C.blue, red: C.red }}>
+  /* Hero */
+  .hero {
+    position: relative;
+    min-height: min(88vh, 880px);
+    display: flex;
+    align-items: flex-end;
+    background: #111;
+    overflow: hidden;
+  }
+  .hero__grad {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.55) 0%,
+      rgba(0, 0, 0, 0.12) 38%,
+      rgba(0, 0, 0, 0.3) 64%,
+      rgba(0, 0, 0, 0.86) 100%
+    );
+  }
+  .hero__title {
+    margin-top: 26px;
+    font-family: var(--font-primary);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 0.97;
+    font-size: clamp(52px, 7vw, 102px);
+    color: #fff;
+    text-wrap: balance;
+  }
+  .hero__lead {
+    margin-top: 28px;
+    max-width: 560px;
+    font-family: var(--font-primary);
+    font-weight: 300;
+    font-size: clamp(17px, 1.4vw, 20px);
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.78);
+  }
+
+  /* Intro */
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(32px, 5vw, 80px);
+    align-items: center;
+  }
+  .intro__title {
+    margin-top: 22px;
+    font-family: var(--font-primary);
+    font-size: clamp(30px, 3.8vw, 54px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.06;
+    color: var(--n900);
+    text-wrap: balance;
+  }
+  .intro__lead {
+    margin-top: 24px;
+    max-width: 560px;
+    font-family: var(--font-primary);
+    font-weight: 300;
+    font-size: clamp(16px, 1.25vw, 18px);
+    line-height: 1.7;
+    color: var(--n600);
+  }
+  .intro__stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px 28px;
+    padding-left: clamp(0px, 3vw, 40px);
+  }
+
+  /* Buyer bar */
+  .buyer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(20px, 3vw, 40px);
+  }
+
+  /* Services overview */
+  .svc-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 32px;
+    margin-bottom: var(--block);
+    flex-wrap: wrap;
+  }
+  .svc-head__intro {
+    font-family: var(--font-primary);
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--n600);
+    max-width: 340px;
+  }
+  .svc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .svc-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    background: #fff;
+    border: 1px solid var(--n100);
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.25s, transform 0.25s;
+    text-decoration: none;
+  }
+  .svc-card:hover {
+    border-color: var(--n200);
+    box-shadow: 0 26px 50px -34px rgba(0, 0, 0, 0.55);
+    transform: translateY(-3px);
+  }
+  .svc-card__media {
+    position: relative;
+    overflow: hidden;
+  }
+  .svc-card__bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--accent);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s ease;
+  }
+  .svc-card:hover .svc-card__bar {
+    transform: scaleY(1);
+  }
+  .svc-card__veil {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.04);
+    transition: background 0.3s;
+  }
+  .svc-card:hover .svc-card__veil {
+    background: rgba(0, 0, 0, 0);
+  }
+  .svc-card__body {
+    padding: 32px 32px 36px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .svc-card__title {
+    font-family: var(--font-primary);
+    font-size: 27px;
+    font-weight: 500;
+    color: var(--n900);
+    letter-spacing: -0.015em;
+  }
+  .svc-card__kicker {
+    margin-top: 14px;
+    font-family: var(--font-primary);
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--n600);
+    flex: 1;
+  }
+  .svc-card__more {
+    margin-top: 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-family: var(--font-primary);
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .svc-card__arrow {
+    display: inline-block;
+    transition: transform 0.28s;
+  }
+  .svc-card:hover .svc-card__arrow,
+  .svc-cta:hover .svc-card__arrow {
+    transform: translateX(5px);
+  }
+  .svc-cta {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    text-align: left;
+    background: var(--blue);
+    cursor: pointer;
+    padding: 34px 34px 36px;
+    color: #fff;
+    transition: transform 0.25s, box-shadow 0.25s;
+    text-decoration: none;
+  }
+  .svc-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 26px 50px -34px rgba(0, 0, 0, 0.55);
+  }
+  .svc-cta__more {
+    margin-top: 24px;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-family: var(--font-primary);
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* Shared mid headings + leads */
+  .h2-mid {
+    margin-top: 22px;
+    font-family: var(--font-primary);
+    font-size: clamp(30px, 3.8vw, 54px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    color: var(--n900);
+    text-wrap: balance;
+  }
+  .body-lead {
+    margin-top: 22px;
+    max-width: 520px;
+    font-family: var(--font-primary);
+    font-weight: 300;
+    font-size: clamp(16px, 1.25vw, 18px);
+    line-height: 1.7;
+    color: var(--n600);
+  }
+
+  /* Adapter feature */
+  .adapter-feat {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: clamp(32px, 5vw, 80px);
+    align-items: center;
+  }
+
+  /* Feickert teaser */
+  .feickert-teaser {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 5vw, 72px);
+    align-items: center;
+  }
+
+  /* References */
+  .ref-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    margin-bottom: var(--block);
+    flex-wrap: wrap;
+  }
+  .ref-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  /* Karriere teaser */
+  .kar-teaser {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: clamp(32px, 5vw, 72px);
+    align-items: center;
+  }
+  .kar-job {
+    text-align: left;
+    background: #fff;
+    border: 1px solid var(--n150);
+    cursor: pointer;
+    padding: 20px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+    transition: border-color 0.2s;
+  }
+  .kar-job:hover {
+    border-color: var(--n300);
+  }
+
+  /* CTA band */
+  .cta-band {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .cta-band__title {
+    font-family: var(--font-primary);
+    font-size: clamp(28px, 3.4vw, 46px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    color: #fff;
+    text-wrap: balance;
+  }
+  .cta-band__lead {
+    margin-top: 14px;
+    max-width: 540px;
+    font-family: var(--font-primary);
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .cta-band__solid {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0 28px;
+    height: 52px;
+    background: #fff;
+    color: var(--blue);
+    border: none;
+    cursor: pointer;
+    border-radius: 2px;
+    text-decoration: none;
+  }
+  .cta-band__ghost {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0 28px;
+    height: 52px;
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    border-radius: 2px;
+    text-decoration: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 920px) {
+    .intro-grid,
+    .adapter-feat,
+    .feickert-teaser,
+    .kar-teaser {
+      grid-template-columns: 1fr;
+    }
+    .svc-grid,
+    .ref-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .buyer-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 560px) {
+    .svc-grid,
+    .ref-grid,
+    .buyer-grid,
+    .intro__stats {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

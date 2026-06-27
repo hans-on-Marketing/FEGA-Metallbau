@@ -1,0 +1,21 @@
+---
+interface Props {
+  bg?: string;
+  sm?: boolean;
+  id?: string;
+  label?: string;
+  class?: string;
+  style?: string;
+}
+const { bg, sm = false, id, label, class: cls = '', style = '' } = Astro.props;
+const pad = sm ? 'var(--sec-sm) 0' : 'var(--sec) 0';
+const bgStyle = bg ? `background:${bg};` : '';
+---
+<section
+  id={id}
+  data-screen-label={label || id}
+  class={cls}
+  style={`padding:${pad};${bgStyle}${style}`}
+>
+  <slot />
+</section>

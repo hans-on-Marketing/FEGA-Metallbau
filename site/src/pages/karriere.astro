@@ -1,0 +1,238 @@
+---
+/* ============================================================================
+   FEGA — Karriere-Seite. Portiert aus ui_kits/website-2026/karriere.jsx.
+   Hero · Arbeitgeber-Zahlen · Warum FEGA · Benefits · Ausbildung & Wege ·
+   Offene Stellen (Island) · Bewerbungsprozess · Ansprechpartner · FAQ · CTA.
+   ========================================================================== */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import Section from '@/components/Section.astro';
+import Overline from '@/components/Overline.astro';
+import SectionHead from '@/components/SectionHead.astro';
+import Placeholder from '@/components/Placeholder.astro';
+import OptImage from '@/components/OptImage.astro';
+import BrandBars from '@/components/BrandBars.astro';
+import Button from '@/components/Button.astro';
+import ArrowLink from '@/components/ArrowLink.astro';
+import JobBoard from '@/components/islands/JobBoard.tsx';
+import FAQ from '@/components/islands/FAQ.tsx';
+import { C } from '@/lib/theme';
+import { KARRIERE, COMPANY } from '@/data/content';
+import { optimized } from '@/lib/images';
+
+// Bilder für das Job-Board-Akkordeon (Island erhält serialisierbare Props)
+const jobImages = {
+  fertigung: await optimized('fertigung-bauteile.jpg', '(max-width: 760px) 100vw, 33vw'),
+  werkstatt: await optimized('werkstatt.jpg', '(max-width: 760px) 100vw, 33vw'),
+};
+
+const k = KARRIERE;
+const c = KARRIERE.contact;
+---
+<BaseLayout
+  title="Karriere – FEGA GmbH"
+  description="Hands-on gesucht: Metallfacharbeiter, Schweißer/Schlosser und Ausbildung zum Metallbauer (m/w/d) am Standort Weilburg/Lahn. Schnellbewerbung direkt an der Stelle."
+>
+  <!-- 1 · Hero -->
+  <Section sm style="padding-top:clamp(44px,5.5vw,80px);padding-bottom:clamp(40px,5vw,72px);">
+    <Container>
+      <div class="kh-grid">
+        <div>
+          <Overline color={C.red}>{k.hero.overline}</Overline>
+          <h1 style={`margin-top:22px;font-family:${C.font};font-weight:700;letter-spacing:-0.03em;line-height:0.98;font-size:clamp(44px,6vw,84px);color:var(--n900);text-wrap:balance;`}>{k.hero.title}</h1>
+          <p style={`margin-top:22px;max-width:520px;font-family:${C.font};font-weight:300;font-size:clamp(16px,1.3vw,19px);line-height:1.65;color:var(--n600);`}>{k.hero.lead}</p>
+          <div style="margin-top:30px;display:flex;gap:14px;flex-wrap:wrap;">
+            <Button variant="primary" size="lg" href="#stellen">Offene Stellen ansehen</Button>
+            <a class="sec-btn" href={`mailto:${COMPANY.email}`}>Initiativbewerbung</a>
+          </div>
+          <div style="margin-top:30px;display:flex;gap:16px;flex-wrap:wrap;align-items:center;">
+            {k.hero.trust.map((tr, i) => (
+              <>
+                {i > 0 && <span style={`width:4px;height:4px;background:${C.n300};border-radius:50%;`}></span>}
+                <span style={`font-family:${C.mono};font-size:11.5px;letter-spacing:0.06em;text-transform:uppercase;color:${C.n500};`}>{tr}</span>
+              </>
+            ))}
+          </div>
+        </div>
+        <div style="position:relative;">
+          <OptImage name="hero-team.jpg" ratio="4/3" loading="eager" fetchpriority="high" sizes="(max-width:920px) 100vw, 50vw" />
+          <div style={`position:absolute;left:0;top:0;bottom:0;width:4px;background:${C.red};z-index:1;`}></div>
+          <BrandBars height={4} style="position:absolute;left:0;right:0;bottom:0;" />
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- 2 · Arbeitgeber-Zahlen (dunkel) -->
+  <Section sm bg={C.n900} label="FEGA als Arbeitgeber" style="color:#fff;position:relative;">
+    <BrandBars height={4} style="position:absolute;left:0;right:0;top:0;" />
+    <Container>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:28px;flex-wrap:wrap;margin-bottom:clamp(34px,4vw,54px);">
+        <div>
+          <Overline onDark>FEGA als Arbeitgeber</Overline>
+          <h2 style={`margin-top:18px;font-family:${C.font};font-size:clamp(28px,3.2vw,46px);font-weight:700;letter-spacing:-0.026em;line-height:1.0;color:#fff;text-wrap:balance;`}>Solide Arbeit.<br />Solides Umfeld.</h2>
+        </div>
+        <p style={`max-width:380px;font-family:${C.font};font-weight:300;font-size:clamp(15px,1.2vw,17px);line-height:1.65;color:rgba(255,255,255,0.6);`}>
+          Ein Familienbetrieb mit dem Rückhalt einer der führenden Tiefbaugruppen Deutschlands — und Platz für Leute, die anpacken.
+        </p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;">
+        {k.facts.map((f, i) => {
+          const accent = i % 2 ? C.red : C.blue;
+          return (
+            <div style="position:relative;background:#161616;border:1px solid rgba(255,255,255,0.08);padding:clamp(28px,2.8vw,40px) clamp(22px,2vw,30px) clamp(26px,2.4vw,34px);overflow:hidden;">
+              <div style={`position:absolute;left:0;top:0;width:100%;height:3px;background:${accent};`}></div>
+              <div style={`font-family:${C.font};font-weight:700;font-size:clamp(48px,5.6vw,84px);letter-spacing:-0.042em;line-height:0.84;color:${i === 0 ? C.blue : '#fff'};`}>{f.v}</div>
+              <div style={`margin-top:16px;font-family:${C.mono};font-size:11.5px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);`}>{f.l}</div>
+            </div>
+          );
+        })}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- 3 · Warum FEGA -->
+  <Section sm label="Warum FEGA">
+    <Container>
+      <SectionHead overline="Warum FEGA" accent={C.red} max={640}
+        intro="Kein anonymer Konzern, kein Schreibtischjob: FEGA verbindet echtes Handwerk mit der Stabilität einer großen Unternehmensgruppe.">Warum Sie bei uns richtig sind.</SectionHead>
+      <div style={`margin-top:var(--block);display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));border-top:1px solid ${C.n200};`}>
+        {k.pillars.map((p, i) => (
+          <div style={`padding:34px 28px 38px 0;border-bottom:1px solid ${C.n100};height:100%;`}>
+            <div style={`font-family:${C.font};font-weight:700;font-size:clamp(40px,4vw,60px);letter-spacing:-0.03em;color:${i % 2 ? C.blue : C.red};line-height:0.9;`}>{p.no}</div>
+            <h3 style={`margin-top:18px;font-family:${C.font};font-size:21px;font-weight:600;color:var(--n900);letter-spacing:-0.01em;`}>{p.t}</h3>
+            <p style={`margin-top:10px;font-family:${C.font};font-weight:300;font-size:14.5px;line-height:1.65;color:var(--n600);max-width:340px;`}>{p.d}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- 4 · Benefits -->
+  <Section sm bg={C.n25} label="Benefits">
+    <Container>
+      <SectionHead overline="Benefits" accent={C.red} max={640}
+        intro="Faire Bedingungen, moderne Ausstattung und die Sicherheit eines Familienbetriebs mit Gruppen-Rückhalt.">Was Sie bei FEGA erwartet.</SectionHead>
+      <div style="margin-top:var(--block);display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;">
+        {k.benefits.map((b, i) => (
+          <div style={`background:#fff;border:1px solid ${C.n150};padding:22px 22px 24px;height:100%;display:flex;gap:14px;align-items:flex-start;`}>
+            <span style={`width:10px;height:10px;margin-top:5px;flex-shrink:0;background:${i % 2 ? C.blue : C.red};transform:rotate(45deg);`}></span>
+            <div>
+              <div style={`font-family:${C.font};font-size:16px;font-weight:600;color:var(--n900);letter-spacing:-0.005em;`}>{b.t}</div>
+              <div style={`margin-top:5px;font-family:${C.font};font-weight:300;font-size:13.5px;line-height:1.55;color:var(--n600);`}>{b.d}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p style={`margin-top:22px;font-family:${C.mono};font-size:11px;letter-spacing:0.06em;color:${C.n400};`}>Beispielhafte Leistungen — finale Auflistung nach Abstimmung mit der Personalabteilung.</p>
+    </Container>
+  </Section>
+
+  <!-- 5 · Karrierewege -->
+  <Section sm label="Karrierewege">
+    <Container>
+      <SectionHead overline="Einstieg & Ausbildung" accent={C.red} max={640}
+        intro="Ob mit Berufserfahrung, frisch von der Schule oder als Quereinsteiger — für jeden Weg gibt es bei uns eine Tür.">Ihr Weg zu FEGA.</SectionHead>
+      <div style="margin-top:var(--block);display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;">
+        {k.paths.map((p) => {
+          const feat = p.featured;
+          const href = p.action === 'job' ? `#stellen-${p.target}` : p.action === 'jobs' ? '#stellen' : `mailto:${COMPANY.email}`;
+          return (
+            <div class={`kpath${feat ? ' kpath--feat' : ''}`} style={`background:${feat ? C.n900 : '#fff'};border:1px solid ${feat ? C.n900 : C.n150};padding:28px 26px 30px;height:100%;display:flex;flex-direction:column;transition:border-color .2s;`}>
+              <div style={`display:inline-flex;align-items:center;gap:8px;align-self:flex-start;padding:5px 11px;background:${feat ? 'rgba(238,65,62,0.16)' : C.n25};border:1px solid ${feat ? 'rgba(255,255,255,0.14)' : C.n150};`}>
+                <span style={`width:6px;height:6px;background:${C.red};transform:rotate(45deg);`}></span>
+                <span style={`font-family:${C.mono};font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:${feat ? '#fff' : C.n600};`}>{p.tag}</span>
+              </div>
+              <h3 style={`margin-top:18px;font-family:${C.font};font-size:22px;font-weight:600;letter-spacing:-0.015em;color:${feat ? '#fff' : 'var(--n900)'};`}>{p.t}</h3>
+              <p style={`margin-top:10px;font-family:${C.font};font-weight:300;font-size:14.5px;line-height:1.6;color:${feat ? 'rgba(255,255,255,0.66)' : 'var(--n600)'};flex:1;`}>{p.d}</p>
+              <div style="margin-top:22px;">
+                <ArrowLink href={href} onDark={feat} color={feat ? '#fff' : C.red}>{p.cta}</ArrowLink>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- 6 · Offene Stellen (Island) -->
+  <Section sm bg={C.n25} id="stellen" label="Offene Stellen">
+    <JobBoard client:visible images={jobImages} />
+  </Section>
+
+  <!-- 7 · Bewerbungsprozess -->
+  <Section sm label="Bewerbungsprozess">
+    <Container>
+      <SectionHead overline="Bewerbung" accent={C.red} max={640}
+        intro="Unkompliziert und schnell — in vier Schritten vom Lebenslauf zum ersten Arbeitstag.">So läuft Ihre Bewerbung.</SectionHead>
+      <div style={`margin-top:var(--block);display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));border-top:2px solid var(--n900);`}>
+        {k.process.map((s, i) => (
+          <div style={`padding:26px 28px 30px 0;border-right:1px solid ${C.n150};height:100%;`}>
+            <div style={`font-family:${C.font};font-weight:700;font-size:clamp(40px,4vw,58px);letter-spacing:-0.03em;color:${i % 2 ? C.blue : C.red};line-height:0.9;`}>{s.no}</div>
+            <h3 style={`margin-top:16px;font-family:${C.font};font-size:18.5px;font-weight:600;color:var(--n900);`}>{s.t}</h3>
+            <p style={`margin-top:9px;font-family:${C.font};font-weight:300;font-size:14px;line-height:1.6;color:var(--n600);`}>{s.d}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- 8 · Ansprechpartner -->
+  <Section sm bg={C.n25} label="Ansprechpartner">
+    <Container>
+      <div style={`background:#fff;border:1px solid ${C.n150};display:flex;flex-wrap:wrap;`}>
+        <div style="position:relative;flex:1 1 240px;min-height:280px;">
+          <Placeholder label="Foto Ansprechpartner/in" style="position:absolute;inset:0;" />
+          <div style={`position:absolute;left:0;top:0;bottom:0;width:4px;background:${C.red};`}></div>
+        </div>
+        <div style="flex:2 1 380px;padding:clamp(28px,3vw,44px);">
+          <Overline color={C.red}>Ihr Kontakt</Overline>
+          <h2 style={`margin-top:18px;font-family:${C.font};font-size:clamp(26px,3vw,40px);font-weight:700;letter-spacing:-0.02em;line-height:1.05;color:var(--n900);text-wrap:balance;`}>Fragen? Sprechen Sie mich an.</h2>
+          <div style={`margin-top:20px;font-family:${C.font};font-size:18px;font-weight:600;color:var(--n900);`}>{c.name}</div>
+          <div style={`margin-top:3px;font-family:${C.mono};font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:${C.n500};`}>{c.role}</div>
+          <p style={`margin-top:16px;max-width:460px;font-family:${C.font};font-weight:300;font-size:15px;line-height:1.65;color:var(--n600);`}>{c.note}</p>
+          <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;">
+            <a href={c.phoneHref} style={`display:inline-flex;align-items:center;height:48px;padding:0 22px;background:${C.blue};color:#fff;font-family:${C.font};font-size:14px;font-weight:500;text-decoration:none;border-radius:2px;`}>{c.phone}</a>
+            <a href={`mailto:${c.email}`} style={`display:inline-flex;align-items:center;height:48px;padding:0 22px;border:1px solid ${C.n200};color:var(--n900);font-family:${C.font};font-size:14px;font-weight:500;text-decoration:none;border-radius:2px;`}>{c.email}</a>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- 9 · FAQ (Island) -->
+  <Section sm label="FAQ">
+    <FAQ client:visible />
+  </Section>
+
+  <!-- 10 · CTA -->
+  <Section sm bg={C.n25} label="Karriere CTA">
+    <Container>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap;">
+        <h2 style={`font-family:${C.font};font-size:clamp(26px,3.2vw,42px);font-weight:600;letter-spacing:-0.02em;line-height:1.08;color:var(--n900);max-width:620px;text-wrap:balance;`}>Bereit für den nächsten Schritt?</h2>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;">
+          <Button variant="primary" size="lg" href="#stellen">Offene Stellen ansehen</Button>
+          <a class="sec-btn" href={`mailto:${COMPANY.email}`}>Initiativbewerbung</a>
+        </div>
+      </div>
+    </Container>
+  </Section>
+</BaseLayout>
+
+<style>
+  .kh-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(32px, 5vw, 72px);
+    align-items: center;
+  }
+  /* Nicht-featured Karriereweg-Karte: roter Border-Hover */
+  .kpath:not(.kpath--feat):hover {
+    border-color: var(--color-red) !important;
+  }
+  @media (max-width: 920px) {
+    .kh-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

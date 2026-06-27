@@ -1,0 +1,101 @@
+---
+/* Geteilter Innenseiten-Hero (Service-Seiten + Feickert). Media via Slot. */
+import Container from './Container.astro';
+import Section from './Section.astro';
+import Overline from './Overline.astro';
+import Button from './Button.astro';
+import Badge from './Badge.astro';
+import { C } from '@/lib/theme';
+import { COMPANY } from '@/data/content';
+
+interface Props {
+  overline?: string;
+  accent?: string;
+  title: string; // erlaubt <br>
+  kicker?: string;
+  lead?: string;
+  badges?: string[];
+  ctaPrimary?: string;
+  ctaPrimaryHref?: string;
+  ctaSecondaryLabel?: string;
+  ctaSecondaryHref?: string;
+}
+const {
+  overline,
+  accent = C.blue,
+  title,
+  kicker,
+  lead,
+  badges,
+  ctaPrimary = 'Anfrage stellen',
+  ctaPrimaryHref = '/kontakt',
+  ctaSecondaryLabel,
+  ctaSecondaryHref,
+} = Astro.props;
+---
+<Section sm style="padding-top:clamp(44px,5.5vw,80px);padding-bottom:clamp(40px,5vw,72px);">
+  <Container>
+    <div class="inner-hero">
+      <div>
+        {overline && <Overline color={accent}>{overline}</Overline>}
+        <h1 class="inner-hero__title" set:html={title} />
+        {kicker && <div class="inner-hero__kicker">{kicker}</div>}
+        {lead && <p class="inner-hero__lead">{lead}</p>}
+        {badges && (
+          <div style="margin-top:24px;display:flex;gap:10px;flex-wrap:wrap;">
+            {badges.map((b, i) => <Badge variant={i === 0 ? 'blue' : 'outline'}>{b}</Badge>)}
+          </div>
+        )}
+        <div style="margin-top:32px;display:flex;gap:14px;flex-wrap:wrap;">
+          <Button href={ctaPrimaryHref} variant="primary" size="lg">{ctaPrimary}</Button>
+          {ctaSecondaryLabel && (
+            <a href={ctaSecondaryHref} class="sec-btn" target={ctaSecondaryHref?.startsWith('http') ? '_blank' : undefined} rel={ctaSecondaryHref?.startsWith('http') ? 'noreferrer' : undefined}>{ctaSecondaryLabel}</a>
+          )}
+        </div>
+      </div>
+      <div><slot name="media" /></div>
+    </div>
+  </Container>
+</Section>
+
+<style>
+  .inner-hero {
+    display: grid;
+    grid-template-columns: 1.02fr 0.98fr;
+    gap: clamp(32px, 5vw, 72px);
+    align-items: center;
+  }
+  .inner-hero__title {
+    margin-top: 22px;
+    font-family: var(--font-primary);
+    font-weight: 700;
+    letter-spacing: -0.028em;
+    line-height: 1;
+    font-size: clamp(40px, 5.4vw, 76px);
+    color: var(--n900);
+    text-wrap: balance;
+  }
+  .inner-hero__kicker {
+    margin-top: 18px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--n500);
+    line-height: 1.7;
+  }
+  .inner-hero__lead {
+    margin-top: 22px;
+    max-width: 520px;
+    font-family: var(--font-primary);
+    font-weight: 300;
+    font-size: clamp(16px, 1.3vw, 19px);
+    line-height: 1.65;
+    color: var(--n600);
+  }
+  @media (max-width: 920px) {
+    .inner-hero {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

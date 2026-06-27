@@ -1,0 +1,11 @@
+---
+interface Props {
+  wide?: boolean;
+  class?: string;
+  style?: string;
+}
+const { wide = false, class: cls = '', style = '' } = Astro.props;
+---
+<div class={`container${wide ? ' container--wide' : ''}${cls ? ' ' + cls : ''}`} style={style}>
+  <slot />
+</div>

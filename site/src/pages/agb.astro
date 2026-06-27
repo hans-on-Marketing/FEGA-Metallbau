@@ -1,0 +1,16 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import LegalLayout from '@/components/LegalLayout.astro';
+import { AGB } from '@/data/content';
+const A = AGB;
+---
+<BaseLayout title="AGB – FEGA GmbH" description="Allgemeine Geschäftsbedingungen der FEGA GmbH für Lieferungen, Leistungen und Angebote gegenüber Unternehmern." ogType="article">
+  <LegalLayout kicker="Rechtliches" title="AGB" lead={A.intro} draft={A.draft}>
+    {A.sections.map((s) => (
+      <div class="legal-block">
+        <h2 class="legal-h">{s.h}</h2>
+        {s.p.map((p) => <p class="legal-p">{p}</p>)}
+      </div>
+    ))}
+  </LegalLayout>
+</BaseLayout>

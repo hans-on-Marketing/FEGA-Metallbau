@@ -1,0 +1,54 @@
+---
+/* Leistungsübersicht — Kachelraster (seitenübergreifender Teaser). */
+import Container from './Container.astro';
+import Section from './Section.astro';
+import Overline from './Overline.astro';
+import Placeholder from './Placeholder.astro';
+import OptImage from './OptImage.astro';
+import { SERVICES, SLUG, SVC_IMG } from '@/data/content';
+import { ACCENTS, C } from '@/lib/theme';
+import { withBase } from '@/lib/url';
+---
+<Section sm bg={C.n25}>
+  <Container>
+    <div style="margin-bottom:36px;">
+      <Overline>Leistungsübersicht</Overline>
+      <h2 style="margin-top:14px;font-family:var(--font-primary);font-size:clamp(24px,2.8vw,36px);font-weight:700;letter-spacing:-0.022em;color:var(--n900);">Alles aus einer Hand.</h2>
+    </div>
+    <div class="tiles-grid">
+      {SERVICES.map((s, i) => (
+        <a class="tile" href={withBase(SLUG[s.id])} style={`--accent:${ACCENTS[s.accent]};`}>
+          {SVC_IMG[s.id]
+            ? <OptImage name={SVC_IMG[s.id]} ratio="4/3" sizes="(max-width:920px) 50vw, 20vw" />
+            : <Placeholder label={s.label} ratio="4/3" dark={i === 0 || i === 3} style="display:block;" />}
+          <div style="padding:14px 15px 18px;">
+            <div style={`font-family:var(--font-mono);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:${ACCENTS[s.accent]};margin-bottom:7px;`}>{s.no}</div>
+            <div style="font-family:var(--font-primary);font-size:15.5px;font-weight:600;color:var(--n900);">{s.label}</div>
+            <div style="margin-top:4px;font-family:var(--font-primary);font-size:12.5px;color:var(--n600);line-height:1.4;">{s.kicker}</div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </Container>
+</Section>
+
+<style>
+  .tiles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 14px;
+  }
+  .tile {
+    text-align: left;
+    width: 100%;
+    background: #fff;
+    border: 1.5px solid var(--n150);
+    cursor: pointer;
+    transition: border-color 0.2s;
+    text-decoration: none;
+    display: block;
+  }
+  .tile:hover {
+    border-color: var(--accent);
+  }
+</style>

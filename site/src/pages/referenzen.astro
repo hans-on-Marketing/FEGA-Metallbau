@@ -1,0 +1,61 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import Section from '@/components/Section.astro';
+import Overline from '@/components/Overline.astro';
+import CTASimple from '@/components/CTASimple.astro';
+import ReferenzenFilter from '@/components/islands/ReferenzenFilter.tsx';
+import { C } from '@/lib/theme';
+import { REFERENCES } from '@/data/content';
+import { optimized } from '@/lib/images';
+
+const items = (
+  await Promise.all(
+    REFERENCES.map(async (r) => {
+      const opt = await optimized(r.img, '(max-width: 920px) 100vw, 33vw');
+      return opt ? { ...opt, cat: r.cat, t: r.t } : null;
+    })
+  )
+).filter(Boolean);
+---
+<BaseLayout
+  title="Referenzen – FEGA GmbH"
+  description="Ausgewählte Arbeiten von FEGA: Schnellwechsel-Adapter im Einsatz, Metallbau (Treppen, Geländer, Überdachungen, Rampen) und Tiefbau-Projekte der Feickert-Gruppe."
+>
+  <Section sm style="padding-top:clamp(44px,5.5vw,80px);padding-bottom:clamp(28px,3vw,44px);">
+    <Container>
+      <Overline>Referenzen</Overline>
+      <h1 class="ref-h1">Arbeiten, die für sich sprechen.</h1>
+      <p class="ref-lead">
+        Ein Ausschnitt aus Fertigung, Metallbau und dem Einsatz unserer Geräteadapter — in der Region und in der Unternehmensgruppe.
+      </p>
+    </Container>
+  </Section>
+  <Section style="padding-top:0;">
+    <ReferenzenFilter client:visible items={items} />
+  </Section>
+  <CTASimple title="Ihr Projekt als nächste Referenz?" />
+</BaseLayout>
+
+<style>
+  .ref-h1 {
+    margin-top: 22px;
+    font-family: var(--font-primary);
+    font-weight: 700;
+    letter-spacing: -0.028em;
+    line-height: 1;
+    font-size: clamp(40px, 5.4vw, 76px);
+    color: var(--n900);
+    max-width: 900px;
+    text-wrap: balance;
+  }
+  .ref-lead {
+    margin-top: 22px;
+    max-width: 560px;
+    font-family: var(--font-primary);
+    font-weight: 300;
+    font-size: clamp(16px, 1.3vw, 19px);
+    line-height: 1.65;
+    color: var(--n600);
+  }
+</style>
