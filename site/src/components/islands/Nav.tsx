@@ -338,6 +338,7 @@ export default function Nav({ path = '/' }: { path?: string }) {
             <MobileItem href="/unternehmensgruppe" label="Unternehmensgruppe" active={path === '/unternehmensgruppe'} />
             <MobileItem href="/referenzen" label="Referenzen" active={path === '/referenzen'} />
             <MobileItem href="/karriere" label="Karriere" active={path === '/karriere'} />
+            <MobileItem href="/ausbildung" label="Ausbildung" active={path === '/ausbildung'} />
             <MobileItem href="/kontakt" label="Kontakt" active={path === '/kontakt'} />
           </div>
         </div>

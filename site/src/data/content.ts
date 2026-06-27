@@ -51,6 +51,7 @@ export const SLUG: Record<string, string> = {
   feickert: '/unternehmensgruppe',
   referenzen: '/referenzen',
   karriere: '/karriere',
+  ausbildung: '/ausbildung',
   kontakt: '/kontakt',
   impressum: '/impressum',
   datenschutz: '/datenschutz',
@@ -64,6 +65,7 @@ export const NAV: NavItem[] = [
   { id: 'feickert', label: 'Unternehmensgruppe', href: '/unternehmensgruppe' },
   { id: 'referenzen', label: 'Referenzen', href: '/referenzen' },
   { id: 'karriere', label: 'Karriere', href: '/karriere' },
+  { id: 'ausbildung', label: 'Ausbildung', href: '/ausbildung' },
 ];
 
 export interface Service {
