@@ -1,12 +1,13 @@
 ---
-/* Leistungsübersicht — Kachelraster (seitenübergreifender Teaser). */
+/* Leistungsübersicht — Kachelraster (seitenübergreifender Teaser).
+   3er-Grid · quadratische Kacheln · einheitlich dunkel · Hover = Akzentblau. */
 import Container from './Container.astro';
 import Section from './Section.astro';
 import Overline from './Overline.astro';
 import Placeholder from './Placeholder.astro';
 import OptImage from './OptImage.astro';
 import { SERVICES, SLUG, SVC_IMG } from '@/data/content';
-import { ACCENTS, C } from '@/lib/theme';
+import { C } from '@/lib/theme';
 import { withBase } from '@/lib/url';
 ---
 <Section sm bg={C.n25}>
@@ -16,15 +17,18 @@ import { withBase } from '@/lib/url';
       <h2 style="margin-top:14px;font-family:var(--font-primary);font-size:clamp(24px,2.8vw,36px);font-weight:700;letter-spacing:-0.022em;color:var(--n900);">Alles aus einer Hand.</h2>
     </div>
     <div class="tiles-grid">
-      {SERVICES.map((s, i) => (
-        <a class="tile" href={withBase(SLUG[s.id])} style={`--accent:${ACCENTS[s.accent]};`}>
-          {SVC_IMG[s.id]
-            ? <OptImage name={SVC_IMG[s.id]} dark={i === 0 || i === 3} ratio="4/3" sizes="(max-width:920px) 50vw, 20vw" />
-            : <Placeholder label={s.label} ratio="4/3" dark={i === 0 || i === 3} style="display:block;" />}
-          <div style="padding:14px 15px 18px;">
-            <div style={`font-family:var(--font-mono);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:${ACCENTS[s.accent]};margin-bottom:7px;`}>{s.no}</div>
-            <div style="font-family:var(--font-primary);font-size:15.5px;font-weight:600;color:var(--n900);">{s.label}</div>
-            <div style="margin-top:4px;font-family:var(--font-primary);font-size:12.5px;color:var(--n600);line-height:1.4;">{s.kicker}</div>
+      {SERVICES.map((s) => (
+        <a class="tile" href={withBase(SLUG[s.id])}>
+          <div class="tile__media">
+            {SVC_IMG[s.id]
+              ? <OptImage name={SVC_IMG[s.id]} dark ratio="1/1" sizes="(max-width:760px) 50vw, 33vw" />
+              : <Placeholder label={s.label} ratio="1/1" dark style="display:block;" />}
+            <span class="tile__accent" aria-hidden="true"><span class="tile__arrow">&#8594;</span></span>
+          </div>
+          <div class="tile__body">
+            <div class="tile__no">{s.no}</div>
+            <div class="tile__label">{s.label}</div>
+            <div class="tile__kicker">{s.kicker}</div>
           </div>
         </a>
       ))}
@@ -35,8 +39,8 @@ import { withBase } from '@/lib/url';
 <style>
   .tiles-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-    gap: 14px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
   }
   .tile {
     text-align: left;
@@ -49,6 +53,75 @@ import { withBase } from '@/lib/url';
     display: block;
   }
   .tile:hover {
-    border-color: var(--accent);
+    border-color: var(--color-blue);
+  }
+  .tile__media {
+    position: relative;
+    overflow: hidden;
+  }
+  /* Akzent-Overlay (Hover) */
+  .tile__accent {
+    position: absolute;
+    inset: 0;
+    background: var(--color-blue);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+  .tile:hover .tile__accent {
+    opacity: 1;
+  }
+  .tile__arrow {
+    font-family: var(--font-primary);
+    font-size: 30px;
+    color: #fff;
+    transform: translateX(-6px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .tile:hover .tile__arrow {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  .tile__body {
+    padding: 16px 16px 20px;
+  }
+  .tile__no {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--n400);
+    margin-bottom: 7px;
+    transition: color 0.2s;
+  }
+  .tile:hover .tile__no {
+    color: var(--color-blue);
+  }
+  .tile__label {
+    font-family: var(--font-primary);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--n900);
+  }
+  .tile__kicker {
+    margin-top: 4px;
+    font-family: var(--font-primary);
+    font-size: 12.5px;
+    color: var(--n600);
+    line-height: 1.4;
+  }
+  @media (max-width: 760px) {
+    .tiles-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 460px) {
+    .tiles-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
