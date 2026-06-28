@@ -57,6 +57,7 @@ export const SLUG: Record<string, string> = {
   impressum: '/impressum',
   datenschutz: '/datenschutz',
   agb: '/agb',
+  mietbedingungen: '/mietbedingungen',
 };
 
 export const NAV: NavItem[] = [
@@ -587,7 +588,7 @@ export const LEGAL: LegalLink[] = [
   { label: 'Impressum', page: 'impressum' },
   { label: 'Datenschutz', page: 'datenschutz' },
   { label: 'AGB', page: 'agb' },
-  { label: 'Mietbedingungen', href: 'https://fega-metallbau.de/wp-content/uploads/2024/04/FEGA-Mietbedingungen.pdf' },
+  { label: 'Mietbedingungen', page: 'mietbedingungen' },
 ];
 
 export const IMPRESSUM = {
@@ -720,6 +721,72 @@ export const AGB = {
       '9.1 Unsere Produkte werden dem Besteller für seinen Gewerbebetrieb verkauft. Ein Weiterverkauf an Verbraucher (§ 13 BGB) ist unzulässig. Der Besteller verpflichtet sich, im Falle einer Weitergabe der Produkte diese Verpflichtung auch seinem Vertragspartner aufzuerlegen. Er stellt uns von allen Ansprüchen von Verbrauchern frei, die an unsere Produkte durch ihn gekommen sein könnten.',
       '9.2 Der Besteller darf seine Rechte aus dem Vertrag nur nach schriftlicher Zustimmung von FEGA abtreten.',
       '9.3 Abweichende Vereinbarungen oder Ergänzungen des Vertrages sind für FEGA nur dann verbindlich, wenn FEGA diesen schriftlich zugestimmt hat.',
+    ] },
+  ],
+};
+
+export const MIETBEDINGUNGEN = {
+  stand: 'Stand 02.2024',
+  pdf: 'https://fega-metallbau.de/wp-content/uploads/2024/04/FEGA-Mietbedingungen.pdf',
+  intro: 'Mietbedingungen des FEGA Mietparks, Hermann-Stoll-Straße 1, 35781 Weilburg, Deutschland (Stand 02.2024). Ergänzend gelten die Allgemeinen Geschäftsbedingungen der FEGA.',
+  sections: [
+    { h: '1. Überlassung der Mietgegenstände', p: [
+      'Die Mietgegenstände werden dem Mieter für den vereinbarten Zeitraum zu den vereinbarten Konditionen zum Gebrauch überlassen.',
+      '1.1 Wir behalten uns vor, an Stelle der vorgesehenen Mietgegenstände andere Geräte oder Zubehör zu überlassen, welche aber mindestens in gleicher Weise geeignet sind.',
+      '1.2 Der Mieter setzt die Mietgegenstände bestimmungsgemäß ein und beachtet die jeweils geltenden Unfallverhütungs- und Arbeitsvorschriften.',
+    ] },
+    { h: '2. Übergabe ab Werk, Transportkosten', p: [
+      'Die Mietgegenstände werden ab Werk der FEGA bzw. der Zweigstellen zum Gebrauch überlassen. Sämtliche Transportkosten gehen zu Lasten des Mieters und sind nicht Bestandteil der Miete.',
+    ] },
+    { h: '3. Einweisung des Bedienpersonals', p: [
+      'Eine Übergabe oder Einweisung des Bedienpersonals auf der Baustelle ist nicht im Mietpreis enthalten und kann bei Bedarf zusätzlich beauftragt werden.',
+    ] },
+    { h: '4. Berechnung', p: [
+      '4.1 Die Mietzeit beginnt mit der Abholung der Mietgegenstände. Das Mietende ist der Zeitpunkt der Rücklieferung der Mietgegenstände bei FEGA in Weilburg.',
+      '4.2 Die Mietpreise werden je Arbeitstag (AT) und in Ausnahmefällen je Kalendertag (KT) in Abrechnung gebracht, wobei ein Arbeitstag maximal 8 Arbeitsstunden beinhaltet und Einschichtbetrieb vorausgesetzt wird. Mehrstunden werden zusätzlich berechnet.',
+      '4.3 Samstage, Sonntage und gesetzliche Feiertage sind keine Arbeitstage und kommen nur dann zur Abrechnung, wenn tatsächlich an diesen Tagen gearbeitet wurde.',
+      '4.4 Sollte an Arbeitstagen nicht gearbeitet werden, hat der Mieter die Möglichkeit, einen Mietstillstand anzuzeigen. Dieser Mietstillstand wird mit 30 % des vereinbarten Mietpreises berechnet. Es werden maximal 20 % der Mietzeit bzw. 5 Tage bei einer Monatsmiete als Stillstandszeit anerkannt.',
+    ] },
+    { h: '5. Bedienung durch geschultes Personal', p: [
+      'Der Mieter verpflichtet sich dafür Sorge zu tragen, dass die Mietgegenstände ausschließlich von dafür geeignetem und geschultem Personal bedient werden, auch unter Beachtung der jeweiligen Betriebsanleitungen, die im Lieferumfang enthalten sind.',
+    ] },
+    { h: '6. Versicherung der Mietgegenstände', p: [
+      'Die Mietgegenstände sind ab dem Tag der Auslieferung bis einschließlich dem Tag der Rücklieferung durch den Mieter zum Neuwert gegen alle Risiken zu versichern. Bei Totalverlust berechnen wir den Neuwert. Fehlende oder zerstörte Teile werden dem Mieter ebenfalls zum Neuwert in Rechnung gestellt. Es geht in dessen Eigentum über, wenn es innerhalb von 3 Wochen vom Mieter abgeholt wird.',
+    ] },
+    { h: '7. Eigene Versicherung, Abtretung', p: [
+      'Sofern der Mieter selbst versichert, legt er uns vor Abholung eine Kopie des Versicherungsscheines seiner Maschinenbruchversicherung vor. Für das Zubehör haftet der Mieter zum Neuwert in allen Fällen. Seine Ansprüche gegenüber seiner Versicherungsgesellschaft tritt der Mieter mit Abschluss dieses Mietvertrags an uns sicherungshalber ab. FEGA nimmt diese Abtretung an.',
+      'Auf unsere Anforderung hin wird uns der Mieter über diese mit Vertragsschluss bereits wirksam gewordene Abtretung eine gesonderte Abtretungsbestätigung schriftlich erteilen und alle zur Durchsetzung dieser Abtretung gegenüber seiner Versicherungsgesellschaft notwendigen Angaben machen und Unterlagen vorlegen.',
+    ] },
+    { h: '8. Überprüfung nach Rücklieferung', p: [
+      'Nach Rücklieferung werden die Mietgegenstände in unserer Werkstatt überprüft, gegebenenfalls gereinigt und evtl. Schäden bzw. Verschleiß instandgesetzt und Fehlteile ergänzt. Ebenso werden die Betriebsstoffe geprüft und wenn erforderlich gewechselt oder aufgefüllt. Diese Kosten werden nach Aufwand an den Mieter berechnet.',
+    ] },
+    { h: '9. Inspektion und Wartung', p: [
+      'Inspektions- und Wartungsarbeiten sind in den Mietpreisen nicht enthalten. Der Mieter ist verpflichtet, diese Arbeiten gemäß den Wartungsvorschriften rechtzeitig und ausschließlich durch sachkundiges Fachpersonal durchführen zu lassen. Es dürfen ausschließlich Originalteile verwendet werden. Die Betriebsstoffe müssen identisch mit denen sein, die zum Mietbeginn befüllt waren.',
+      '9.1 Das Wechseln von Verschleißteilen oder Betriebsstoffen während der Mietzeit hat rechtzeitig zu erfolgen. Ein nicht rechtzeitiges Wechseln von Verschleißteilen oder Betriebsstoffen kann zu Schaden oder gar Folgeschäden führen, die durch den Mieter zu tragen sind. Ebenso ist das Verwenden von anderen Betriebsstoffen und dadurch eine Vermischung von Betriebsstoffen nicht zulässig. Die daraus resultierenden Folgekosten (Entsorgung von Ölen, Spülen der Anlage und Neubefüllung) gehen zu Lasten des Mieters.',
+    ] },
+    { h: '10. Betankung', p: [
+      'Das Gerät wird vollgetankt an den Mieter ausgeliefert. Evtl. Fehlmengen werden nach Rücklieferung aufgetankt und zum Tagespreis an den Mieter berechnet.',
+    ] },
+    { h: '11. Einsatztemperatur', p: [
+      'Die Mietgegenstände sind für den Betrieb innerhalb einer Umgebungstemperatur von -20 °C bis +40 °C vorgesehen.',
+    ] },
+    { h: '12. Rechte und Pflichten', p: [
+      '12.1 Der Mieter darf einem Dritten den Mietgegenstand weder überlassen noch Rechte aus diesem Vertrag abtreten oder Rechte irgendwelcher Art an dem Mietgegenstand einräumen.',
+      '12.2 Sollte ein Dritter durch Beschlagnahme, Pfändung oder dergleichen Rechte an dem Mietgegenstand geltend machen, so ist der Mieter verpflichtet, FEGA unverzüglich durch Einschreiben davon zu unterrichten und den Dritten hiervon durch Einschreiben zu benachrichtigen.',
+      '12.3 Der Mieter hat geeignete Maßnahmen zur Sicherung gegen Diebstahl des Mietgegenstandes zu treffen.',
+      '12.4 Der Mieter hat bei allen Unfällen FEGA zu unterrichten und deren Weisungen abzuwarten. Bei Verkehrsunfällen und Diebstahl ist die Polizei hinzuzuziehen. Sonstige Mängel und Schäden hat der Mieter FEGA unverzüglich anzuzeigen.',
+      '12.5 Verstößt der Mieter schuldhaft gegen die vorstehenden Bestimmungen zu 12.1 bis 12.4, so ist er verpflichtet, FEGA allen Schaden zu ersetzen, der daraus entsteht.',
+      '12.6 Zeigt der Mieter schuldhaft einen Mangel der Mietsache dem Vermieter nicht unverzüglich an und entsteht daraus ein Schaden an der Mietsache, so ist der Mieter zum Ersatz dieses Schadens verpflichtet.',
+    ] },
+    { h: '13. Kündigung', p: [
+      '13.1 FEGA ist berechtigt, den Mietvertrag ohne Einhaltung einer Frist außerordentlich zu kündigen, insbesondere dann,',
+      '13.1.1 wenn sich der Mieter mit der Zahlung einer fälligen Mietrate im Verzug befindet;',
+      '13.1.2 wenn der Mieter ohne Einwilligung durch FEGA den Mietgegenstand, oder einen Teil desselben, nicht bestimmungsgemäß verwendet oder an einen anderen Ort verbringt;',
+      '13.1.3 in Fällen von Verstößen gegen Punkt 9, soweit damit eine Gefährdung des Mietgegenstandes verbunden ist.',
+      '13.2 Der Mieter kann den Mietvertrag aus wichtigem Grund außerordentlich ohne Einhaltung einer Frist nach erfolglosem Ablauf einer angemessenen Abhilfefrist kündigen, wenn ihm der Gebrauch der Mietsache durch Gründe, die FEGA zu vertreten hat, nicht rechtzeitig gewährt oder wieder entzogen wird.',
+    ] },
+    { h: '14. Geltung der AGB', p: [
+      'Im Übrigen gelten die Allgemeinen Geschäftsbedingungen der Firma FEGA.',
     ] },
   ],
 };

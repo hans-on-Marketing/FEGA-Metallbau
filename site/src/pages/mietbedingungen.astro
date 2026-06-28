@@ -1,0 +1,21 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import LegalLayout from '@/components/LegalLayout.astro';
+import { MIETBEDINGUNGEN } from '@/data/content';
+import { withBase } from '@/lib/url';
+const M = MIETBEDINGUNGEN;
+---
+<BaseLayout title="Mietbedingungen – FEGA Mietpark" description="Mietbedingungen des FEGA Mietparks für die Vermietung von Geräten und Anbaugeräten (Stand 02.2024)." ogType="article">
+  <LegalLayout kicker="Rechtliches" title="Mietbedingungen" lead={M.intro}>
+    <div class="legal-block" style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;">
+      <span style="font-family:var(--font-mono);font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--n500);">{M.stand}</span>
+      <a href={withBase('/FEGA-Mietbedingungen.pdf')} target="_blank" rel="noopener" style="font-family:var(--font-primary);font-size:14px;font-weight:500;color:var(--n900);text-decoration:underline;text-underline-offset:3px;">Mietbedingungen als PDF herunterladen →</a>
+    </div>
+    {M.sections.map((s) => (
+      <div class="legal-block">
+        <h2 class="legal-h">{s.h}</h2>
+        {s.p.map((p) => <p class="legal-p">{p}</p>)}
+      </div>
+    ))}
+  </LegalLayout>
+</BaseLayout>

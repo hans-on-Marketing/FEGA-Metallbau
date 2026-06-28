@@ -221,6 +221,10 @@ Pages-Settings hinterlegen.
   Roboteranlage/Werkstatt (S. 24), Geräteadapter-Produktfotos (S. 14/16), Power Spaten im
   Einsatz (S. 28), Metallbau-Referenzen (S. 18), Pumpen (S. 20), SchachtFIX-Baustelle (S. 26),
   Deutschland-Standortkarte (S. 17). Aktuell weiterhin Platzhalter (Foto-Toggle in OptImage).
+- **Mietbedingungen als Textseite (neu):** `/mietbedingungen` (Stand 02.2024) – voller Wortlaut
+  aus dem Original-PDF, Ziffern 1–14 in korrekter Reihenfolge (PDF war 2-spaltig, daher
+  zusammengeführt; Trennartefakte bereinigt). Original-PDF unter `site/public/FEGA-Mietbedingungen.pdf`
+  als Download verlinkt. Footer-Link „Mietbedingungen" zeigt jetzt auf die **Textseite** statt aufs PDF.
 - **Nachhaltigkeitsseite (neu):** `/nachhaltigkeit` im cineastischen Look angelegt —
   Hero, Kennzahlen, 6 Säulen (Langlebigkeit, Reparatur/Aufarbeitung, Materialkreislauf,
   Gewicht/Emissionen, Regionalität, Familienbetrieb) und Kreislauf-Block (Prüfen →
