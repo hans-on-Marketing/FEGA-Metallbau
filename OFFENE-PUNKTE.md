@@ -221,6 +221,16 @@ Pages-Settings hinterlegen.
   Roboteranlage/Werkstatt (S. 24), Geräteadapter-Produktfotos (S. 14/16), Power Spaten im
   Einsatz (S. 28), Metallbau-Referenzen (S. 18), Pumpen (S. 20), SchachtFIX-Baustelle (S. 26),
   Deutschland-Standortkarte (S. 17). Aktuell weiterhin Platzhalter (Foto-Toggle in OptImage).
+- **Startseiten-Relaunch + Kino-Menü (neu, Design-Handoff 2026):** Die Startseite wurde
+  komplett neu komponiert (11 Sektionen: Kino-Hero, Leistungs-Index, Navy-Produktband
+  „Deutsche Ingenieurskunst", Intro, Foto-Mosaik, Adapter-Flaggschiff, Vertrauensband,
+  Unternehmensgruppe, Referenzen, Karriere, Kontakt). Die **globale Navigation** ist jetzt
+  das **Kino-Menü** (sticky Blur-Bar + Fullscreen-Overlay, `NavKino.tsx`) — alte `Nav.tsx`
+  entfernt. **Footer und alle Unterseiten** blieben unverändert (nur global). Schrift global
+  von **Barlow → Saira + Spline Sans Mono** umgestellt (Design-Token-Mapping); Blau/Rot
+  passten bereits. Neues Asset `freisteller-blau.png` (Produkt-Cutout fürs Navy-Band) liegt
+  in `public/` + `src/assets/img/`. **Offen:** Hero/Mosaik/Band laufen weiter auf Platzhaltern
+  (Foto-Modus), Navy-Band zeigt Freisteller-Platzhalter bis Fotos aktiv sind.
 - **Mietbedingungen als Textseite (neu):** `/mietbedingungen` (Stand 02.2024) – voller Wortlaut
   aus dem Original-PDF, Ziffern 1–14 in korrekter Reihenfolge (PDF war 2-spaltig, daher
   zusammengeführt; Trennartefakte bereinigt). Original-PDF unter `site/public/FEGA-Mietbedingungen.pdf`

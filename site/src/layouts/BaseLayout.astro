@@ -1,6 +1,6 @@
 ---
 import '@/styles/global.css';
-import Nav from '@/components/islands/Nav.tsx';
+import NavKino from '@/components/islands/NavKino.tsx';
 import Footer from '@/components/Footer.astro';
 import { COMPANY } from '@/data/content';
 import { withBase } from '@/lib/url';
@@ -21,11 +21,7 @@ const {
 } = Astro.props;
 
 const site = Astro.site ?? new URL('https://hans-on-marketing.github.io');
-// Voller Pfad inkl. base (für Canonical); base-bereinigter Pfad für den Nav-Active-State.
 const fullPath = Astro.url.pathname;
-const baseTrim = import.meta.env.BASE_URL.replace(/\/$/, '');
-let navPath = baseTrim && fullPath.startsWith(baseTrim) ? fullPath.slice(baseTrim.length) : fullPath;
-navPath = navPath.replace(/\/$/, '') || '/';
 const canonical = new URL(fullPath, site).href;
 const ogImageUrl = new URL(withBase(ogImage), site).href;
 
@@ -81,7 +77,7 @@ const orgSchema = {
   </head>
   <body>
     <div style="display:flex;flex-direction:column;min-height:100vh;background:#fff;">
-      <Nav client:load path={navPath} />
+      <NavKino client:load />
       <main style="flex:1;">
         <slot />
       </main>

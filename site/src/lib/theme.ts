@@ -26,9 +26,9 @@ export const C = {
   n100: '#EEEEEE',
   n50: '#F5F5F5',
   n25: '#FAFAFA',
-  font: "'Barlow','Helvetica Neue',Helvetica,Arial,sans-serif",
-  fontDisplay: "'Barlow Condensed','Barlow',sans-serif",
-  mono: "'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace",
+  font: "'Saira','Helvetica Neue',Helvetica,Arial,sans-serif",
+  fontDisplay: "'Saira','Helvetica Neue',Helvetica,Arial,sans-serif",
+  mono: "'Spline Sans Mono','SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace",
 } as const;
 
 export type AccentKey = 'blue' | 'red' | 'black';
