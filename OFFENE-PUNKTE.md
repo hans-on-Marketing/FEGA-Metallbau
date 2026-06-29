@@ -221,6 +221,14 @@ Pages-Settings hinterlegen.
   Roboteranlage/Werkstatt (S. 24), Geräteadapter-Produktfotos (S. 14/16), Power Spaten im
   Einsatz (S. 28), Metallbau-Referenzen (S. 18), Pumpen (S. 20), SchachtFIX-Baustelle (S. 26),
   Deutschland-Standortkarte (S. 17). Aktuell weiterhin Platzhalter (Foto-Toggle in OptImage).
+- **Karriere-Relaunch (neu, Design-Handoff 2026):** `/karriere` komplett neu komponiert
+  (12 Sektionen: Hero, Arbeitgeber-Zahlen, Warum FEGA, Benefits, Slogan-Break „Funken fliegen.
+  Ergebnisse bleiben.", Wege, Offene Stellen mit Filter + Akkordeon + Inline-Schnellbewerbung,
+  Ausbildung-bei-Feickert-Band, Bewerbungsprozess, Ansprechpartner, FAQ, CTA). DU-Ansprache.
+  Job-Board & FAQ als React-Inseln (`KJobs.tsx`, `KFaq.tsx`), Step-/Benefit-/Path-Cards als CSS.
+  Kino-Header & Footer unverändert. **Offen:** Ansprechpartner-Foto/Name (Platzhalter); die
+  Inline-Schnellbewerbung hat **kein Backend** — vor Go-Live an Bewerbungs-/Mailflow anschließen;
+  Feickert-Stellen verlinken auf feickert-bau.de (echte Listings mit der Gruppe final abstimmen).
 - **Startseiten-Relaunch + Kino-Menü (neu, Design-Handoff 2026):** Die Startseite wurde
   komplett neu komponiert (11 Sektionen: Kino-Hero, Leistungs-Index, Navy-Produktband
   „Deutsche Ingenieurskunst", Intro, Foto-Mosaik, Adapter-Flaggschiff, Vertrauensband,
