@@ -1,0 +1,31 @@
+# FEGA GmbH
+
+> FEGA GmbH (FEGA GmbH – Metallbau und Handelsgesellschaft) ist ein Metall- und Maschinenbaubetrieb aus Weilburg/Lahn in der Region Westerwald / Taunus, gegründet 1980. FEGA fertigt Schnellwechsel-Adapter und Anbaukonstruktionen für Erdbewegungsmaschinen nach DIN EN 1090-2 / EXC 3, bietet Metallbau (Geländer, Treppen, Tore, Überdachungen, Carports, Anbaubalkone), Pumpentechnik (Prüfung, Reparatur, Vermietung), Maschinenhandel und einen Gerätemietpark. FEGA ist Teil der Feickert Unternehmensgruppe (Sitz Weilburg/Lahn, Tiefbau seit 1947). Kontakt: info@feickert-bau.de.
+
+## Leistungen
+
+- [Maschinenbau – Schnellwechsel-Adapter nach EXC 3](https://hans-on-marketing.github.io/FEGA-Metallbau/leistungen/maschinenbau): Schnellwechsel-Adapter und Anbaukonstruktionen für Erdbewegungsmaschinen, gefertigt nach DIN EN 1090-2 / EXC 3 und Maschinenrichtlinie 2006/42/EG; Liebherr-kompatibel (LIKUFIX & OilQuick), Roboter-Schweißanlage, Sandstrahlen und Aufarbeitung.
+- [Metallbau – Geländer, Treppen, Überdachungen](https://hans-on-marketing.github.io/FEGA-Metallbau/leistungen/metallbau): Metallbau aus einer Hand seit 1980 — Geländer, Stahltreppen, Türen, Tore, Überdachungen, Carports, Anbaubalkone, Edelstahl V2a und Stahl-/Anlagenbau im Westerwald, Taunus und Rhein-Main-Gebiet.
+- [Pumpentechnik – Prüfstand & DGUV3](https://hans-on-marketing.github.io/FEGA-Metallbau/leistungen/pumpentechnik): Pumpenprüfung, Reparatur, Vermietung und Verkauf; moderner Pumpenprüfstand seit 2016, dokumentiert nach DGUV3; Marken Auras und Tsurumi.
+- [Maschinenhandel – Baustellengerät & Pumpen](https://hans-on-marketing.github.io/FEGA-Metallbau/leistungen/maschinenhandel): Handelsgesellschaft für Baustellengerät — leistungsstarke Pumpen (Auras, Tsurumi), Schnellwechselsysteme, Anbaugeräte und Schmölz SchachtFIX-Spezialwerkzeuge für den Tiefbau.
+- [FEGA Mietpark – Adapter & Pumpen mieten](https://hans-on-marketing.github.io/FEGA-Metallbau/leistungen/mietpark): Mietpark für Schnellwechseladapter, Anbaugeräte (u. a. FEGA Power Spaten, Schwanenhals, hydrostatische Rüttelplatte) und Pumpen — geprüft und sofort einsatzbereit.
+
+## Unternehmen
+
+- [Über uns](https://hans-on-marketing.github.io/FEGA-Metallbau/ueber-uns): Familienbetrieb seit 1980 in Weilburg/Lahn; Fertigung nach EXC 3, Geräteadapter seit 2019, Pumpenprüfstand seit 2016.
+- [Unternehmensgruppe Feickert](https://hans-on-marketing.github.io/FEGA-Metallbau/unternehmensgruppe): FEGA gehört zur Feickert Unternehmensgruppe (seit 1947, Weilburg/Lahn) — Kanal- und Wasserleitungsbau, Spezialtiefbau und Ingenieurbau, bundesweit und in Luxemburg.
+- [Nachhaltigkeit](https://hans-on-marketing.github.io/FEGA-Metallbau/nachhaltigkeit): Langlebige Bauteile, Reparatur und Aufarbeitung statt Neukauf, Stahlschrott im Materialkreislauf, gewichtsoptimierte Konstruktionen.
+- [Referenzen](https://hans-on-marketing.github.io/FEGA-Metallbau/referenzen): Ausgewählte Arbeiten aus Maschinenbau, Metallbau und Tiefbau der Unternehmensgruppe.
+
+## Karriere
+
+- [Karriere](https://hans-on-marketing.github.io/FEGA-Metallbau/karriere): Offene Stellen bei FEGA (Metallfacharbeiter, Schweißer/Schlosser, Ausbildung zum Metallbauer, m/w/d) in Weilburg/Lahn sowie Stellen der Feickert-Gruppe.
+- [Ausbildung](https://hans-on-marketing.github.io/FEGA-Metallbau/ausbildung): Ausbildung in der Feickert-Unternehmensgruppe — Bauberufe an den Standorten Hessen, Sachsen-Anhalt und Thüringen sowie Duales Studium Bauingenieur.
+- [Kontakt](https://hans-on-marketing.github.io/FEGA-Metallbau/kontakt): Anfrage in wenigen Schritten oder direkt per E-Mail an info@feickert-bau.de.
+
+## Rechtliches
+
+- [Impressum](https://hans-on-marketing.github.io/FEGA-Metallbau/impressum)
+- [Datenschutz](https://hans-on-marketing.github.io/FEGA-Metallbau/datenschutz)
+- [AGB](https://hans-on-marketing.github.io/FEGA-Metallbau/agb)
+- [Mietbedingungen](https://hans-on-marketing.github.io/FEGA-Metallbau/mietbedingungen)

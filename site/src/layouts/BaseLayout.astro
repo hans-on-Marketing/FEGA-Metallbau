@@ -21,27 +21,78 @@ const {
 } = Astro.props;
 
 const site = Astro.site ?? new URL('https://hans-on-marketing.github.io');
-const fullPath = Astro.url.pathname;
+// Canonical auf eine einheitliche Form normalisieren (directory-Build → mit Trailing-Slash),
+// damit /kontakt und /kontakt/ nicht als Duplikate gewertet werden.
+const fullPath = Astro.url.pathname.replace(/\/?$/, '/');
 const canonical = new URL(fullPath, site).href;
+const homeUrl = new URL(withBase('/'), site).href;
 const ogImageUrl = new URL(withBase(ogImage), site).href;
 
-// Organization-Schema – ausschließlich gesicherte, öffentlich publizierte Daten.
-// Keine Postanschrift/Telefon/Öffnungszeiten (unklar/uneinheitlich → s. OFFENE-PUNKTE.md).
+// Organization-Schema – ausschließlich gesicherte, öffentlich publizierte Daten
+// (Anschrift/Telefon/E-Mail stehen bereits im Footer & Impressum → keine Erfindung).
 const orgSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: COMPANY.legal,
   legalName: COMPANY.legalLong,
-  url: site.href,
+  url: homeUrl,
   logo: new URL(withBase('/fega-logo.png'), site).href,
   slogan: COMPANY.claim,
+  foundingDate: String(COMPANY.since),
   description:
     'Metallbau, Maschinenbau (Schnellwechsel-Adapter nach DIN EN 1090-2 / EXC 3), Pumpentechnik, Maschinenhandel und Gerätevermietung aus einer Hand.',
   email: COMPANY.email,
+  telephone: COMPANY.phoneHref.replace('tel:', ''),
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: COMPANY.street,
+    postalCode: COMPANY.zip,
+    addressLocality: COMPANY.city,
+    addressCountry: 'DE',
+  },
   areaServed: COMPANY.region,
   knowsAbout: ['Metallbau', 'Maschinenbau', 'Pumpentechnik', 'Maschinenhandel', 'Gerätevermietung'],
-  parentOrganization: { '@type': 'Organization', name: COMPANY.group },
+  // sameAs/Website gehören der Muttergesellschaft (Feickert-Gruppe) → dort korrekt
+  // attribuiert, nicht der FEGA untergeschoben.
+  parentOrganization: {
+    '@type': 'Organization',
+    name: COMPANY.group,
+    url: 'https://www.feickert-bau.de/',
+    sameAs: [
+      'https://www.facebook.com/FeickertBau',
+      'https://www.youtube.com/channel/UCAhOl-DFFusCtc9DfCK1qpQ',
+      'https://www.instagram.com/feickert.bauunternehmen/',
+    ],
+  },
 };
+
+// Auto-BreadcrumbList aus dem Pfad (nur reale, auflösbare URLs).
+const CRUMB_LABELS: Record<string, string> = {
+  leistungen: 'Leistungen',
+  maschinenbau: 'Maschinenbau', metallbau: 'Metallbau', pumpentechnik: 'Pumpentechnik',
+  maschinenhandel: 'Maschinenhandel', mietpark: 'FEGA Mietpark',
+  'ueber-uns': 'Über uns', unternehmensgruppe: 'Unternehmensgruppe', referenzen: 'Referenzen',
+  nachhaltigkeit: 'Nachhaltigkeit', karriere: 'Karriere', ausbildung: 'Ausbildung',
+  kontakt: 'Kontakt', impressum: 'Impressum', datenschutz: 'Datenschutz', agb: 'AGB',
+  mietbedingungen: 'Mietbedingungen',
+};
+const segs = fullPath.replace(import.meta.env.BASE_URL, '').split('/').filter(Boolean);
+let breadcrumbSchema: Record<string, unknown> | null = null;
+if (segs.length) {
+  const crumbs: { name: string; url: string }[] = [{ name: 'Startseite', url: homeUrl }];
+  if (segs[0] === 'leistungen' && segs[1]) {
+    crumbs.push({ name: 'Leistungen', url: homeUrl + '#leistungen' });
+    crumbs.push({ name: CRUMB_LABELS[segs[1]] ?? segs[1], url: canonical });
+  } else {
+    crumbs.push({ name: CRUMB_LABELS[segs[0]] ?? segs[0], url: canonical });
+  }
+  breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: c.url })),
+  };
+}
+const allSchemas = [orgSchema, ...(breadcrumbSchema ? [breadcrumbSchema] : []), ...schemas];
 ---
 <!DOCTYPE html>
 <html lang="de">
@@ -71,6 +122,9 @@ const orgSchema = {
       #fega-gate .fg-err{display:none;margin-top:14px;color:#EE413E;font-size:12.5px;font-family:'Spline Sans Mono',monospace;letter-spacing:.03em}
     </style>
     <link rel="icon" type="image/png" href={withBase("/fega-logo.png")} />
+    <link rel="apple-touch-icon" href={withBase("/fega-logo.png")} />
+    <meta name="theme-color" content="#006DB6" />
+    <meta name="author" content={COMPANY.legal} />
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow" />
@@ -85,6 +139,10 @@ const orgSchema = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1245" />
+    <meta property="og:image:height" content="448" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:alt" content="FEGA GmbH – Metallbau und Maschinenbau" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -92,8 +150,7 @@ const orgSchema = {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
 
-    <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
-    {schemas.map((sc) => (
+    {allSchemas.map((sc) => (
       <script type="application/ld+json" set:html={JSON.stringify(sc)} />
     ))}
   </head>

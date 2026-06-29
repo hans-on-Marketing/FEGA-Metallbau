@@ -16,15 +16,23 @@ Wo Daten fehlten oder unsicher waren, wurde der Teil **weggelassen statt geraten
 - **Verifizierte Geschäftsanschrift der FEGA GmbH selbst.** Das Impressum nennt die
   *FVB Feickert Verwaltungs- und Beteiligungs GmbH* (Hermann-Stoll-Str. 1, 35781
   Weilburg/Lahn) als **Betreiberin** der Website — nicht zwingend die Betriebsstätte
-  der FEGA. Ohne gesicherte FEGA-Anschrift wurde **kein** `PostalAddress`/
-  `LocalBusiness`-Schema gesetzt.
-- **Öffnungs-/Geschäftszeiten** → kein `openingHours` im Schema.
-- **Geo-Koordinaten** (lat/long) für einen `LocalBusiness`-Eintrag.
-- **Kanonische Telefonnummer** (siehe Unstimmigkeit 3) → deshalb **kein** `telephone`
-  im Schema.
+  der FEGA. **Update 29.06.2026:** Da der Footer genau diese Anschrift unter
+  „Kontakt" als FEGA-Kontaktadresse ausweist, spiegelt das `PostalAddress` im
+  Org-Schema jetzt **exakt das, was die Seite ohnehin öffentlich anzeigt** (keine
+  Erfindung). **Bitte bestätigen,** ob das die tatsächliche FEGA-Betriebsstätte ist —
+  falls FEGA eine eigene, abweichende Adresse hat, in `COMPANY` (content.ts) korrigieren.
+- **Öffnungs-/Geschäftszeiten** → kein `openingHours` im Schema (weiterhin offen).
+- **Geo-Koordinaten** (lat/long) für einen `LocalBusiness`-Eintrag (weiterhin offen).
+- **Kanonische Telefonnummer** (siehe Unstimmigkeit 3). **Update 29.06.2026:**
+  `telephone` (`+4964715020`) ist jetzt im Org-Schema — dieselbe Nummer, die Footer
+  und Header durchgängig als FEGA-Kontakt zeigen. Bei abweichender Hauptnummer in
+  `COMPANY.phoneHref` (content.ts) korrigieren.
 - **Offizielle Social-Media-Profile der FEGA GmbH.** Die im Footer verlinkten
   Facebook/YouTube/Instagram-Profile gehören der Feickert-Gruppe („FeickertBau"),
-  nicht eindeutig der FEGA → deshalb **kein** `sameAs` im Schema.
+  nicht eindeutig der FEGA. **Update 29.06.2026:** Deshalb wurden sie **nicht** der
+  FEGA untergeschoben, sondern korrekt als `sameAs` der `parentOrganization`
+  (Feickert-Gruppe, inkl. `url` feickert-bau.de) ausgezeichnet. Sobald **eigene**
+  FEGA-Profile existieren, ein FEGA-`sameAs` ergänzen.
 - **Echtes Foto + echter Name der Karriere-Ansprechpartner/in.** Aktuell Platzhalter
   („Sabine Wagner" + Platzhalterbild auf `/karriere`).
 - **Foto für Pumpentechnik.** Im Bildordner existiert kein Pumpen-/Prüfstand-Foto →
@@ -255,3 +263,51 @@ Pages-Settings hinterlegen.
   nur den FEGA-Briefkopf (Anschrift/Tel./E-Mail). Für eine „Zertifikate/Nachweise"-
   Sektion müssten die Zertifikate (z. B. EN-1090-Werkszeugnis, DGUV3) **separat** als
   Bild/PDF bereitgestellt werden. **Offen.**
+
+---
+
+## Changelog 29.06.2026 — SEO/GEO-Optimierung + Responsive-Pass
+
+Zwei parallele Audit-Agenten (SEO/GEO read-only + Responsive via Playwright,
+~15 Seiten × 5 Breiten), Befunde anschließend zentral umgesetzt.
+
+**SEO / GEO**
+- **`public/llms.txt`** neu (Standard llmstxt.org) — Kurzprofil + alle Kernseiten
+  mit absoluten URLs, ausschließlich gesicherte Daten. Stärkt Zitierfähigkeit in
+  KI-Suchen (ergänzt die bereits erlaubten KI-Bots in `robots.txt`).
+- **Org-Schema (`BaseLayout.astro`) angereichert:** `foundingDate`, `telephone`,
+  `address` (PostalAddress — spiegelt die im Footer publizierte Kontaktadresse),
+  `parentOrganization` mit `url` + `sameAs` (Feickert-Gruppe; korrekt der Mutter
+  zugeordnet, nicht der FEGA). Siehe Abschnitt 1 für die offene Adress-/Tel.-Bestätigung.
+- **Auto-`BreadcrumbList`** (JSON-LD) auf jeder Unterseite; 3-stufig für `/leistungen/*`
+  (Start → Leistungen → Leistung). Nur real auflösbare URLs.
+- **`ItemList`-Schema** auf `/referenzen`.
+- **Titles/Descriptions** für Über uns, Kontakt, Referenzen geschärft (Region-Keywords);
+  Startseiten-Title gekürzt (< 60 Z.).
+- **Canonical** auf einheitliche Form mit Trailing-Slash normalisiert (verhindert
+  `/kontakt` vs `/kontakt/` als Duplikate).
+- **Open Graph** vervollständigt (`og:image:width/height/type/alt`, reale 1245×448),
+  plus `theme-color`, `apple-touch-icon`, `meta author`.
+- **Sitemap** (`astro.config.mjs`): Rechtstexte ausgefiltert; Startseite Priorität 1.0,
+  Leistungsseiten 0.9; Karriere/Ausbildung `changefreq weekly`.
+- **Heading-Outline** bereinigt: Säulen-/Schritt-Titel (`/nachhaltigkeit`, `/ausbildung`)
+  von `h2` → `h3`.
+
+**Responsive (Befunde behoben)**
+- **[HIGH] `/leistungen/mietpark`** — Konfigurator sprengte bei 360/390 px die Breite
+  (134/104 px Overflow): Geräte-Buttons jetzt `repeat(3,minmax(0,1fr))` + Label
+  `overflow-wrap:break-word` (langes Wort „Schnellwechseladapter" bricht jetzt um).
+  `MietparkKonfigurator.tsx`.
+- **[HIGH] Startseite** — CTA-Buttonreihe lief bei 360/390 px über (69/39 px): Buttons
+  stapeln jetzt < 560 px vertikal, volle Breite. `index.astro`.
+- **[LOW] `/karriere`** — 4 px Overflow @360: `min-width:0` auf `.kkontakt__body`.
+- **[MED] Tap-Targets** vergrößert (≥ ~40–44 px): Menü-Trigger (`NavKino.tsx`),
+  Footer-Links + Social (`Footer.astro`).
+- **Verifiziert:** 0 px horizontaler Overflow auf allen geprüften Seiten bei 360/390 px
+  (Playwright-Nachmessung); Tablet/Desktop (768/1024/1440) waren bereits sauber.
+
+**Bewusst NICHT geändert (kein Auftrag / Absicht):**
+- **Passwort-Gate bleibt** aktiv. Hinweis: solange das Gate live ist, steht ein
+  öffentlicher `index,follow`+Sitemap im Widerspruch zu „nicht öffentlich"; bei echtem
+  Bedarf vor Go-Live auf `noindex` umstellen, zum Launch Gate entfernen.
+- **Fotos** weiterhin aus (`USE_PHOTOS=false`) bis echte Bilder vorliegen.

@@ -15,6 +15,25 @@ export default defineConfig({
   site: 'https://hans-on-marketing.github.io',
   base: '/FEGA-Metallbau/',
   trailingSlash: 'ignore',
-  integrations: [react(), sitemap({ changefreq: 'monthly', priority: 0.7 })],
+  integrations: [
+    react(),
+    sitemap({
+      changefreq: 'monthly',
+      priority: 0.7,
+      // Rechtstexte aus der Sitemap nehmen (kein Ranking-Wert, verwässern nur).
+      filter: (page) => !/\/(impressum|datenschutz|agb|mietbedingungen)\/?$/.test(page),
+      serialize(item) {
+        if (/\/FEGA-Metallbau\/?$/.test(item.url)) {
+          item.priority = 1.0; // Startseite
+          item.changefreq = 'weekly';
+        } else if (item.url.includes('/leistungen/')) {
+          item.priority = 0.9; // Leistungsseiten
+        } else if (/\/(karriere|ausbildung)\/?$/.test(item.url)) {
+          item.changefreq = 'weekly'; // Stellen ändern sich häufiger
+        }
+        return item;
+      },
+    }),
+  ],
   build: { format: 'directory' },
 });

@@ -46,7 +46,7 @@ export default function MietparkKonfigurator() {
         <div style={{ background: '#fff', border: '1px solid ' + C.n150, padding: 'clamp(24px,3vw,40px)', display: 'flex', flexDirection: 'column', gap: 28 }}>
           <div>
             <FieldLabel>1 · Gerät wählen</FieldLabel>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 10 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,minmax(0,1fr))', gap: 10 }}>
               {TYPES.map((x) => {
                 const on = type === x.v;
                 return (
@@ -56,7 +56,7 @@ export default function MietparkKonfigurator() {
                     onClick={() => setType(x.v)}
                     style={{ textAlign: 'left', cursor: 'pointer', padding: 16, background: on ? C.blue : C.n25, border: '2px solid ' + (on ? C.blue : C.n150), transition: 'all .15s' }}
                   >
-                    <span style={{ display: 'block', fontFamily: C.font, fontSize: 14.5, fontWeight: 600, color: on ? '#fff' : C.n900 }}>{x.v}</span>
+                    <span style={{ display: 'block', fontFamily: C.font, fontSize: 14.5, fontWeight: 600, overflowWrap: 'break-word', color: on ? '#fff' : C.n900 }}>{x.v}</span>
                     <span style={{ display: 'block', marginTop: 5, fontFamily: C.mono, fontSize: 10.5, letterSpacing: '0.04em', color: on ? 'rgba(255,255,255,0.7)' : C.n400 }}>{x.sub}</span>
                   </button>
                 );

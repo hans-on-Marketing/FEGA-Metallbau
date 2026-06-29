@@ -100,7 +100,7 @@ export default function NavKino() {
             )}
             <PrimaryBtn href={withBase('/kontakt')} size="sm">Anfrage</PrimaryBtn>
             <span style={{ width: 1, height: 20, background: NC.lineMid }} />
-            <button onClick={() => setOpen(true)} aria-label="Menü öffnen" style={{ display: 'inline-flex', alignItems: 'center', gap: 11, background: 'none', border: 'none', cursor: 'pointer', padding: 0, color: NC.ink }}>
+            <button onClick={() => setOpen(true)} aria-label="Menü öffnen" style={{ display: 'inline-flex', alignItems: 'center', gap: 11, background: 'none', border: 'none', cursor: 'pointer', padding: '12px 2px', margin: '-12px 0', minHeight: 44, color: NC.ink }}>
               <span style={{ fontFamily: SAIRA, fontSize: 13.5, fontWeight: 600, letterSpacing: '0.07em', textTransform: 'uppercase' }}>Menü</span>
               <span style={{ display: 'inline-flex', flexDirection: 'column', gap: 4 }}>
                 <span style={{ width: 24, height: 2, background: NC.ink }} />

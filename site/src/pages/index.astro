@@ -24,7 +24,7 @@ const refItems = [REFERENCES[2], REFERENCES[1], REFERENCES[3], REFERENCES[4], RE
 const link = (id: string) => withBase(SLUG[id]);
 ---
 <BaseLayout
-  title="FEGA GmbH – Solide Leistung, die man kaufen kann | Metallbau & Maschinenbau"
+  title="FEGA GmbH: Metallbau & Maschinenbau im Westerwald"
   description="FEGA GmbH aus dem Westerwald: Geräteadapter nach DIN EN 1090-2 / EXC 3, Metallbau, Pumpenprüfung, Maschinenhandel und Gerätemiete. Alles aus einer Hand — Angebot in der Regel innerhalb von 24 Stunden."
 >
   <div class="h2026">
@@ -493,5 +493,8 @@ const link = (id: string) => withBase(SLUG[id]);
     .intro__stats { grid-template-columns: 1fr 1fr; }
     .refs { grid-template-columns: 1fr; }
     .adp__collage { grid-template-columns: 1fr 1fr; }
+    .cta { padding: clamp(28px,7vw,40px); }
+    .cta__btns { flex-direction: column; align-items: stretch; width: 100%; }
+    .cta__btns .btn { width: 100%; justify-content: center; }
   }
 </style>

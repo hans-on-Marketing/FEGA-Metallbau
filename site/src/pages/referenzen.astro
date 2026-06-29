@@ -10,10 +10,18 @@ import { REFERENCES } from '@/data/content';
 import { label as labelOf } from '@/lib/alt';
 
 const items = REFERENCES.map((r) => ({ label: labelOf(r.img), cat: r.cat, t: r.t }));
+
+const refListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Referenzen der FEGA GmbH',
+  itemListElement: REFERENCES.map((r, i) => ({ '@type': 'ListItem', position: i + 1, name: r.t })),
+};
 ---
 <BaseLayout
-  title="Referenzen – FEGA GmbH"
+  title="Referenzen: Adapter, Metallbau & Tiefbau im Westerwald | FEGA"
   description="Ausgewählte Arbeiten von FEGA: Schnellwechsel-Adapter im Einsatz, Metallbau (Treppen, Geländer, Überdachungen, Rampen) und Tiefbau-Projekte der Feickert-Gruppe."
+  schemas={[refListSchema]}
 >
   <Section sm style="padding-top:clamp(44px,5.5vw,80px);padding-bottom:clamp(28px,3vw,44px);">
     <Container>
