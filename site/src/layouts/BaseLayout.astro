@@ -48,6 +48,28 @@ const orgSchema = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Vorschau-Sperre: früh prüfen, ob bereits freigeschaltet (kein Content-Flash) -->
+    <script is:inline>try{if(localStorage.getItem('fega_access')==='1')document.documentElement.classList.add('fega-unlocked')}catch(e){}</script>
+    <style is:inline>
+      #fega-gate{position:fixed;inset:0;z-index:2147483647;background:#141417;color:#fff;display:flex;align-items:center;justify-content:center;padding:24px;font-family:'Saira','Helvetica Neue',Helvetica,Arial,sans-serif}
+      html.fega-unlocked #fega-gate{display:none!important}
+      html:not(.fega-unlocked) body{overflow:hidden}
+      #fega-gate .fg-bar{position:absolute;top:0;left:0;right:0;display:flex;height:4px}
+      #fega-gate .fg-bar i:nth-child(1){flex:7;background:#3a3a42}
+      #fega-gate .fg-bar i:nth-child(2){flex:2;background:#006DB6}
+      #fega-gate .fg-bar i:nth-child(3){flex:1;background:#EE413E}
+      #fega-gate .fg-box{width:100%;max-width:430px;text-align:center}
+      #fega-gate .fg-logo{height:46px;width:auto;margin:0 auto 28px;display:block}
+      #fega-gate .fg-eye{font-family:'Spline Sans Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:#3a9bd6;margin-bottom:16px}
+      #fega-gate h1{font-size:clamp(25px,3.6vw,38px);font-weight:700;letter-spacing:-.02em;line-height:1.06;margin:0}
+      #fega-gate .fg-p{margin:14px 0 0;color:rgba(255,255,255,.64);font-size:15px;line-height:1.6}
+      #fega-gate form{margin-top:26px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+      #fega-gate input{flex:1;min-width:180px;height:52px;padding:0 16px;background:#1f1f24;border:1px solid rgba(255,255,255,.18);color:#fff;font-size:15px;font-family:inherit;outline:none;border-radius:0}
+      #fega-gate input:focus{border-color:#006DB6}
+      #fega-gate button{height:52px;padding:0 26px;background:#006DB6;border:1px solid #006DB6;color:#fff;font-weight:600;font-size:14px;letter-spacing:.02em;cursor:pointer;font-family:inherit;border-radius:0;transition:background .18s}
+      #fega-gate button:hover{background:#005A99}
+      #fega-gate .fg-err{display:none;margin-top:14px;color:#EE413E;font-size:12.5px;font-family:'Spline Sans Mono',monospace;letter-spacing:.03em}
+    </style>
     <link rel="icon" type="image/png" href={withBase("/fega-logo.png")} />
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -76,6 +98,35 @@ const orgSchema = {
     ))}
   </head>
   <body>
+    <!-- Vorschau-Passwortsperre (clientseitig; hält Besucher draußen, ist aber kein echter Server-Schutz) -->
+    <div id="fega-gate">
+      <div class="fg-bar"><i></i><i></i><i></i></div>
+      <div class="fg-box">
+        <img class="fg-logo" src={withBase('/fega-logo.png')} alt="FEGA GmbH" />
+        <div class="fg-eye">Geschützter Bereich · Vorschau</div>
+        <h1>Diese Seite ist noch<br />nicht öffentlich.</h1>
+        <p class="fg-p">Bitte gib das Passwort ein, um die FEGA-Vorschau anzusehen.</p>
+        <form id="fega-gate-form" autocomplete="off">
+          <input id="fega-gate-pw" type="password" placeholder="Passwort" aria-label="Passwort" autocomplete="off" />
+          <button type="submit">Ansehen</button>
+        </form>
+        <div id="fega-gate-err" class="fg-err">Falsches Passwort. Bitte erneut versuchen.</div>
+      </div>
+    </div>
+    <script is:inline>
+      (function(){
+        var g=document.getElementById('fega-gate'); if(!g) return;
+        if(document.documentElement.classList.contains('fega-unlocked')) return;
+        var f=document.getElementById('fega-gate-form'),i=document.getElementById('fega-gate-pw'),e=document.getElementById('fega-gate-err');
+        var H='ca01ececbc5d2c27c51953a19e4154d95296969c4e205cb5d1090533685160c2';
+        function hex(buf){return Array.prototype.map.call(new Uint8Array(buf),function(b){return ('0'+b.toString(16)).slice(-2)}).join('')}
+        function unlock(){try{localStorage.setItem('fega_access','1')}catch(_){}document.documentElement.classList.add('fega-unlocked')}
+        function fail(){e.style.display='block';i.value='';try{i.focus()}catch(_){}}
+        try{i.focus()}catch(_){}
+        f.addEventListener('submit',function(ev){ev.preventDefault();var pw=(i.value||'').trim();
+          if(window.crypto&&crypto.subtle&&window.TextEncoder){crypto.subtle.digest('SHA-256',new TextEncoder().encode(pw)).then(function(b){hex(b)===H?unlock():fail()}).catch(fail);}else{fail();}});
+      })();
+    </script>
     <div style="display:flex;flex-direction:column;min-height:100vh;background:#fff;">
       <NavKino client:load />
       <main style="flex:1;">
